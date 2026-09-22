@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira - LumiSoja</title>
+</head>
+
+<body>
+    <h2>CALCULADORA FINANCEIRA</h2>
+    <br>
+    <label for="ipt_empresa">Nome da Empresa: </label>
+    <input type="text" id="ipt_empresa">
+    <br><br>
+    <label for="ipt_hectares">Informe a quantidade de hectares de soja: </label>
+    <input type="text" id="ipt_hectares">
+    <br><br>
+    <label for="ipt_valor_sacas">Informe o valor que é vendido a saca/ha: </label>
+    <input type="text" id="ipt_valor_sacas">
+    <br><br>
+    <button onclick="calcular ()">Análise das informações</button>
+    <br><br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    function calcular() {
+
+        let empresa = ipt_empresa.value
+
+        // Dados para os cálculos:
+
+        let hectare = Number(ipt_hectares.value);
+        let valor_sacas = Number(ipt_valor_sacas.value);
+        let media_população_por_hectare = Number((200000 + 250000) / 2); //   
+        let media_vagens_por_planta = Number ((63 + 75) / 2);
+        let grao_por_vagens = Number(2.5);
+        let peso_medio_mil_graos = Number((140 + 220) / 2); // 
+        let media_cultivo_por_ano = Number((1 + 2) / 2);
+
+        // Cálculo estimativa de Produtividade sem sensores: 
+
+        let calculo_produtividade = (225 * media_vagens_por_planta * grao_por_vagens * peso_medio_mil_graos) / 60000;
+        let produtividade_anual_sem_sensor = calculo_produtividade * media_cultivo_por_ano;
+        let produtividade_mensal_sem_sensor = produtividade_anual_sem_sensor / 12;
+
+        // Cálculo da estimativa de Faturamento sem sensores:
+
+        let estimativa_sacas_soja_colhidas = produtividade_anual_sem_sensor * hectare;
+        let faturamento_atual_anual = estimativa_sacas_soja_colhidas * valor_sacas;
+        let faturamento_atual_mensal = faturamento_atual_anual / 12;
+
+        // Cálculo estimativa de Produtividade com sensores:
+
+        let percentual_produtividade_com_sensor = ((20 + 66) / 2) / 100;
+        let percentual_aplicado_produtividade_anual = produtividade_anual_sem_sensor * percentual_produtividade_com_sensor;
+        let produtividade_anual_com_sensores = produtividade_anual_sem_sensor + percentual_aplicado_produtividade_anual;
+        let produtividade_mensal_com_sensores = produtividade_anual_com_sensores / 12;
+
+        // Cálculo da estimativa de Faturamento com sensores:
+
+        let percentual_aplicado_faturamento_com_sensores = faturamento_atual_anual * percentual_produtividade_com_sensor;
+        let faturamento_anual_com_sensores = faturamento_atual_anual + percentual_aplicado_faturamento_com_sensores;
+        let faturamento_mensal_com_sensores = faturamento_anual_com_sensores / 12;
+        let faturamento_elevado = faturamento_anual_com_sensores - faturamento_atual_anual
+
+
+        div_msg.innerHTML = `<h2>Simulador para a Empresa ${empresa}</h2><br><h3>Estimativa sem a nossa aplicação: </h3>
+        Produtividade Anual: ${produtividade_anual_sem_sensor.toFixed(1)} sc/ha <br>
+        Produtividade mensal: ${produtividade_mensal_sem_sensor.toFixed(1)} sc/ha <br> 
+        Faturamento Atual Anual: R$${faturamento_atual_anual.toFixed(1)} <br> 
+        Faturamento Mensal: R$${faturamento_atual_mensal.toFixed(1)} <br> <br>
+ 
+        <h3>Estimativa com a nossa aplicação - aumento de até 43%: </h3>
+        Produtividade Anual: ${produtividade_anual_com_sensores.toFixed(1)} sc/ha<br>
+        Produtividade Mensal: ${produtividade_mensal_com_sensores.toFixed(1)} sc/ha<br>
+        Faturamento Anual: R$${faturamento_anual_com_sensores.toFixed(1)}<br>
+        Faturamento Mensal: R$ ${faturamento_mensal_com_sensores.toFixed(1)}<br>
+        <span style="color: green;">Faturamento elevado em R$ ${faturamento_elevado.toFixed(1)} por ano </span>`
+    }
+
+</script>
