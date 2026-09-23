@@ -50,9 +50,9 @@ const serial = async (
     // processa os dados recebidos do Arduino
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
-        const valores = data.split(';');
-        const sensorDigital = parseInt(valores[0]);
-        const sensorAnalogico = parseFloat(valores[1]);
+        // const valores = data.split(';');
+        const sensorAnalogico = parseFloat(valores[0]);
+        // const sensorDigital = parseFloat(valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorAnalogico.push(sensorAnalogico);
