@@ -55,8 +55,9 @@
             <label for="ipt_email">E-mail corporativo</label>
             <input type="text" id="ipt_email" placeholder="Login">
             <label for="ipt_senha">Senha</label>
-            <input type="password" id="ipt_senha" placeholder="******">
-            <button>Cadastrar</button>
+            <input type="password" id="ipt_senha" placeholder="Mínimo 8 caracteres">
+            <button onclick="cadastrar()">Cadastrar</button>
+            <div id="div_msg"></div>
         </div>
     </div>
 
@@ -68,5 +69,29 @@
     </div>
 
 </body>
+<script>
+    function cadastrar() {
+        
+        let nome = ipt_nome.value;
+        let empresa = ipt_empresa.value;
+        let email = ipt_email.value;
+        let senha = ipt_senha.value;
+        let tamanho_senha = senha.length;
+        let maiuscula = senha.toUpperCase();
+        let minuscula = senha.toLowerCase();
+        let arroba = email.includes('@');
 
+        if (nome == '' || empresa == '' || email == '' || senha == ''){
+            div_msg.innerHTML = `Por favor, insira todos os dados corretamente.`;
+        }else if(arroba == false){
+            div_msg.innerHTML = `Por favor, insira um e-mail valido.`;
+        }else if (tamanho_senha >= 8 && senha != maiuscula && senha != minuscula){
+            div_msg.innerHTML = `Empresa cadastrada com sucesso!<br>
+                                 Por favor, faça login.`;
+        }else {
+            div_msg.innerHTML = `Por favor, insira uma senha forte ( No mínimo 8 caracteres com uma letra maiúscula e uma minúscula)`
+        }
+
+    }
+</script>
 </html>
