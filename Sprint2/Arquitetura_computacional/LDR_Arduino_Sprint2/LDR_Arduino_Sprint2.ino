@@ -21,9 +21,7 @@ void loop() {
   float r_ldr = R_FIXO * (VCC - tensao) / tensao;    // ohms no LDR
   float lux = CONSTANTE / (r_ldr / 1000.0);          // lux aproximado
 
-  Serial.println(800);
   Serial.println(lux);
-  Serial.println(200);
 
   delay(2000);
 }
