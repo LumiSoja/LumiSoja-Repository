@@ -17,21 +17,17 @@
         <div class="box">
             <img src="">
             <h3>Monitoramento de Luminosidade</h3>
-            <span>Monitoramento em tempo real dos níveis de luminosidade na sua plantação de
-                soja.</span>
+            <span>Monitoramento em tempo real dos níveis de luminosidade na sua plantação de soja.</span>
         </div>
         <div class="box">
             <img src="">
             <h3>Gráficos</h3>
-            <span>Geração de gráficos para a visualização das variações dos níveis ao longo do
-                tempo.</span>
+            <span>Geração de gráficos para a visualização das variações dos níveis ao longo do tempo.</span>
         </div>
         <div class="box">
             <img src="">
             <h3>Relatórios</h3>
-            <span>Geração de relatórios para que você possa tomar uma decisão mais consciente do
-                futuro
-                da sua plantação.</span>
+            <span>Geração de relatórios para que você possa tomar uma decisão mais consciente do futuro da sua plantação.</span>
         </div>
     </div>
 
@@ -47,25 +43,40 @@
             </div>
         </div>
 
-        <div class="container">
-            <label for="ipt_nome">Nome completo</label>
-            <input type="text" id="ipt_nome" placeholder="Nome">
-            <label for="ipt_empresa">Empresa / Cooperativa</label>
-            <input type="text" id="ipt_empresa" placeholder="Empresa">
-            <label for="ipt_email">E-mail corporativo</label>
-            <input type="email" id="ipt_email" placeholder="Login">
-            <label for="ipt_senha">Senha</label>
-            <input type="password" id="ipt_senha" placeholder="Mínimo 8 caracteres">
-            <button onclick="cadastrar()">Cadastrar</button>
+        <form class="container">
+            <label for="ipt_nome">Nome Completo</label><br>
+            <input required type="text" id="ipt_nome"><br><br>
+
+            <label for="ipt_empresa">Razão Social</label><br>
+            <input required type="text" id="ipt_empresa"><br><br>
+            
+            <label for="ipt_cnpj">CNPJ</label><br>
+            <input required type="text" id="ipt_cnpj"><br><br>
+
+            <label for="ipt_email">E-mail Corporativo</label><br>
+            <input required type="email" id="ipt_email" placeholder="usuario@empresa.com"><br><br>
+            
+            <label for="ipt_senha">Senha</label><br>
+            <input required type="password" id="ipt_senha"><br><br>
+            
+            <label for="ipt_hectares">Hectares</label><br>
+            <input required type="text" id="ipt_hectares"><br><br>
+            
+            <label for="ipt_logradouro">Logradouro</label><br>
+            <input required type="text" id="ipt_logradouro"><br><br>
+
+            <label for="ipt_tel">Telefone</label><br>
+            <input required type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br><br>
+            
+            <button type="submit" onclick="cadastrar()">Cadastrar</button><br><br>
             <div id="div_msg"></div>
-        </div>
+        </form>
     </div>
 
 
     <div class="footer">
         <img class="logo" src="">
-        <span>>Lumi soja</span>
-        <span>© 2025 LumiSoja. Monitoramento de luminosidade para o agronegócio brasileiro.</span>
+        <span>&copy; 2026 LumiSoja. Monitoramento de luminosidade para o agronegócio brasileiro.</span>
     </div>
 
 </body>
