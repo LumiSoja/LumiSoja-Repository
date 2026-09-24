@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> LumiSoja - Login </title>
+</head>
+
+<body>
+
+    <div id="div_body">
+
+        <div id="div_login_texto">
+            
+            <h1> Hora do login </h1>
+            <h3> Vamos acessar sua dashboard! </h3>
+
+        </div>
+
+        <div id="div_login_formulario">
+            
+            <h3> Login </h3>
+            <span> E-mail </span>
+            <br>
+            <input type="text" id="ipt_email" oninput="EmailLowerCase()">
+            <br>
+            <span> Senha </span>
+            <br>
+            <input type="text" id="ipt_senha">
+            <br>
+            <button onclick="RedirecionarCadastro()"> Cadastro </button>
+            <button onclick="ValidarEmail()"> Entrar </button>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    let usuarioEmail = ['fernando.brandao@sptech.school', 'julia.araripe@sptech.school', 'marcos.antonio@sptech.school']
+    let usuarioSenha = ['fbrand1@3', 'juli4@#$', 'ma2&8an']
+
+    function EmailToLowerCase() {
+
+        ipt_email.value = ipt_email.value.toLowerCase()
+    }
+
+    function ValidarEmail() {
+
+        let email = ipt_email.value.replaceAll(' ', '')
+        let senha = ipt_senha.value
+
+        if (email.includes('@') && email.includes('.') && email.indexOf('@') != email.indexOf('.') - 1) {
+
+            if ((email == usuarioEmail[0] && senha == usuarioSenha[0]) || (email == usuarioEmail[1] && senha == usuarioSenha[1]) ||
+            (email == usuarioEmail[2] && senha == usuarioSenha[2])) {
+
+                alert('Login realizado com sucesso!')
+            }
+
+            else {
+
+                alert('Senha ou usuário incorretos!')
+            }
+        }
+
+        else {
+
+            alert('Insira um e-mail válido!')
+        }
+    }
+
+    function RedirecionarCadastro(){
+
+        alert('Essa função irá redirecionar ao bloco de cadastro no futuro.')
+    }
+
+</script>
