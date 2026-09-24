@@ -1,29 +1,51 @@
--- Criação do database
 CREATE DATABASE soja_iot;
---
 USE soja_iot;
 
-
--- /////////////////////////////////////////////////////////////////////////////
 -- TABELA EMPRESA
 CREATE TABLE empresa (
-idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-razao_social VARCHAR (200) NOT NULL,
-cnpj CHAR (14) UNIQUE NOT NULL,
-email_institucional VARCHAR (50) UNIQUE,
-hectares DECIMAL (10,2) NOT NULL
+	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(45),
+	razao_social VARCHAR(45) UNIQUE,
+	cnpj CHAR(14),
+	email_corporativo VARCHAR(50) UNIQUE,
+	senha VARCHAR(45),
+	hectares DECIMAL(10,2)
 );
 
--- TABELA USUARIO
-CREATE TABLE usuario (
-idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-cpf CHAR (11) UNIQUE NOT NULL,
-nome_usuario VARCHAR (50) NOT NULL,
-email VARCHAR (50) UNIQUE NOT NULL,
-senha VARCHAR (30) UNIQUE NOT NULL,
-fk_empresa INT,
-INDEX fk_usuarioempresa_idx (fk_empresa),
-CONSTRAINT fk_usuarioempresa FOREIGN KEY (fk_empresa) REFERENCES empresa(idEmpresa)
+-- TABELA FUNCIONÁRIO
+CREATE TABLE funcionario (
+	idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(45),
+	email_funcionario VARCHAR(45) UNIQUE,
+	senha_funcionario VARCHAR(45),
+	cpf CHAR(11) UNIQUE,
+	fk_empresa INT,
+	INDEX fk_funcionario_cadastro_idx (fk_empresa),
+	CONSTRAINT fk_funcionario FOREIGN KEY (fk_empresa) REFERENCES empresa(idEmpresa)
+);
+
+-- TABELA FAZENDA
+CREATE TABLE fazenda (
+	idFazenda INT PRIMARY KEY AUTO_INCREMENT,
+    nome_fazenda VARCHAR(45),
+    endereco VARCHAR(45) UNIQUE,
+    qtd_sensores INT,
+    fk_empresa INT,
+    INDEX fk_fazendas_empresa1_idx (fk_empresa),
+    CONSTRAINT fk_fazendas FOREIGN KEY (fk_empresa) REFERENCES empresa(idEmpresa)
+);
+
+-- TABELA SENSOR
+CREATE TABLE sensor (
+idSensor INT PRIMARY KEY AUTO_INCREMENT,
+identificacao VARCHAR(45),
+posicionamento VARCHAR(45),
+lux DECIMAL(10,2),
+ativo TINYINT,
+data_hora DATETIME,
+fk_fazenda INT,
+INDEX fk_sensor_fazenda1_idx (fk_fazenda),
+CONSTRAINT fk_sensor FOREIGN KEY (fk_fazenda) REFERENCES fazenda(idFazenda)
 );
 
 INSERT INTO empresa (razao_social, cnpj, email_institucional, hectares) VALUES
@@ -40,53 +62,9 @@ INSERT INTO usuario (nome_usuario, cpf, email, senha, fk_empresa) VALUES
 ('Pietra Antunes', '09581256008','PietraAntunes@gardill.com', 'bdbh56644', '1'),
 ('Alexandre Pietro', '62587598079','AlexandrePietro@gardill.com', '1783647688', '1');
 
--- SELECT GERAL dos dados da Empresa
-SELECT
-idEmpresa, razao_social AS nome,
-cnpj, email_institucional AS email, hectares
-FROM empresa;
-
--- /////////////////////////////////////////////////////////////////////////////
-
--- SELECT GERAL dos dados dos Usuarios
-SELECT
-idUsuario, cpf, nome_usuario AS nome,
-email, senha, empresa_usuario AS empresa
-FROM usuario;
-
-
--- /////////////////////////////////////////////////////////////////////////////
--- TABELA SENSOR - GRANDILL
-CREATE TABLE sensor_gardill (
-idSensor INT PRIMARY KEY AUTO_INCREMENT,
-status_sensor TINYINT,
-local_instalado VARCHAR (45)
-);
-
 INSERT INTO sensor_gardill (status_sensor, local_instalado) VALUES
 (TRUE, 'área 01'),
 (FALSE, 'área 02');
-
--- SELECT GERAL de sensores por Empresa
-SELECT
-idSensor,
-CASE WHEN status_sensor = TRUE THEN 'Ativo'
-ELSE 'Inativo'
-END AS 'status',
-local_instalado
-FROM  sensor_gardill;
-
-
--- /////////////////////////////////////////////////////////////////////////////
--- TABELA COM OS DADOS DO SENSOR - GRANDILL
-CREATE TABLE lux_gardill (
-idLux INT PRIMARY KEY AUTO_INCREMENT,
-data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
-qtd_lux DECIMAL (7,2),
-fk_sensor INT,
-INDEX fk_sensorlux_idx (fk_sensor),
-CONSTRAINT fk_sensorlux FOREIGN KEY (fk_sensor) REFERENCES sensor_gardill(idSensor)
-);
 
 INSERT INTO lux_gardill (data_hora, qtd_lux) VALUES
 (DEFAULT, 35000),
@@ -101,87 +79,3 @@ INSERT INTO lux_gardill (data_hora, qtd_lux) VALUES
 (DEFAULT, 46000),
 (DEFAULT, 48000),
 (DEFAULT, 50000);
-
--- UPDATE para simulação de luminosidade - registro a cada 10 minutos
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 08:00:00'
-WHERE idLux = 1;
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 08:10:00'
-WHERE idLux = 2;
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 08:20:00'
-WHERE idLux = 3;
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 08:30:00'
-WHERE idLux = 4;
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 08:40:00'
-WHERE idLux = 5;
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 08:50:00'
-WHERE idLux = 6;
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 09:00:00'
-WHERE idLux = 7;
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 09:10:00'
-WHERE idLux = 8;
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 09:20:00'
-WHERE idLux = 9;
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 09:30:00'
-WHERE idLux = 10;
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 09:40:00'
-WHERE idLux = 11;
-UPDATE lux_gardill SET
-data_hora = '2026-09-09 09:50:00'
-WHERE idLux = 12;
-
--- SELECT GERAL de luminosidade dos sensores de determinada empresa
-SELECT idLux, data_hora, qtd_lux
-FROM lux_gardill;
-
-
--- /////////////////////////////////////////////////////////////////////////////
--- SIMULADOR DE SELECTS
-
-
--- SELECTS ESPECIFICOS - EMPRESA
-
--- selecionando a quantidade de hectares de determinada empresa
-SELECT CONCAT('A emperesa', ' ', razao_social, ' ', 'possui ', ' ', hectares, ' ', 'hectares.')
-AS 'Informações de hectares'
-FROM empresa;
-
-
--- SELECTS ESPECÍFICOS - USUARIO
-
--- lista de usuarios em ordem alfabética
-SELECT * FROM usuario ORDER BY nome_usuario ASC;
-
--- usuarios onde o nome começa com A
-SELECT * FROM usuario WHERE nome_usuario LIKE 'A%';
-
-
--- SELECTS ESPECÍFICOS - SENSOR_GARDILL
-
--- selecionando sensores ativos
-SELECT idSensor,
-CASE WHEN status_sensor = TRUE THEN 'Ativo'
-END AS 'status',
-local_instalado
-FROM sensor_gardill
-WHERE status_sensor = TRUE;
-
-
--- SELECTS ESPECÍFICOS - LUX_GARDILL
-
--- selecionando niveis de luminosidade especificos
-SELECT * FROM lux_gardill WHERE qtd_lux >= 36000 AND qtd_lux <= 46000;
-
--- SELECT de dados dentro de um determinado horário
-SELECT * FROM lux_gardill WHERE data_hora
-BETWEEN '2026-09-09 08:00:00' AND '2026-09-09 09:00:00';

@@ -53,7 +53,7 @@
             <label for="ipt_empresa">Empresa / Cooperativa</label>
             <input type="text" id="ipt_empresa" placeholder="Empresa">
             <label for="ipt_email">E-mail corporativo</label>
-            <input type="text" id="ipt_email" placeholder="Login">
+            <input type="email" id="ipt_email" placeholder="Login">
             <label for="ipt_senha">Senha</label>
             <input type="password" id="ipt_senha" placeholder="Mínimo 8 caracteres">
             <button onclick="cadastrar()">Cadastrar</button>
@@ -81,17 +81,15 @@
         let minuscula = senha.toLowerCase();
         let arroba = email.includes('@');
 
-        if (nome == '' || empresa == '' || email == '' || senha == ''){
+        if (nome == '' || empresa == '' || email == '' || senha == '') {
             div_msg.innerHTML = `Por favor, insira todos os dados corretamente.`;
-        }else if(arroba == false){
+        } else if(arroba == false) {
             div_msg.innerHTML = `Por favor, insira um e-mail valido.`;
-        }else if (tamanho_senha >= 8 && senha != maiuscula && senha != minuscula){
-            div_msg.innerHTML = `Empresa cadastrada com sucesso!<br>
-                                 Por favor, faça login.`;
-        }else {
-            div_msg.innerHTML = `Por favor, insira uma senha forte ( No mínimo 8 caracteres com uma letra maiúscula e uma minúscula)`
+        } else if (tamanho_senha >= 8 && senha != maiuscula && senha != minuscula) {
+            div_msg.innerHTML = `Empresa cadastrada com sucesso!<br>Por favor, faça login.`;
+        } else {
+            div_msg.innerHTML = `Por favor, insira uma senha forte (No mínimo 8 caracteres com uma letra maiúscula e uma minúscula)`;
         }
-
     }
 </script>
 </html>
