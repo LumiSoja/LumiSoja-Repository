@@ -17,3 +17,37 @@
 .contato span {
    color: white;
 }
+
+.container {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   height: 100%;
+   flex-direction: column;
+   background-color: rgb(42, 179, 42);
+   width: 400px;
+   border-radius: 10px;
+   padding: 10px 50px;
+   border: 1px solid #63b1bc;
+   text-align: center;
+}
+
+.button {
+   background-color: green;
+   color: white;
+   border-radius: 5px;
+   padding: 5px 20px;
+   border: none;
+   display: block;
+   margin: 0 auto;
+   cursor: pointer;
+   font-size: 20px;
+}
+
+input {
+   border-radius: 10px;
+   width: 100%;
+   padding: 10px;
+   border: 1px solid #63b1bc;
+   text-align: center;
+}

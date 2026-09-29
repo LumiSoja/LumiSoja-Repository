@@ -44,31 +44,33 @@
         </div>
 
         <form class="container">
-            <label for="ipt_nome">Nome Completo</label><br>
-            <input required type="text" id="ipt_nome"><br><br>
+            <label for="ipt_nome">Nome Completo</label>
+            <input required type="text" id="ipt_nome"><br>
 
-            <label for="ipt_empresa">Razão Social</label><br>
-            <input required type="text" id="ipt_empresa"><br><br>
+            <label for="ipt_empresa">Razão Social</label>
+            <input required type="text" id="ipt_empresa"><br>
             
-            <label for="ipt_cnpj">CNPJ</label><br>
-            <input required type="text" id="ipt_cnpj"><br><br>
+            <label for="ipt_cnpj">CNPJ</label>
+            <input required type="text" id="ipt_cnpj"><br>
 
-            <label for="ipt_email">E-mail Corporativo</label><br>
-            <input required type="email" id="ipt_email" placeholder="usuario@empresa.com"><br><br>
+            <label for="ipt_email">E-mail Corporativo</label>
+            <input required type="email" id="ipt_email" placeholder="usuario@empresa.com"><br>
             
-            <label for="ipt_senha">Senha</label><br>
-            <input required type="password" id="ipt_senha"><br><br>
-            
-            <label for="ipt_hectares">Hectares</label><br>
-            <input required type="text" id="ipt_hectares"><br><br>
-            
-            <label for="ipt_logradouro">Logradouro</label><br>
-            <input required type="text" id="ipt_logradouro"><br><br>
+            <label for="ipt_logradouro">Logradouro</label>
+            <input required type="text" id="ipt_logradouro"><br>
 
-            <label for="ipt_tel">Telefone</label><br>
-            <input required type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br><br>
+            <label for="ipt_tel">Telefone</label>
+            <input required type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br>
             
-            <button type="submit" onclick="cadastrar()">Cadastrar</button><br><br>
+            <label for="ipt_senha">Senha</label>
+            <input required type="password" id="ipt_senha"><br>
+            
+            <label for="ipt_confirmacaoSenha">Confirme a sua senha</label>
+            <input required type="password" id="ipt_confirmacaoSenha" oninput="confirmaSenha()">
+            <div id="div_confirmaSenha"></div><br>
+            
+            
+            <button class="button" type="submit" onclick="cadastrar()">Cadastrar</button><br><br>
             <div id="div_msg"></div>
         </form>
     </div>
@@ -86,20 +88,30 @@
         let nome = ipt_nome.value;
         let empresa = ipt_empresa.value;
         let email = ipt_email.value;
-        let senha = ipt_senha.value;
         let tamanho_senha = senha.length;
         let maiuscula = senha.toUpperCase();
         let minuscula = senha.toLowerCase();
-        let arroba = email.includes('@');
+        let telefone = Number(ipt_telefone.value);
 
         if (nome == '' || empresa == '' || email == '' || senha == '') {
             div_msg.innerHTML = `Por favor, insira todos os dados corretamente.`;
         } else if(arroba == false) {
             div_msg.innerHTML = `Por favor, insira um e-mail valido.`;
         } else if (tamanho_senha >= 8 && senha != maiuscula && senha != minuscula) {
-            div_msg.innerHTML = `Empresa cadastrada com sucesso!<br>Por favor, faça login.`;
+            div_msg.innerHTML = `Empresa cadastrada com sucesso!<br>Faça login.`;
         } else {
             div_msg.innerHTML = `Por favor, insira uma senha forte (No mínimo 8 caracteres com uma letra maiúscula e uma minúscula)`;
+        }
+    }
+
+    function confirmaSenha() {
+        let senha = ipt_senha.value;
+        let senha2 = ipt_confirmacaoSenha.value;
+        
+        if (senha != senha2) {
+            div_confirmaSenha.innerHTML = '<span style="font-weight: bold;">As senhas não conferem!</span>';
+        } else {
+            div_confirmaSenha.innerHTML = '<span style="font-weight: bold;">As senhas conferem!</span>';
         }
     }
 </script>
