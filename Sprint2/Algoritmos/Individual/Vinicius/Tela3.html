@@ -10,117 +10,41 @@
 
 <body>
 
-    <h2 class="title_1">NOSSAS TECNOLOGIAS</h2>
+    <div class="title">
+        <h1>NOSSAS TECNOLOGIAS</h1>
+    </div>
 
-    <div class="cards-container">
+    <div class="container">
 
         <div class="box">
-            <img src="">
-            <h3>Monitoramento de Luminosidade</h3>
+            <div class="logo"> 
+                <img src="imgs/logo1.png"> 
+            </div>
+
+            <h2>Monitoramento de Luminosidade</h2>
+
             <span>Monitoramento em tempo real dos níveis de luminosidade na sua plantação de soja.</span>
         </div>
         <div class="box">
-            <img src="">
-            <h3>Gráficos</h3>
+            <div class="logo"> 
+                <img src="imgs/logo2.png"> 
+            </div>
+            
+            <h2>Gráficos</h2>
+
             <span>Geração de gráficos para a visualização das variações dos níveis ao longo do tempo.</span>
         </div>
         <div class="box">
-            <img src="">
-            <h3>Relatórios</h3>
-<<<<<<< HEAD
-            <span>Geração de relatórios para que você possa tomar uma decisão mais consciente do futuro da sua plantação.</span>
-        </div>
-    </div>
-
-
-    <div class="contato">
-        
-       <div class="contato-texto">
-            <h1>Pronto para transformar sua lavoura em dados?</h1>
-            
-            <div class="email-info">
-                <img class="emoji" src="">
-                <span>CONTATO@LUMISOJA.COM.BR</span>
+            <div class="logo"> 
+                <img src="imgs/logo3.png"> 
             </div>
-        </div>
-
-        <form class="container">
-            <label for="ipt_nome">Nome Completo</label>
-            <input required type="text" id="ipt_nome"><br>
-
-            <label for="ipt_empresa">Razão Social</label>
-            <input required type="text" id="ipt_empresa"><br>
             
-            <label for="ipt_cnpj">CNPJ</label>
-            <input required type="text" id="ipt_cnpj"><br>
+            <h2>Relatórios</h2>
 
-            <label for="ipt_email">E-mail Corporativo</label>
-            <input required type="email" id="ipt_email" placeholder="usuario@empresa.com"><br>
-            
-            <label for="ipt_logradouro">Logradouro</label>
-            <input required type="text" id="ipt_logradouro"><br>
-
-            <label for="ipt_tel">Telefone</label>
-            <input required type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br>
-            
-            <label for="ipt_senha">Senha</label>
-            <input required type="password" id="ipt_senha"><br>
-            
-            <label for="ipt_confirmacaoSenha">Confirme a sua senha</label>
-            <input required type="password" id="ipt_confirmacaoSenha" oninput="confirmaSenha()">
-            <div id="div_confirmaSenha"></div><br>
-            
-            
-            <button class="button" type="submit" onclick="cadastrar()">Cadastrar</button><br><br>
-            <div id="div_msg"></div>
-        </form>
-    </div>
-
-
-    <div class="footer">
-        <img class="logo" src="">
-        <span>&copy; 2026 LumiSoja. Monitoramento de luminosidade para o agronegócio brasileiro.</span>
-    </div>
-
-</body>
-<script>
-    function cadastrar() {
-        
-        let nome = ipt_nome.value;
-        let empresa = ipt_empresa.value;
-        let email = ipt_email.value;
-        let tamanho_senha = senha.length;
-        let maiuscula = senha.toUpperCase();
-        let minuscula = senha.toLowerCase();
-        let telefone = Number(ipt_telefone.value);
-
-        if (nome == '' || empresa == '' || email == '' || senha == '') {
-            div_msg.innerHTML = `Por favor, insira todos os dados corretamente.`;
-        } else if(arroba == false) {
-            div_msg.innerHTML = `Por favor, insira um e-mail valido.`;
-        } else if (tamanho_senha >= 8 && senha != maiuscula && senha != minuscula) {
-            div_msg.innerHTML = `Empresa cadastrada com sucesso!<br>Faça login.`;
-        } else {
-            div_msg.innerHTML = `Por favor, insira uma senha forte (No mínimo 8 caracteres com uma letra maiúscula e uma minúscula)`;
-        }
-    }
-
-    function confirmaSenha() {
-        let senha = ipt_senha.value;
-        let senha2 = ipt_confirmacaoSenha.value;
-        
-        if (senha != senha2) {
-            div_confirmaSenha.innerHTML = '<span style="font-weight: bold;">As senhas não conferem!</span>';
-        } else {
-            div_confirmaSenha.innerHTML = '<span style="font-weight: bold;">As senhas conferem!</span>';
-        }
-    }
-</script>
-=======
             <span>Geração de relatórios para que você possa tomar uma decisão mais consciente do futuro da sua
                 plantação.</span>
-
+        </div>
+    </div>
 </body>
 
->>>>>>> ab74494d27d3d1739bd2b963e91f155101ca071c
 </html>
