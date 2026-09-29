@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <h2>SIMULAÇÃO COM CALCULADORA FINANCEIRA</h2>
+    <h4>Faça a sua simulação e descubra como podemos te ajudar a otimizar sua operação</h4>
+    <br>
+    <label for="ipt_empresa">Empresa:</label>
+    <input type="text" id="ipt_empresa" placeholder="O nome do seu negócio">
+    <br><br>
+    <label for="ipt_hectares">Informe o tamanho da sua fazenda de soja:</label>
+    <input type="text" id="ipt_hectares" placeholder="Quantos hectares (ha) possui">
+    <br><br>
+    <label for="ipt_valor_sacas">Informe o valor das sacas/ha na sua fazenda:</label>
+    <input type="text" id="ipt_valor_sacas" placeholder="Valor das sacas, sem letras ou pontuação">
+    <br><br>
+    <button onclick="calcular ()">Análise das informações</button>
+    <br><br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+
+<script>
+    ipt_empresa.focus();
+
+    function calcular() {
+
+        let empresa = ipt_empresa.value
+
+        // Dados para os cálculos:
+
+        let hectare = Number(ipt_hectares.value);
+        let valor_sacas = Number(ipt_valor_sacas.value);
+        let media_população_por_hectare = Number(225000); // (200000 + 250000) / 2 - Altadefensivos
+        let media_vagens_por_planta = Number(69); // (63 + 75) / 2 - Grupo Quinote & Barros
+        let grao_por_vagens = Number(2.5); //  - Pioneer
+        let peso_medio_mil_graos = Number(180); // (140 + 220) / 2 - Pioneer
+        let media_cultivo_por_ano = Number(1.5); // (1 + 2) / 2 - 
+
+
+
+        // Cálculo estimativa de Produtividade SEM sensores: 
+
+        if (!isNaN(hectare, valor_sacas)) {
+
+            // Como calcular a produtividade de soja por hectare?  
+
+            // - Conte o número de plantas em uma área conhecida.
+            // - Calcule o número de vagens por planta.
+            // - Determine o número médio de grãos por vagem.
+            // - Avalie o peso médio de grãos. 
+
+            let calculo_produtividade = (225 * media_vagens_por_planta * grao_por_vagens * peso_medio_mil_graos) / 60000;
+            let produtividade_anual_sem_sensor = calculo_produtividade * media_cultivo_por_ano;
+            let produtividade_mensal_sem_sensor = produtividade_anual_sem_sensor / 12;
+
+
+            // Cálculo da estimativa de Faturamento SEM sensores:
+
+            let estimativa_sacas_soja_colhidas = produtividade_anual_sem_sensor * hectare;
+            let faturamento_atual_anual = estimativa_sacas_soja_colhidas * valor_sacas;
+            let faturamento_atual_mensal = faturamento_atual_anual / 12;
+
+
+            // Cálculo estimativa de Produtividade COM sensores:
+
+            let percentual_produtividade_com_sensor = ((20 + 66) / 2) / 100;
+            let percentual_aplicado_produtividade_anual = produtividade_anual_sem_sensor * percentual_produtividade_com_sensor;
+            let produtividade_anual_com_sensores = produtividade_anual_sem_sensor + percentual_aplicado_produtividade_anual;
+            let produtividade_mensal_com_sensores = produtividade_anual_com_sensores / 12;
+
+
+            // Cálculo da estimativa de Faturamento COM sensores:
+
+            let percentual_aplicado_faturamento_com_sensores = faturamento_atual_anual * percentual_produtividade_com_sensor;
+            let faturamento_anual_com_sensores = faturamento_atual_anual + percentual_aplicado_faturamento_com_sensores;
+            let faturamento_mensal_com_sensores = faturamento_anual_com_sensores / 12;
+            let faturamento_elevado = faturamento_anual_com_sensores - faturamento_atual_anual
+
+
+            div_msg.innerHTML = `
+            <h4>Prévia de resultados para ${empresa}</h4>
+            
+            <h5>Faturamento extra após aplicação do nosso sistema: </h5>
+            <h2 class="retorno_aumentoFatura" style="color: green;">${faturamento_elevado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} a mais por ano </h2><br>
+
+            <h4>Estimativas de faturamento da sua empresa: </h4>
+            Faturamento Atual Anual:${faturamento_atual_anual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} <br> 
+            Faturamento Mensal:${faturamento_atual_mensal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} <br> <br>
+            Faturamento Anual COM Nossa Solução:${faturamento_anual_com_sensores.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}<br>
+            Faturamento Mensal COM Nossa Solução: ${faturamento_mensal_com_sensores.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}<br>
+            
+            <h4>Estimativa de produção colaborando conosco - aumento de até 43%: </h4>
+            Produtividade Anual: ${produtividade_anual_sem_sensor.toFixed(1)} sc/ha <br>
+            Produtividade mensal: ${produtividade_mensal_sem_sensor.toFixed(1)} sc/ha <br> <br>
+            Produtividade Anual COM Nossa Solução: ${produtividade_anual_com_sensores.toFixed(1)} sc/ha<br>
+            Produtividade Mensal COM Nossa Solução: ${produtividade_mensal_com_sensores.toFixed(1)} sc/ha<br>
+            `
+        }
+
+
+        ipt_empresa.focus();
+    }
+
+</script>
