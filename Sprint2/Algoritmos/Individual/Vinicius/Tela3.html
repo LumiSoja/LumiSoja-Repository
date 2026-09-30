@@ -33,10 +33,10 @@
 
 
     <div class="contato">
-        
+
        <div class="contato-texto">
             <h1>Pronto para transformar sua lavoura em dados?</h1>
-            
+
             <div class="email-info">
                 <img class="emoji" src="">
                 <span>CONTATO@LUMISOJA.COM.BR</span>
@@ -49,25 +49,25 @@
 
             <label for="ipt_empresa">Razão Social</label><br>
             <input required type="text" id="ipt_empresa"><br><br>
-            
+
             <label for="ipt_cnpj">CNPJ</label><br>
             <input required type="text" id="ipt_cnpj"><br><br>
 
             <label for="ipt_email">E-mail Corporativo</label><br>
             <input required type="email" id="ipt_email" placeholder="usuario@empresa.com"><br><br>
-            
+
             <label for="ipt_senha">Senha</label><br>
             <input required type="password" id="ipt_senha"><br><br>
-            
+
             <label for="ipt_hectares">Hectares</label><br>
             <input required type="text" id="ipt_hectares"><br><br>
-            
+
             <label for="ipt_logradouro">Logradouro</label><br>
             <input required type="text" id="ipt_logradouro"><br><br>
 
             <label for="ipt_tel">Telefone</label><br>
             <input required type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br><br>
-            
+
             <button type="submit" onclick="cadastrar()">Cadastrar</button><br><br>
             <div id="div_msg"></div>
         </form>
@@ -82,7 +82,7 @@
 </body>
 <script>
     function cadastrar() {
-        
+
         let nome = ipt_nome.value;
         let empresa = ipt_empresa.value;
         let email = ipt_email.value;
@@ -90,7 +90,6 @@
         let tamanho_senha = senha.length;
         let maiuscula = senha.toUpperCase();
         let minuscula = senha.toLowerCase();
-        let arroba = email.includes('@');
 
         if (nome == '' || empresa == '' || email == '' || senha == '') {
             div_msg.innerHTML = `Por favor, insira todos os dados corretamente.`;
