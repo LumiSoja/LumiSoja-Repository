@@ -1,0 +1,58 @@
+.titulo {
+    color: white;
+    font-family: 'Fraunces', Georgia, serif;
+
+}
+
+
+.header{
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #1a4a1e;
+    height: 70px;
+    font-size: 11px;
+    opacity: 80%;
+}
+
+.header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.navbar a {
+    color: white;
+    font-family: 'Banbauri', Georgia, serif;
+    text-decoration: none;
+    border-color: #d4a017;
+}
+
+.navbar li{
+    color: #d4a017;
+    text-decoration: none;
+    border-color: #d4a017;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    COMEÇO ESTILO DO FOOTER
+*/

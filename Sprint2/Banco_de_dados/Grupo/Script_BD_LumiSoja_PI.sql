@@ -64,14 +64,21 @@ CREATE TABLE leitura_luminosidade (
 );
 
 -- ==================== INSERTS ====================
+-- 1. ACESSOS
+INSERT INTO perfil_acesso (nome, descricao) VALUES
+('Possível Cliente', 'Sem acesso aos dashboards e sensores'),
+('Cliente', 'Responsável por uma empresa cliente cadastrada'),
+('Funcionário', 'Funcionário de empresa cliente com acesso aos dashboards e alertas'),
+('Suporte', 'Funcionário da LumiSoja responsável pelo suporte e cadastros'),
+('Administrador', 'Administradores e desenvolvedores da LumiSoja');
 
--- 1. EMPRESAS
+-- 2. EMPRESAS
 INSERT INTO empresa (nome, razao_social, cnpj, email_corporativo, senha, hectares) VALUES
 ('Cargill', 'Cargill Agrícola S.A', '28544309000188', 'contato@cargill.com', 'senha123', 25000),
 ('Bom Futuro', 'Grupo Bom Futuro', '01196438000130', 'parceria.tech@bomfuturo.com.br', 'senha123', 600000),
 ('SLC Agrícola', 'SLC Agrícola S.A', '89692016000118', 'ri@slcagricola.com.br', 'senha123', 674000);
 
--- 2. FUNCIONÁRIOS
+-- 3. FUNCIONÁRIOS
 INSERT INTO funcionario (nome, cpf, email_funcionario, senha_funcionario, fk_empresa) VALUES
 ('Raquel Anjos', '01203345567', 'raquel.anjos@cargill.com', '12345678', 1),
 ('Maria Magalhães', '85567722245', 'maria.magalhaes@slcagricola.com', 'maria082018', 3),
@@ -80,19 +87,19 @@ INSERT INTO funcionario (nome, cpf, email_funcionario, senha_funcionario, fk_emp
 ('Kaio Luka', '95970504410', 'kaio.luka@bomfuturo.com.br', 'kl2874fh', 2),
 ('Pietra Antunes', '09581256008', 'pietra.antunes@cargill.com', 'bdbh56644', 1);
 
--- 3. FAZENDAS
+-- 4. FAZENDAS
 INSERT INTO fazenda (nome_fazenda, logradouro, qtd_sensores, fk_empresa) VALUES
 ('Fazenda Planalto', 'Rodovia BR-163 Km 20, Sorriso-MT', 50, 1),
 ('Fazenda Mutum', 'Rodovia MT-235, Nova Mutum-MT', 150, 2),
 ('Fazenda Planeste', 'Balsas-MA, Zona Rural', 100, 3);
 
--- 4. SENSORES
+-- 5. SENSORES
 INSERT INTO sensor (identificacao, posicionamento, ativo, fk_fazenda) VALUES
 ('LUMI-SS-01', 'Talhão 1 - Norte', TRUE, 1),
 ('LUMI-SS-02', 'Talhão A - Centro', TRUE, 2),
 ('LUMI-SS-01', 'Talhão Leste - Borda', FALSE, 3);
 
--- 5. LEITURAS
+-- 6. LEITURAS
 INSERT INTO leitura_luminosidade (lux, fk_sensor) VALUES
 (35000, 1),
 (36000, 1),

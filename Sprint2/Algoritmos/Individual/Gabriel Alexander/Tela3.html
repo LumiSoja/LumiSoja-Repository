@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossas Tecnologias</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="contato">
+        <div class="contato-texto">
+            <h1>Pronto para transformar sua lavoura em dados?</h1>
+            
+            <div class="email-info">
+                <img class="emoji" src="">
+                <span>CONTATO@LUMISOJA.COM.BR</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <label for="ipt_nome">Nome Completo</label><br>
+            <input type="text" id="ipt_nome"><br><br>
+
+            <label for="ipt_empresa">Razão Social</label><br>
+            <input type="text" id="ipt_empresa"><br><br>
+            
+            <label for="ipt_cnpj">CNPJ</label><br>
+            <input type="text" id="ipt_cnpj"><br><br>
+
+            <label for="ipt_email">E-mail Corporativo</label><br>
+            <input type="email" id="ipt_email" placeholder="usuario@empresa.com"><br><br>
+            
+            
+            <label for="ipt_hectares">Hectares</label><br>
+            <input type="text" id="ipt_hectares"><br><br>
+            
+            <label for="ipt_logradouro">Logradouro</label><br>
+            <input type="text" id="ipt_logradouro"><br><br>
+            
+            <label for="ipt_tel">Telefone</label><br>
+            <input type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br><br>
+            
+            <label for="ipt_senha">Senha</label><br>
+            <input type="password" id="ipt_senha" oninput="mostrarNivelSenha()"><br>
+            <div id="div_nivel">Nível da senha: fraca</div><br>
+
+            <label for="ipt_confirmacao">Confirmar Senha</label><br>
+            <input type="password" id="ipt_confirmacao" oninput="verificarSenhas()"><br>
+            <div id="div_confirmacao"></div><br>
+            
+            <button type="button" onclick="cadastrar()">Cadastrar</button><br><br>
+            <div id="div_msg"></div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <img class="logo" src="">
+        <span>&copy; 2026 LumiSoja. Monitoramento de luminosidade para o agronegócio brasileiro.</span>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function cadastrar() {
+        let nome = ipt_nome.value;
+        let empresa = ipt_empresa.value;
+        let cnpj = ipt_cnpj.value;
+        let email = ipt_email.value;
+        let senha = ipt_senha.value;
+        let confirmacao = ipt_confirmacao.value;
+        let hectares = ipt_hectares.value;
+        let logradouro = ipt_logradouro.value;
+        let telefone = ipt_tel.value;
+        let tamanho_senha = senha.length;
+        let minuscula = senha.toLowerCase();
+        let arroba = email.includes('@');
+        let pontoCom = email.includes('.com');
+        let temNumero = senha.includes('0') || senha.includes('1') || senha.includes('2') || senha.includes('3') || senha.includes('4') || senha.includes('5') || senha.includes('6') || senha.includes('7') || senha.includes('8') || senha.includes('9');
+        let temEspecial = senha.includes('!') || senha.includes('@') || senha.includes('#') || senha.includes('$') || senha.includes('%') || senha.includes('&') || senha.includes('*');
+        let pontosSenha = 0;
+        let nivelSenha = 'fraca';
+
+        if (tamanho_senha >= 8) {
+            pontosSenha++;
+        }
+
+        if (senha != minuscula) {
+            pontosSenha++;
+        }
+
+        if (temNumero) {
+            pontosSenha++;
+        }
+
+        if (temEspecial) {
+            pontosSenha++;
+        }
+
+        if (pontosSenha >= 4) {
+            nivelSenha = 'forte';
+        } else if (pontosSenha >= 2) {
+            nivelSenha = 'média';
+        }
+
+        if (nome == '') {
+            div_msg.innerHTML = 'O campo Nome Completo é obrigatório.';
+        } 
+
+        else if (empresa == '') {
+            div_msg.innerHTML = 'O campo Razão Social é obrigatório.';
+        }
+
+        else if (cnpj == '') {
+            div_msg.innerHTML = 'O campo CNPJ é obrigatório.';
+        }
+
+        else if (email == '') {
+            div_msg.innerHTML = 'O campo E-mail Corporativo é obrigatório.';
+        }
+
+        else if (senha == '') {
+            div_msg.innerHTML = 'O campo Senha é obrigatório.';
+        }
+
+        else if (confirmacao == '') {
+            div_msg.innerHTML = 'O campo Confirmar Senha é obrigatório.';
+        }
+
+        else if (senha != confirmacao) {
+            div_msg.innerHTML = 'As senhas não conferem.';
+        }
+
+        else if (hectares == '') {
+            div_msg.innerHTML = 'O campo Hectares é obrigatório.';
+        }
+
+        else if (logradouro == '') {
+            div_msg.innerHTML = 'O campo Logradouro é obrigatório.';
+        }
+
+        else if (telefone == '') {
+            div_msg.innerHTML = 'O campo Telefone é obrigatório.';
+        }
+
+        else if (arroba == false || pontoCom == false) {
+            div_msg.innerHTML = `Por favor, insira um e-mail válido com @ e .com.`;
+        }
+
+        else if (tamanho_senha < 8) {
+            div_msg.innerHTML = `Senha ${nivelSenha}. A senha deve ter no mínimo 8 caracteres.`;
+        }
+
+        else if (senha == minuscula) {
+            div_msg.innerHTML = `Senha ${nivelSenha}. A senha deve ter pelo menos uma letra maiúscula.`;
+        }
+
+        else if (temNumero == false) {
+            div_msg.innerHTML = `Senha ${nivelSenha}. A senha deve ter pelo menos um número.`;
+        }
+
+        else if (temEspecial == false) {
+            div_msg.innerHTML = `Senha ${nivelSenha}. A senha deve ter pelo menos um caractere especial.`;
+        }
+
+        else {
+            div_msg.innerHTML = `Senha ${nivelSenha}!<br>Empresa cadastrada com sucesso!<br>Por favor, faça login.`;
+        }
+    }
+
+    function mostrarNivelSenha() {
+        let senha = ipt_senha.value;
+        let pontosSenha = 0;
+        let temNumero = senha.includes('0') || senha.includes('1') || senha.includes('2') || senha.includes('3') || senha.includes('4') || senha.includes('5') || senha.includes('6') || senha.includes('7') || senha.includes('8') || senha.includes('9');
+        let temEspecial = senha.includes('!') || senha.includes('@') || senha.includes('#') || senha.includes('$') || senha.includes('%') || senha.includes('&') || senha.includes('*');
+
+        if (senha.length >= 8) {
+            pontosSenha++;
+        }
+
+        if (senha != senha.toLowerCase()) {
+            pontosSenha++;
+        }
+
+        if (temNumero) {
+            pontosSenha++;
+        }
+
+        if (temEspecial) {
+            pontosSenha++;
+        }
+
+        if (pontosSenha >= 4) {
+            div_nivel.innerHTML = 'Nível da senha: forte';
+        } else if (pontosSenha >= 2) {
+            div_nivel.innerHTML = 'Nível da senha: média';
+        } else {
+            div_nivel.innerHTML = 'Nível da senha: fraca';
+        }
+    }
+
+    function verificarSenhas() {
+        if (ipt_confirmacao.value == '') {
+            div_confirmacao.innerHTML = '';
+        } else if (ipt_senha.value == ipt_confirmacao.value) {
+            div_confirmacao.innerHTML = 'As senhas conferem.';
+        } else {
+            div_confirmacao.innerHTML = 'As senhas não conferem.';
+        }
+    }
+</script>

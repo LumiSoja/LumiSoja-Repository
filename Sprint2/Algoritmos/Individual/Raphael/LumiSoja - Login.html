@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> LumiSoja - Login </title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet"> 
 </head>
 
-<body>
+<body class="login_background">
 
-    <div id="div_body">
-
-        <div id="div_login_texto">
+    <div class="login_texto"  id="div_login_texto">
             
-            <h1> Hora do login </h1>
-            <h3> Vamos acessar sua dashboard! </h3>
+        <span style="color: white; font-size: 60px;"> Hora do login </span>
+        <span style="color: #ffde4e; font-style: italic; font-size: 40px;"> Vamos acessar sua <br> dashboard! </span>
 
-        </div>
+    </div>
 
-        <div id="div_login_formulario">
+    <div class="login_formulario" id="div_login_formulario">
             
-            <h3> Login </h3>
+        <h3 class="login_titulo"> Login </h3>
+        
+        <div class="login_input">
+        
             <span> E-mail </span>
             <br>
-            <input type="text" id="ipt_email" oninput="EmailLowerCase()">
+            <input type="text" id="ipt_email" oninput="EmailToLowerCase()">
             <br>
+        
+        </div>
+        
+        <div class="login_input">
+            
             <span> Senha </span>
             <br>
-            <input type="text" id="ipt_senha">
+            <input type="password" id="ipt_senha">
+            
             <br>
+        </div>
+        
+        <div class="login_botoes">
+
             <button onclick="RedirecionarCadastro()"> Cadastro </button>
             <button onclick="ValidarEmail()"> Entrar </button>
 
         </div>
-
+        
     </div>
 
 </body>

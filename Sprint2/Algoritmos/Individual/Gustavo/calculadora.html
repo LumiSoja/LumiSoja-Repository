@@ -4,25 +4,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../Grupo/assetsGeral/estiloNavbarEFooter.css">
     <title>Calculadora</title>
 </head>
 
 <body>
-    <h2>SIMULAÇÃO COM CALCULADORA FINANCEIRA</h2>
-    <h4>Faça a sua simulação e descubra como podemos te ajudar a otimizar sua operação</h4>
-    <br>
-    <label for="ipt_empresa">Empresa:</label>
-    <input type="text" id="ipt_empresa" placeholder="O nome do seu negócio">
-    <br><br>
-    <label for="ipt_hectares">Informe o tamanho da sua fazenda de soja:</label>
-    <input type="text" id="ipt_hectares" placeholder="Quantos hectares (ha) possui">
-    <br><br>
-    <label for="ipt_valor_sacas">Informe o valor das sacas/ha na sua fazenda:</label>
-    <input type="text" id="ipt_valor_sacas" placeholder="Valor das sacas, sem letras ou pontuação">
-    <br><br>
-    <button onclick="calcular ()">Análise das informações</button>
-    <br><br>
-    <div id="div_msg"></div>
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">LumiSoja</h1>
+
+
+            <ul class="navbar">
+                <a href="#">Home</a> <!-- definir links quando estiverem todos os arquivos na main -->
+                <li>
+                    <a href="#">Tecnolgia</a>
+                </li>
+                <li>
+                    <a href="#">Simulador</a>
+                </li>
+                <li>
+                    <a href="#">Cadastro</a>
+                </li>
+                <li>
+                    <a href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container_main">
+        <div class="titulo_calc">
+            <h2>SIMULAÇÃO COM CALCULADORA FINANCEIRA</h2>
+            <h4>Faça a sua simulação e descubra como podemos te ajudar a otimizar sua operação</h4>
+        </div>
+
+        <div class="container_inOUt">
+
+
+            <div class="inputs">
+
+                <div class="input_field">
+                    <label for="ipt_empresa">Empresa:</label>
+                    <input type="text" id="ipt_empresa" placeholder="O nome do seu negócio">
+                </div>
+                <div class="input_field">
+                    <label for="ipt_hectares">Informe o tamanho da sua fazenda de soja:</label>
+                    <input type="text" id="ipt_hectares" placeholder="Quantos hectares (ha)">
+                </div>
+
+                <div class="input_field">
+                    <label for="ipt_valor_sacas">Informe o valor das sacas/ha na sua fazenda:</label>
+                    <input type="text" id="ipt_valor_sacas" placeholder="Valor das sacas, ex: 200">
+                </div>
+
+
+                <div class="button">
+                    <button onclick="calcular()">Calcular economia</button>
+                </div>
+
+
+            </div>
+
+
+            <div class="output">
+
+                <div class="txt_explicacao">
+                    <p class="desc">Como funciona a calculadora?<br><br>
+
+                        Nossa calculadora estima a produtividade e o faturamento da lavoura de soja em dois cenários:
+                        sem sensores e com monitoramento de luminosidade.
+                        <br><br>
+                        Para isso, utilizamos alguns valores médios de referência encontrados nas pesquisas usadas no
+                        projeto, como:
+                        <br><br>
+                        - aproximadamente 225 mil plantas por hectare;
+                        - média de 69 vagens por planta;
+                        - cerca de 2,5 grãos por vagem;
+                        - 180 g como Peso de Mil Grãos (PMG).
+                        <br><br>
+                        Com esses dados, estimamos quantas sacas de soja podem ser produzidas por hectare. A fórmula
+                        considera também que uma saca de soja possui 60 kg, permitindo transformar o peso estimado dos
+                        grãos em quantidade de sacas.
+                        <br><br>
+                        A calculadora considera ainda uma média de 1,5 ciclo de soja por ano. A partir disso, é possível
+                        estimar a produtividade anual e, dividindo o resultado por 12, obter uma média mensal.
+                        <br><br>
+                        Como o faturamento é calculado?
+                        <br><br>
+                        O usuário informa:
+                        <br><br>
+                        - a quantidade de hectares da propriedade;
+                        - o valor atual da saca de soja.
+                        Com essas informações, calculamos:
+                        Produtividade estimada × quantidade de hectares × preço da saca = faturamento anual estimado
+                        <br><br>
+                        Para obter o valor mensal, o faturamento anual é dividido por 12.
+                        <br><br>
+                        E o cenário com sensores?
+                        <br><br>
+                        No cenário com monitoramento de luminosidade, a calculadora considera um aumento estimado de 43%
+                        na produtividade.
+                        Esse percentual foi definido no projeto como um valor médio de referência a partir de uma faixa
+                        de crescimento encontrada nas pesquisas utilizadas pela equipe. doc_Calculadora
+                        Assim, a calculadora compara:
+                        <br><br>
+                        Sem sensores
+                        → produtividade e faturamento estimados normalmente
+                        <br><br>
+                        Com sensores
+                        → produtividade e faturamento estimados com acréscimo de 43%
+                        <br><br>
+                        Importante
+                        <br><br>
+                        Os resultados apresentados são estimativas para simulação. A produtividade real pode variar de
+                        acordo com fatores como clima, solo, manejo, variedade da soja, incidência de luz e outras
+                        condições da lavoura.
+                        O aumento de 43% deve ser entendido como um cenário estimado, e não como uma garantia de aumento
+                        de produção.
+                        <br><br>
+                        Fontes utilizadas no projeto
+                        <br><br>
+                        Utilizamos referências como Pioneer, Embrapa, Aegro, Sensix, Brasmax, Syngenta, Notícias
+                        Agrícolas, SLC Agrícola, ResearchGate e Agriconline, além de outras fontes utilizadas para
+                        estimativas de produtividade, cultivo e luminosidade.
+                    </p>
+                </div>
+
+                <div class="div_msg" id="div_msg"></div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
 </body>
 
 </html>
@@ -38,6 +155,7 @@
 
         let hectare = Number(ipt_hectares.value);
         let valor_sacas = Number(ipt_valor_sacas.value);
+
         let media_população_por_hectare = Number(225000); // (200000 + 250000) / 2 - Altadefensivos
         let media_vagens_por_planta = Number(69); // (63 + 75) / 2 - Grupo Quinote & Barros
         let grao_por_vagens = Number(2.5); //  - Pioneer
@@ -45,10 +163,11 @@
         let media_cultivo_por_ano = Number(1.5); // (1 + 2) / 2 - 
 
 
+        let valorInvalido = isNaN(hectare, valor_sacas) || empresa == '' || hectare == '' || valor_sacas == '';
 
         // Cálculo estimativa de Produtividade SEM sensores: 
 
-        if (!isNaN(hectare, valor_sacas)) {
+        if (!valorInvalido) {
 
             // Como calcular a produtividade de soja por hectare?  
 
@@ -86,23 +205,61 @@
 
 
             div_msg.innerHTML = `
-            <h4>Prévia de resultados para ${empresa}</h4>
-            
-            <h5>Faturamento extra após aplicação do nosso sistema: </h5>
-            <h2 class="retorno_aumentoFatura" style="color: green;">${faturamento_elevado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} a mais por ano </h2><br>
+            <h4>Prévia de resultados para ${empresa}:</h4>
+            <h2 class="retorno_aumento_fatura">${faturamento_elevado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} a mais por ano </h2>
 
-            <h4>Estimativas de faturamento da sua empresa: </h4>
-            Faturamento Atual Anual:${faturamento_atual_anual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} <br> 
-            Faturamento Mensal:${faturamento_atual_mensal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} <br> <br>
-            Faturamento Anual COM Nossa Solução:${faturamento_anual_com_sensores.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}<br>
-            Faturamento Mensal COM Nossa Solução: ${faturamento_mensal_com_sensores.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}<br>
+
+
+            <div class="container_retorno">
+
+                <div class="container_grade_metricas">
+                <h4 class="cabecalho_retorno">Estimativas de faturamento da sua empresa: </h4>
             
-            <h4>Estimativa de produção colaborando conosco - aumento de até 43%: </h4>
-            Produtividade Anual: ${produtividade_anual_sem_sensor.toFixed(1)} sc/ha <br>
-            Produtividade mensal: ${produtividade_mensal_sem_sensor.toFixed(1)} sc/ha <br> <br>
-            Produtividade Anual COM Nossa Solução: ${produtividade_anual_com_sensores.toFixed(1)} sc/ha<br>
-            Produtividade Mensal COM Nossa Solução: ${produtividade_mensal_com_sensores.toFixed(1)} sc/ha<br>
+                <div class="container_estimativas">
+                    <div class="box">
+                        <p class="valoresSolucaoPre">Faturamento Atual Anual sem Sensoreamento:
+                            <b>${faturamento_atual_anual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b></p>
+                        <p class="valoresSolucaoPre">Faturamento Mensal sem Sensoreamento: <b>${faturamento_atual_mensal.toLocaleString('pt-BR',
+                { style: 'currency', currency: 'BRL' })}</b></p>
+                    </div>
+
+                    <div class="box">
+                        <p class="valoresSolucaoPos">Faturamento Anual com Nossa Solução:
+                            <b>${faturamento_anual_com_sensores.toLocaleString('pt-BR', {
+                    style: 'currency', currency: 'BRL'
+                })}</b></p>
+                        <p class="valoresSolucaoPos">Faturamento Mensal com Nossa Solução:
+                            <b>${faturamento_mensal_com_sensores.toLocaleString('pt-BR', {
+                    style: 'currency', currency: 'BRL'
+                })}</b></p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container_grade_metricas">
+                <h4 class="cabecalho_retorno">Estimativa de produção colaborando conosco - aumento de até 43%: </h4>
+                <div class="container_estimativas">
+                    <div class="box">
+                        <p class="valoresSolucaoPre">Produtividade Atual Anual sem Sensoreamento: <b>${produtividade_anual_sem_sensor.toFixed(1)}
+                            sc/ha</b></p>
+                        <p class="valoresSolucaoPre">Produtividade Mensal sem Sensoreamento: <b>${produtividade_mensal_sem_sensor.toFixed(1)}
+                            sc/ha</b></p>
+                    </div>
+
+                    <div class="box">
+                        <p class="valoresSolucaoPos">Produtividade Anual com Nossa Solução:
+                            <b>${produtividade_anual_com_sensores.toFixed(1)} sc/ha</b></p>
+                        <p class="valoresSolucaoPos">Produtividade Mensal com Nossa Solução:
+                            <b>${produtividade_mensal_com_sensores.toFixed(1)} sc/ha</b></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
             `
+        } else {
+            div_msg.innerHTML = '<h4>Ao menos um dos campos não foi preenchido adequadamente. Confira as suas respostas.</h4>';
         }
 
 

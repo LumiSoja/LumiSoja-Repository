@@ -10,21 +10,32 @@
 
 <body>
 
-    <h2 class="title_1">NOSSAS TECNOLOGIAS</h2>
+    <div class="title">
+        <h1>NOSSAS TECNOLOGIAS</h1>
+    </div>
 
-    <div class="cards-container">
+    <div class="container">
 
         <div class="box">
-            <img src="">
-            <h3>Monitoramento de Luminosidade</h3>
+            <div class="logo"> 
+                <img src="imgs/logo1.png"> 
+            </div>
+
+            <h2>Monitoramento de Luminosidade</h2>
+
             <span>Monitoramento em tempo real dos níveis de luminosidade na sua plantação de soja.</span>
         </div>
         <div class="box">
-            <img src="">
-            <h3>Gráficos</h3>
+            <div class="logo"> 
+                <img src="imgs/logo2.png"> 
+            </div>
+            
+            <h2>Gráficos</h2>
+
             <span>Geração de gráficos para a visualização das variações dos níveis ao longo do tempo.</span>
         </div>
         <div class="box">
+<<<<<<< HEAD
             <img src="">
             <h3>Relatórios</h3>
             <span>Geração de relatórios para que você possa tomar uma decisão mais consciente do futuro da sua plantação.</span>
@@ -33,15 +44,25 @@
 
 
     <div class="contato">
-        
+
        <div class="contato-texto">
             <h1>Pronto para transformar sua lavoura em dados?</h1>
-            
+
             <div class="email-info">
                 <img class="emoji" src="">
                 <span>CONTATO@LUMISOJA.COM.BR</span>
+=======
+            <div class="logo"> 
+                <img src="imgs/logo3.png"> 
+>>>>>>> a1371889853ec7c79ef5f4522ed7986dc7ddc646
             </div>
+            
+            <h2>Relatórios</h2>
+
+            <span>Geração de relatórios para que você possa tomar uma decisão mais consciente do futuro da sua
+                plantação.</span>
         </div>
+<<<<<<< HEAD
 
         <form class="container">
             <label for="ipt_nome">Nome Completo</label><br>
@@ -49,40 +70,36 @@
 
             <label for="ipt_empresa">Razão Social</label><br>
             <input required type="text" id="ipt_empresa"><br><br>
-            
+
             <label for="ipt_cnpj">CNPJ</label><br>
             <input required type="text" id="ipt_cnpj"><br><br>
 
             <label for="ipt_email">E-mail Corporativo</label><br>
             <input required type="email" id="ipt_email" placeholder="usuario@empresa.com"><br><br>
-            
+
             <label for="ipt_senha">Senha</label><br>
             <input required type="password" id="ipt_senha"><br><br>
-            
+
             <label for="ipt_hectares">Hectares</label><br>
             <input required type="text" id="ipt_hectares"><br><br>
-            
+
             <label for="ipt_logradouro">Logradouro</label><br>
             <input required type="text" id="ipt_logradouro"><br><br>
 
             <label for="ipt_tel">Telefone</label><br>
             <input required type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br><br>
-            
+
             <button type="submit" onclick="cadastrar()">Cadastrar</button><br><br>
             <div id="div_msg"></div>
         </form>
+=======
+>>>>>>> a1371889853ec7c79ef5f4522ed7986dc7ddc646
     </div>
-
-
-    <div class="footer">
-        <img class="logo" src="">
-        <span>&copy; 2026 LumiSoja. Monitoramento de luminosidade para o agronegócio brasileiro.</span>
-    </div>
-
 </body>
+<<<<<<< HEAD
 <script>
     function cadastrar() {
-        
+
         let nome = ipt_nome.value;
         let empresa = ipt_empresa.value;
         let email = ipt_email.value;
@@ -90,7 +107,6 @@
         let tamanho_senha = senha.length;
         let maiuscula = senha.toUpperCase();
         let minuscula = senha.toLowerCase();
-        let arroba = email.includes('@');
 
         if (nome == '' || empresa == '' || email == '' || senha == '') {
             div_msg.innerHTML = `Por favor, insira todos os dados corretamente.`;
@@ -104,3 +120,7 @@
     }
 </script>
 </html>
+=======
+
+</html>
+>>>>>>> a1371889853ec7c79ef5f4522ed7986dc7ddc646
