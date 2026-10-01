@@ -1,0 +1,105 @@
+.secao-desafio {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    color: #333;
+}
+
+.destaque-amarelo {
+    color: #d19f19;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.titulo-verde {
+    color: #1b4d24;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.conteudo-colunas {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.coluna-texto {
+    flex: 1;
+}
+
+.subtitulo-verde {
+    color: #1b4d24;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.coluna-texto p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.coluna-imagem {
+    flex: 1;
+    background-image: url('./prototipo-soja.png');
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.titulo-branco {
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    margin: 15px 0;
+    line-height: 1.3;
+}
+
+.texto-branco {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.banner-inferior {
+    background-color: #4f8742;
+    padding: 35px 20px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.texto-banner {
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+.botao-simulador {
+    background-color: #1b4d24;
+    color: #ffffff;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.botao-simulador:hover {
+    background-color: #123619;
+}
