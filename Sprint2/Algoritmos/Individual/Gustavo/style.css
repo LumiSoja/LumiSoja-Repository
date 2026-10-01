@@ -13,8 +13,11 @@ body {
 /*    Começo TÍTULO    */
 
 .titulo_calc {
-    margin: 0;
-    background-color: cornflowerblue;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .titulo_calc h2 {
