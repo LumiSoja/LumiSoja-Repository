@@ -17,3 +17,78 @@
 .contato span {
    color: white;
 }
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+   background-color: #e9f1e8;
+   font-family: Arial, sans-serif;
+}
+
+.contato {
+   min-height: 100vh;
+   padding: 40px 20px;
+   background-color: #275331;
+}
+
+.contato-texto {
+   margin-bottom: 25px;
+   text-align: center;
+}
+
+.container {
+   width: 100%;
+   max-width: 500px;
+   margin: 0 auto;
+   padding: 25px;
+   background-color: white;
+   border-radius: 6px;
+   box-shadow: 0 2px 8px #18351f;
+}
+
+.container label {
+   color: #275331;
+   font-weight: bold;
+}
+
+.container input {
+   width: 100%;
+   padding: 10px;
+   border: 1px solid #b7c9b8;
+   border-radius: 4px;
+   font-size: 15px;
+}
+
+.container button {
+   width: 100%;
+   padding: 11px;
+   border: 0;
+   border-radius: 4px;
+   background-color: #275331;
+   color: white;
+   font-size: 16px;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.container button:hover {
+   background-color: #18351f;
+}
+
+#div_msg,
+#div_confirmacao {
+   color: #b00020;
+   font-weight: bold;
+}
+
+#div_nivel {
+   color: #275331;
+   font-weight: bold;
+}
+
+input:focus {
+   outline: 2px solid #275331;
+}
