@@ -117,6 +117,7 @@ body {
     width: 65%;
     height: 100%;
     margin: auto;
+    overflow: scroll;
 
     border-radius: 12px;
     color: #fefff2;
@@ -133,6 +134,11 @@ body {
 .txt_explicacao p {
     margin: 16px 4px 0px 4px;
     text-align: justify;
+}
+
+.desc {
+    
+    overflow: scroll;
 }
 
 
