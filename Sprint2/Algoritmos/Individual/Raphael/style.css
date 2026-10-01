@@ -1,0 +1,89 @@
+.login_formulario {
+  
+  display: flex;
+  flex-flow: column wrap;
+  width: 380px;
+  height: fit-content;
+  margin-right: 10%;
+  margin-top: 7%;
+  justify-self: flex-end;
+  justify-content: space-evenly;
+  text-align: center;
+  border-radius: 20px;
+  font-weight: 350;
+  background-color: rgba(98, 137, 82, 0.8);
+  color: white;
+}
+
+.login_texto {
+
+  margin-left: 10%;
+  margin-top: 10%;
+  display: flex;
+  justify-self: flex-start;
+  flex-flow: column nowrap;
+  letter-spacing: normal;
+  font-weight: 600;
+}
+
+.login_input {
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: safe;
+}
+
+.login_botoes {
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.login_titulo {
+
+  font-weight: 800;
+  font-size: 40px;
+  color: #1e502d;
+}
+
+.login_background {
+  
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url(img/lumiSoja-loginBg.png);
+}
+
+body {
+
+  display: flex;
+  justify-content:space-between;
+  font-family: Fraunces;
+}
+
+input {
+
+  font-family: Fraunces;
+  padding: 27px;
+  text-align: center;
+  border-radius: 27px;
+  border: white;
+  width: 250px;
+}
+
+button {
+
+  font-family: Fraunces;
+  padding: 15px;
+  width: 150px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: #1a4a1e;
+  border: #1a4a1e;
+  color: white;
+  font-weight: 400;
+}
