@@ -20,7 +20,7 @@ CREATE TABLE usuario (
     senha VARCHAR(45) NOT NULL,
     telefone CHAR(11) NOT NULL,
     cpf CHAR(11) NOT NULL UNIQUE,
-    fk_perfil_acesso INT UNIQUE,
+    fk_perfil_acesso INT,
     fk_empresa INT,
     INDEX fk_perfil_acesso_idx (fk_perfil_acesso),
     CONSTRAINT fk_perfil_acesso FOREIGN KEY (fk_perfil_acesso) REFERENCES perfil_acesso(id),
@@ -40,7 +40,7 @@ CREATE TABLE fazenda (
 
 CREATE TABLE sensor (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    lote VARCHAR(45) NOT NULL UNIQUE,
+    nome_sensor VARCHAR(45) NOT NULL UNIQUE,
     localizacao VARCHAR(45) NOT NULL,
     ativo TINYINT NOT NULL,
     fk_fazenda INT UNIQUE,
