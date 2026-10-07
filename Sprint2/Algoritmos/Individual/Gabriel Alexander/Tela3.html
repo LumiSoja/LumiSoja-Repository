@@ -57,7 +57,7 @@
             <input type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br><br>
             
             <label for="ipt_senha">Senha</label><br>
-            <input type="password" id="ipt_senha" oninput="mostrarNivelSenha()"><br>
+            <input type="password" id="ipt_senha" oninput="mostrarNivelSenha()"><br><br>
             <div>Nível da senha: <span id="div_nivel">SENHA EM BRANCO</span></div><br>
 
             <label for="ipt_confirmacao">Confirmar Senha</label><br>
@@ -208,11 +208,11 @@
         }
 
         if (pontosSenha >= 4) {
-            div_nivel.innerHTML = '<span style="color: green">---------</span>';
+            div_nivel.innerHTML = '<span style="color: green;"><b>Forte</b></span>';
         } else if (pontosSenha >= 2) {
-            div_nivel.innerHTML = '<span style="color: yellow">------</span>';
+            div_nivel.innerHTML = '<span style="color: rgb(228, 207, 16)"><b>Média</b></span>';
         } else {
-            div_nivel.innerHTML = '<span style="color: red">---</span>';
+            div_nivel.innerHTML = '<span style="color: red"><b>Fraca</b></span>';
         }
     }
 
