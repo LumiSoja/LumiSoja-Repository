@@ -15,7 +15,7 @@
             
             <div class="email-info">
                 <img class="emoji" src="">
-                <span>CONTATO@LUMISOJA.COM.BR</span>
+                <span>contato@lumisoja.com.br</span>
             </div>
         </div>
 
@@ -27,30 +27,44 @@
             <input type="text" id="ipt_empresa"><br><br>
             
             <label for="ipt_cnpj">CNPJ</label><br>
-            <input type="text" id="ipt_cnpj"><br><br>
+            <input type="text" id="ipt_cnpj" placeholder="00.000.000/0001-00"><br><br>
 
             <label for="ipt_email">E-mail Corporativo</label><br>
             <input type="email" id="ipt_email" placeholder="usuario@empresa.com"><br><br>
             
-            
             <label for="ipt_hectares">Hectares</label><br>
-            <input type="text" id="ipt_hectares"><br><br>
+            <input type="text" id="ipt_hectares" placeholder="ha"><br><br>
             
             <label for="ipt_logradouro">Logradouro</label><br>
             <input type="text" id="ipt_logradouro"><br><br>
+
+            <label for="ipt_numero">Número</label><br>
+            <input type="text" id="ipt_numero"><br><br>
+
+            <label for="ipt_bairro">Bairro</label><br>
+            <input type="text" id="ipt_bairro"><br><br>
+
+            <label for="ipt_cep">CEP</label><br>
+            <input type="text" id="ipt_cep" placeholder="00000-000"><br><br>
+
+            <label for="ipt_cidade">Cidade</label><br>
+            <input type="text" id="ipt_cidade"><br><br>
+
+            <label for="ipt_estado">Estado</label><br>
+            <input type="text" id="ipt_estado"><br><br>
             
             <label for="ipt_tel">Telefone</label><br>
             <input type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br><br>
             
             <label for="ipt_senha">Senha</label><br>
             <input type="password" id="ipt_senha" oninput="mostrarNivelSenha()"><br>
-            <div id="div_nivel">Nível da senha: fraca</div><br>
+            <div>Nível da senha: <span id="div_nivel">SENHA EM BRANCO</span></div><br>
 
             <label for="ipt_confirmacao">Confirmar Senha</label><br>
             <input type="password" id="ipt_confirmacao" oninput="verificarSenhas()"><br>
             <div id="div_confirmacao"></div><br>
             
-            <button type="button" onclick="cadastrar()">Cadastrar</button><br><br>
+            <button onclick="cadastrar()">Cadastrar</button><br><br>
             <div id="div_msg"></div>
         </div>
     </div>
@@ -194,11 +208,11 @@
         }
 
         if (pontosSenha >= 4) {
-            div_nivel.innerHTML = 'Nível da senha: forte';
+            div_nivel.innerHTML = '<span style="color: green">---------</span>';
         } else if (pontosSenha >= 2) {
-            div_nivel.innerHTML = 'Nível da senha: média';
+            div_nivel.innerHTML = '<span style="color: yellow">------</span>';
         } else {
-            div_nivel.innerHTML = 'Nível da senha: fraca';
+            div_nivel.innerHTML = '<span style="color: red">---</span>';
         }
     }
 
