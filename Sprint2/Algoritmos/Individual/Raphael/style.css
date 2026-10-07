@@ -4,8 +4,6 @@
   flex-flow: column wrap;
   width: 380px;
   height: fit-content;
-  margin-right: 10%;
-  margin-top: 7%;
   justify-self: flex-end;
   justify-content: space-evenly;
   text-align: center;
@@ -16,9 +14,7 @@
 }
 
 .login_texto {
-
-  margin-left: 10%;
-  margin-top: 10%;
+  
   display: flex;
   justify-self: flex-start;
   flex-flow: column nowrap;
@@ -50,19 +46,17 @@
   color: #1e502d;
 }
 
-.login_background {
-  
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-image: url(img/lumiSoja-loginBg.png);
-}
-
 body {
 
+  margin: 0;
   display: flex;
+  flex-flow: column nowrap;
   justify-content:space-between;
   font-family: Fraunces;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  background-image: url(img/lumiSoja-loginBg.png);
 }
 
 input {
