@@ -12,15 +12,15 @@ const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (
-    valoresSensorAnalogico,
-    valoresSensorDigital,
+    valoresSensorAnalogico
+    // ,    valoresSensorDigital,
 ) => {
 
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'usuarioSelect',
+            user: 'usuario_insert',
             password: 'sptech',
             database: 'soja_iot',
             port: 3306
@@ -66,7 +66,7 @@ const serial = async (
                 'INSERT INTO leitura_luminosidade (lux) VALUES (?)',
                 [lux]
             );
-            console.log("valores inseridos no banco: ", lux + ", " + sensorDigital);
+            console.log("valores inseridos no banco: ", lux + "." /*", 2" + sensorDigital*/);
 
         }
 
@@ -80,8 +80,8 @@ const serial = async (
 
 // função para criar e configurar o servidor web
 const servidor = (
-    valoresSensorAnalogico,
-    valoresSensorDigital
+    valoresSensorAnalogico
+    // ,    valoresSensorDigital
 ) => {
     const app = express();
 
@@ -101,27 +101,27 @@ const servidor = (
     app.get('/sensores/analogico', (_, response) => {
         return response.json(valoresSensorAnalogico);
     });
-    app.get('/sensores/digital', (_, response) => {
-        return response.json(valoresSensorDigital);
-    });
+    // app.get('/sensores/digital', (_, response) => {
+    //     return response.json(valoresSensorDigital);
+    // });
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
     const valoresSensorAnalogico = [];
-    const valoresSensorDigital = [];
+    // const valoresSensorDigital = [];
 
     // inicia a comunicação serial
     await serial(
-        valoresSensorAnalogico,
-        valoresSensorDigital
+        valoresSensorAnalogico
+        // ,        valoresSensorDigital
     );
 
     // inicia o servidor web
     servidor(
-        valoresSensorAnalogico,
-        valoresSensorDigital
+        valoresSensorAnalogico
+        // ,        valoresSensorDigital
     );
 })();
 
