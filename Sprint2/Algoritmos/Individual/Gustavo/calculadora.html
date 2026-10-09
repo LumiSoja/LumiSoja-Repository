@@ -70,8 +70,30 @@
             <div class="output">
 
                 <div class="txt_explicacao">
-                    <p class="desc">Como funciona a calculadora?<br><br>
+                    <button class="ocultaMostra" onclick="textoExplicativo()">Como funciona esta calculadora?</button>
+                    <p class="desc">
+                    </p>
+                </div>
 
+                <div class="div_msg" id="div_msg"></div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>
+
+<script>
+    ipt_empresa.focus();
+
+    function textoExplicativo() {
+        desc.innerHTML = `
+                        <span class=".active">
                         Nossa calculadora estima a produtividade e o faturamento da lavoura de soja em dois cenários:
                         sem sensores e com monitoramento de luminosidade.
                         <br><br>
@@ -128,24 +150,10 @@
                         Utilizamos referências como Pioneer, Embrapa, Aegro, Sensix, Brasmax, Syngenta, Notícias
                         Agrícolas, SLC Agrícola, ResearchGate e Agriconline, além de outras fontes utilizadas para
                         estimativas de produtividade, cultivo e luminosidade.
-                    </p>
-                </div>
-
-                <div class="div_msg" id="div_msg"></div>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-</body>
-
-</html>
-
-<script>
-    ipt_empresa.focus();
+                        
+                        </span>
+                        `;
+    }
 
     function calcular() {
 

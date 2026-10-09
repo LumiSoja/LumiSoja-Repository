@@ -117,7 +117,6 @@ body {
     width: 65%;
     height: 100%;
     margin: auto;
-    overflow: scroll;
 
     border-radius: 12px;
     color: #fefff2;
@@ -130,6 +129,20 @@ body {
 .txt_explicacao {
     height: 15%;
 }
+
+.txt_explicacao .ocultaMostra {
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+    font-size: 22px;
+    transition: 0.3s ease-in-out;
+}
+
+.txt_explicacao .ocultaMostra:hover {
+    color: rgba(222, 251, 251, 0.808);
+}
+
+
 
 .txt_explicacao p {
     margin: 16px 4px 0px 4px;
