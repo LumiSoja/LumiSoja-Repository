@@ -6,50 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> LumiSoja - Login </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../Grupo/assetsGeral/estiloNavbarEFooter.css"">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel=" preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet"> 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
-<body class="login_background">
+<body>
 
-    <div class="login_texto"  id="div_login_texto">
-            
-        <span style="color: white; font-size: 60px;"> Hora do login </span>
-        <span style="color: #ffde4e; font-style: italic; font-size: 40px;"> Vamos acessar sua <br> dashboard! </span>
-
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">LumiSoja</h1>
+            <ul class="navbar">
+                <a href="#">Home</a> <!-- definir links quando estiverem todos os arquivos na main -->
+                <li>
+                    <a href="#">Tecnolgia</a>
+                </li>
+                <li>
+                    <a href="#">Simulador</a>
+                </li>
+                <li>
+                    <a href="#">Cadastro</a>
+                </li>
+                <li>
+                    <a href="#">Login</a>
+                </li>
+            </ul>
+        </div>
     </div>
 
-    <div class="login_formulario" id="div_login_formulario">
-            
-        <h3 class="login_titulo"> Login </h3>
-        
-        <div class="login_input">
-        
-            <span> E-mail </span>
-            <br>
-            <input type="text" id="ipt_email" oninput="EmailToLowerCase()">
-            <br>
-        
-        </div>
-        
-        <div class="login_input">
-            
-            <span> Senha </span>
-            <br>
-            <input type="password" id="ipt_senha">
-            
-            <br>
-        </div>
-        
-        <div class="login_botoes">
+    <div class="">
 
-            <button onclick="RedirecionarCadastro()"> Cadastro </button>
-            <button onclick="ValidarEmail()"> Entrar </button>
+        <div class="login_texto" id="div_login_texto">
+
+            <span style="color: white; font-size: 60px;"> Hora do login </span>
+            <span style="color: #ffde4e; font-style: italic; font-size: 40px;"> Vamos acessar sua <br> dashboard!
+            </span>
 
         </div>
-        
+
+        <div class="login_formulario" id="div_login_formulario">
+
+            <h3 class="login_titulo"> Login </h3>
+
+            <div class="login_input">
+
+                <span> E-mail </span>
+                <br>
+                <input type="text" id="ipt_email" oninput="EmailToLowerCase()">
+                <br>
+
+            </div>
+
+            <div class="login_input">
+
+                <span> Senha </span>
+                <br>
+                <input type="password" id="ipt_senha">
+
+                <br>
+            </div>
+
+            <div class="login_botoes">
+
+                <button onclick="RedirecionarCadastro()"> Cadastro </button>
+                <button onclick="ValidarEmail()"> Entrar </button>
+
+            </div>
+
+        </div>
+
     </div>
 
 </body>
@@ -74,7 +103,7 @@
         if (email.includes('@') && email.includes('.') && email.indexOf('@') != email.indexOf('.') - 1) {
 
             if ((email == usuarioEmail[0] && senha == usuarioSenha[0]) || (email == usuarioEmail[1] && senha == usuarioSenha[1]) ||
-            (email == usuarioEmail[2] && senha == usuarioSenha[2])) {
+                (email == usuarioEmail[2] && senha == usuarioSenha[2])) {
 
                 alert('Login realizado com sucesso!')
             }
@@ -91,7 +120,7 @@
         }
     }
 
-    function RedirecionarCadastro(){
+    function RedirecionarCadastro() {
 
         alert('Essa função irá redirecionar ao bloco de cadastro no futuro.')
     }
