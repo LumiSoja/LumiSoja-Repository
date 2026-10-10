@@ -43,7 +43,7 @@ body {
     gap: 8px;
 
     max-width: 100%;
-    height: 500px;
+    height: 65vh;
     padding: 4px;
     background-color: whitesmoke;
 }
@@ -112,7 +112,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    gap: 4%;
+    gap: 20px;
 
     width: 65%;
     height: 100%;
@@ -122,43 +122,15 @@ body {
     color: #fefff2;
     background-color: #1a4a1e;
     border: 1.5px solid;
-}
 
-
-
-.txt_explicacao {
-    height: 15%;
-}
-
-.txt_explicacao .ocultaMostra {
-    background-color: transparent;
-    color: whitesmoke;
-    border: none;
-    font-size: 22px;
-    transition: 0.3s ease-in-out;
-}
-
-.txt_explicacao .ocultaMostra:hover {
-    color: rgba(222, 251, 251, 0.808);
-}
-
-
-
-.txt_explicacao p {
-    margin: 16px 4px 0px 4px;
-    text-align: justify;
-}
-
-.desc {
-    
     overflow: scroll;
 }
 
 
 
-
+/*   COMEÇO DIV COM RETORNO DO CÁLCULO   */
 .div_msg {
-    height: 85%;
+    height: 80%;
     margin: auto;
 }
 
@@ -189,8 +161,10 @@ body {
     gap: 16px;
     padding: 4px;
     margin: 24px auto;
-    height: 70%;
+    height: 85%;
     width: 90%;
+    background-color: #628952;
+    border-radius: 14px;
 }
 
 .container_grade_metricas {
@@ -199,8 +173,6 @@ body {
     gap: 4px;
 
     height: 100%;
-    border-radius: 14px;
-    background-color: #628952;
 }
 
 .container_grade_metricas .cabecalho_retorno {
@@ -228,19 +200,67 @@ body {
     gap: 8px;
 }
 
-.valoresSolucaoPre{
+.box .valoresSolucaoPre{
     margin: 0 auto;
     color: #ffde4e;
-    text-decoration: underline rgba(220, 20, 60, 0.581);
+    background-color: rgba(220, 20, 60, 0.459);
 }
 
-.valoresSolucaoPos{
+.box .valoresSolucaoPos{
     margin: 0 auto;
     color: #ffde4e;
-    text-decoration: underline #ffde4e;
+    background-color: #ffdf4e79;
 }
 
 
 /*
     Fim RETORNO MENSAGEM
 */
+
+
+/*   COMEÇO DIV COM IMG EXPLICATIVA DA SIMULAÇÃO   */
+
+.txt_explicacao {
+    height: 15%;
+}
+
+.txt_explicacao button.ocultaMostra {
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+    font-size: 22px;
+    transition: 0.3s ease-in-out;
+}
+
+.txt_explicacao button.ocultaMostra:hover {
+    color: rgb(170, 169, 169);
+}
+
+
+
+.txt_explicacao p {
+    margin: 16px 4px 0px 4px;
+    text-align: center;
+}
+
+.desc {
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+
+.desc .active {
+    max-width: 100%;
+}
+
+.desc .active img {
+    max-height: 90%;
+    width: fit-content;
+
+
+}
+
+
+
+/*   FIM DIV COM IMG EXPLICATIVA DA SIMULAÇÃO   */

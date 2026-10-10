@@ -8,26 +8,27 @@
     <link rel="stylesheet" href="../../Grupo/assetsGeral/estiloNavbarEFooter.css">
     <title>Calculadora</title>
 </head>
-
+<!-- definir links quando estiverem todos os arquivos na main -->
 <body>
-    <div class="header">
+        <div class="header">
         <div class="container">
-            <h1 class="titulo">LumiSoja</h1>
-
-
+            <div class="logo">
+                <img src="../../Grupo/assetsGeral/icon/LOGO LUMI SOJA.jpeg">
+                <h1 class="titulo">LumiSoja</h1>
+            </div>
             <ul class="navbar">
-                <a href="#">Home</a> <!-- definir links quando estiverem todos os arquivos na main -->
+                <a href="#">Home</a>
                 <li>
-                    <a href="#">Tecnolgia</a>
+                    <a href="tecnologia.html">Tecnolgia</a>
                 </li>
                 <li>
-                    <a href="#">Simulador</a>
+                    <a href="simulador.html">Simulador</a>
                 </li>
                 <li>
-                    <a href="#">Cadastro</a>
+                    <a href="cadastro.html">Cadastro</a>
                 </li>
                 <li>
-                    <a href="#">Login</a>
+                    <a href="login.html">Login</a>
                 </li>
             </ul>
         </div>
@@ -69,13 +70,17 @@
 
             <div class="output">
 
+                <div class="div_msg" id="div_msg"></div>
+
+
                 <div class="txt_explicacao">
+                    
                     <button class="ocultaMostra" onclick="textoExplicativo()">Como funciona esta calculadora?</button>
-                    <p class="desc">
-                    </p>
+                    
+                    <p class="desc" id="desc"></p>
+
                 </div>
 
-                <div class="div_msg" id="div_msg"></div>
 
             </div>
 
@@ -91,69 +96,29 @@
 <script>
     ipt_empresa.focus();
 
+    let ocultoVisivel = 0;
+
     function textoExplicativo() {
-        desc.innerHTML = `
-                        <span class=".active">
-                        Nossa calculadora estima a produtividade e o faturamento da lavoura de soja em dois cenários:
-                        sem sensores e com monitoramento de luminosidade.
-                        <br><br>
-                        Para isso, utilizamos alguns valores médios de referência encontrados nas pesquisas usadas no
-                        projeto, como:
-                        <br><br>
-                        - aproximadamente 225 mil plantas por hectare;
-                        - média de 69 vagens por planta;
-                        - cerca de 2,5 grãos por vagem;
-                        - 180 g como Peso de Mil Grãos (PMG).
-                        <br><br>
-                        Com esses dados, estimamos quantas sacas de soja podem ser produzidas por hectare. A fórmula
-                        considera também que uma saca de soja possui 60 kg, permitindo transformar o peso estimado dos
-                        grãos em quantidade de sacas.
-                        <br><br>
-                        A calculadora considera ainda uma média de 1,5 ciclo de soja por ano. A partir disso, é possível
-                        estimar a produtividade anual e, dividindo o resultado por 12, obter uma média mensal.
-                        <br><br>
-                        Como o faturamento é calculado?
-                        <br><br>
-                        O usuário informa:
-                        <br><br>
-                        - a quantidade de hectares da propriedade;
-                        - o valor atual da saca de soja.
-                        Com essas informações, calculamos:
-                        Produtividade estimada × quantidade de hectares × preço da saca = faturamento anual estimado
-                        <br><br>
-                        Para obter o valor mensal, o faturamento anual é dividido por 12.
-                        <br><br>
-                        E o cenário com sensores?
-                        <br><br>
-                        No cenário com monitoramento de luminosidade, a calculadora considera um aumento estimado de 43%
-                        na produtividade.
-                        Esse percentual foi definido no projeto como um valor médio de referência a partir de uma faixa
-                        de crescimento encontrada nas pesquisas utilizadas pela equipe. doc_Calculadora
-                        Assim, a calculadora compara:
-                        <br><br>
-                        Sem sensores
-                        → produtividade e faturamento estimados normalmente
-                        <br><br>
-                        Com sensores
-                        → produtividade e faturamento estimados com acréscimo de 43%
-                        <br><br>
-                        Importante
-                        <br><br>
-                        Os resultados apresentados são estimativas para simulação. A produtividade real pode variar de
-                        acordo com fatores como clima, solo, manejo, variedade da soja, incidência de luz e outras
-                        condições da lavoura.
-                        O aumento de 43% deve ser entendido como um cenário estimado, e não como uma garantia de aumento
-                        de produção.
-                        <br><br>
-                        Fontes utilizadas no projeto
-                        <br><br>
-                        Utilizamos referências como Pioneer, Embrapa, Aegro, Sensix, Brasmax, Syngenta, Notícias
-                        Agrícolas, SLC Agrícola, ResearchGate e Agriconline, além de outras fontes utilizadas para
-                        estimativas de produtividade, cultivo e luminosidade.
-                        
+        ocultoVisivel++;
+
+        if (ocultoVisivel % 2 != 0) {
+
+            desc.innerHTML = `
+                        <span class="active"> Funciona!
+                            <img src="./imgs/LumiSoja_Calculadora_Visual.svg" tab="Diagrama da lógica de cálculo dessa calculadora">
                         </span>
                         `;
+
+        } else {
+            ocultoVisivel = 0
+
+            desc.innerHTML = `<span class="active" style="display: none">
+                              </span>
+                `;
+
+        }
     }
+
 
     function calcular() {
 
