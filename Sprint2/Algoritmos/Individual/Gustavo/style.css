@@ -221,6 +221,10 @@ body {
 /*   COMEÇO DIV COM IMG EXPLICATIVA DA SIMULAÇÃO   */
 
 .txt_explicacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
     height: 15%;
 }
 
@@ -228,7 +232,10 @@ body {
     background-color: transparent;
     color: whitesmoke;
     border: none;
+
+    margin: auto;
     font-size: 22px;
+
     transition: 0.3s ease-in-out;
 }
 
@@ -241,22 +248,22 @@ body {
 .txt_explicacao p {
     margin: 16px 4px 0px 4px;
     text-align: center;
+
 }
 
 .desc {
     width: 100%;
-    height: 100%;
-    overflow: scroll;
+    text-align: center;
 }
 
 
 .desc .active {
-    max-width: 100%;
+    max-height: 50vh;
 }
 
 .desc .active img {
     max-height: 90%;
-    width: fit-content;
+    width: 75%;
 
 
 }
