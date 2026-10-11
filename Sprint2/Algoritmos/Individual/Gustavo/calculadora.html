@@ -9,8 +9,9 @@
     <title>Calculadora</title>
 </head>
 <!-- definir links quando estiverem todos os arquivos na main -->
+
 <body>
-        <div class="header">
+    <div class="header">
         <div class="container">
             <div class="logo">
                 <img src="../../Grupo/assetsGeral/icon/LOGO LUMI SOJA.jpeg">
@@ -37,7 +38,6 @@
     <div class="container_main">
         <div class="titulo_calc">
             <h2>SIMULAÇÃO COM CALCULADORA FINANCEIRA</h2>
-            <h4>Faça a sua simulação e descubra como podemos te ajudar a otimizar sua operação</h4>
         </div>
 
         <div class="container_inOUt">
@@ -60,7 +60,7 @@
                 </div>
 
 
-                <div class="button">
+                <div class="div_button">
                     <button onclick="calcular()">Calcular economia</button>
                 </div>
 
@@ -74,9 +74,9 @@
 
 
                 <div class="txt_explicacao">
-                    
+
                     <button class="ocultaMostra" onclick="textoExplicativo()">Como funciona esta calculadora?</button>
-                    
+
                     <p class="desc" id="desc"></p>
 
                 </div>
@@ -97,6 +97,8 @@
     ipt_empresa.focus();
 
     let ocultoVisivel = 0;
+    div_msg.innerHTML = `<h2>Faça a sua simulação e descubra como podemos te ajudar a otimizar sua operação</h2>`;
+
 
     function textoExplicativo() {
         ocultoVisivel++;
@@ -112,7 +114,7 @@
         } else {
             ocultoVisivel = 0
 
-            desc.innerHTML = `<span class="active" style="display: none">
+            desc.innerHTML = `<span class="active" style="display: none;">
                               </span>
                 `;
 
@@ -182,55 +184,62 @@
             <h2 class="retorno_aumento_fatura">${faturamento_elevado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} a mais por ano </h2>
 
 
-
             <div class="container_retorno">
 
                 <div class="container_grade_metricas">
-                <h4 class="cabecalho_retorno">Estimativas de faturamento da sua empresa: </h4>
+                    <h4 class="cabecalho_retorno">Estimativas de faturamento da sua empresa: </h4>
             
-                <div class="container_estimativas">
-                    <div class="box">
-                        <p class="valoresSolucaoPre">Faturamento Atual Anual sem Sensoreamento:
-                            <b>${faturamento_atual_anual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b></p>
-                        <p class="valoresSolucaoPre">Faturamento Mensal sem Sensoreamento: <b>${faturamento_atual_mensal.toLocaleString('pt-BR',
-                { style: 'currency', currency: 'BRL' })}</b></p>
+                    <div class="container_estimativas">
+                        <div class="box">
+                            <p class="valoresSolucaoPre">Faturamento Atual Anual sem Sensoreamento:
+                                <b>${faturamento_atual_anual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b>
+                            </p>
+                            <p class="valoresSolucaoPre">Faturamento Mensal sem Sensoreamento: 
+                                <b>${faturamento_atual_mensal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b>
+                            </p>
+                        </div>
+
+                        <div class="box">
+                            <p class="valoresSolucaoPos">Faturamento Anual com Nossa Solução:
+                                <b>${faturamento_anual_com_sensores.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b>
+                            </p>
+                            <p class="valoresSolucaoPos">Faturamento Mensal com Nossa Solução:
+                                <b>${faturamento_mensal_com_sensores.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b>
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="box">
-                        <p class="valoresSolucaoPos">Faturamento Anual com Nossa Solução:
-                            <b>${faturamento_anual_com_sensores.toLocaleString('pt-BR', {
-                    style: 'currency', currency: 'BRL'
-                })}</b></p>
-                        <p class="valoresSolucaoPos">Faturamento Mensal com Nossa Solução:
-                            <b>${faturamento_mensal_com_sensores.toLocaleString('pt-BR', {
-                    style: 'currency', currency: 'BRL'
-                })}</b></p>
-                    </div>
                 </div>
-            </div>
 
 
-            <div class="container_grade_metricas">
-                <h4 class="cabecalho_retorno">Estimativa de produção colaborando conosco - aumento de até 43%: </h4>
-                <div class="container_estimativas">
-                    <div class="box">
-                        <p class="valoresSolucaoPre">Produtividade Atual Anual sem Sensoreamento: <b>${produtividade_anual_sem_sensor.toFixed(1)}
-                            sc/ha</b></p>
-                        <p class="valoresSolucaoPre">Produtividade Mensal sem Sensoreamento: <b>${produtividade_mensal_sem_sensor.toFixed(1)}
-                            sc/ha</b></p>
+                <div class="container_grade_metricas">
+                    <h4 class="cabecalho_retorno">Estimativa de produção colaborando conosco - aumento de até 43%: </h4>
+                    
+                    <div class="container_estimativas">
+                        <div class="box">
+                            <p class="valoresSolucaoPre">Produtividade Atual Anual sem Sensoreamento: 
+                                <b>${produtividade_anual_sem_sensor.toFixed(1)} sacas/ha</b>
+                            </p>
+                            <p class="valoresSolucaoPre">Produtividade Mensal sem Sensoreamento: 
+                                <b>${produtividade_mensal_sem_sensor.toFixed(1)} sacas/ha</b>
+                            </p>
+                        </div>
+
+                        <div class="box">
+                            <p class="valoresSolucaoPos">Produtividade Anual com Nossa Solução:
+                                <b>${produtividade_anual_com_sensores.toFixed(1)} sacas/ha</b>
+                            </p>
+                            <p class="valoresSolucaoPos">Produtividade Mensal com Nossa Solução:
+                                <b>${produtividade_mensal_com_sensores.toFixed(1)} sacas/ha</b>
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="box">
-                        <p class="valoresSolucaoPos">Produtividade Anual com Nossa Solução:
-                            <b>${produtividade_anual_com_sensores.toFixed(1)} sc/ha</b></p>
-                        <p class="valoresSolucaoPos">Produtividade Mensal com Nossa Solução:
-                            <b>${produtividade_mensal_com_sensores.toFixed(1)} sc/ha</b></p>
-                    </div>
                 </div>
-            </div>
 
         </div>
-            `
+        `;
+
         } else {
             div_msg.innerHTML = '<h4>Ao menos um dos campos não foi preenchido adequadamente. Confira as suas respostas.</h4>';
         }

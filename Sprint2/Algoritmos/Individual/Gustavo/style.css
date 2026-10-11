@@ -13,7 +13,7 @@ body {
 /*    Começo TÍTULO    */
 
 .titulo_calc {
-    margin: 0 auto;
+    margin: 8px auto 0 auto;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -21,9 +21,6 @@ body {
 }
 
 .titulo_calc h2 {
-    margin: auto;
-}
-.titulo_calc h4 {
     margin: auto;
 }
 
@@ -43,7 +40,7 @@ body {
     gap: 8px;
 
     max-width: 100%;
-    height: 65vh;
+    height: 70vh;
     padding: 4px;
     background-color: whitesmoke;
 }
@@ -66,9 +63,13 @@ body {
 
 .input_field {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 50%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    width: 80%;
+    gap: 2%;
 }
 
 .input_field label {
@@ -76,26 +77,28 @@ body {
 }
 
 .input_field input {
-    border: solid 1px #458d32;
     height: 30px;
-    width: 100%;
+    width: 75%;
+    text-align: center;
 
+    border: solid 1px #628952;
+    border-radius: 4px;
 
 }
 
-.button button {
+.div_button button {
     font-size: 22px;
-    background-color: #458d32;
-    border-radius: 5px;
-    border: solid 2.5px whitesmoke;
+    border-radius: 16px;
+    background-color: #1a4a1e;
+    border: solid 2.4px #1a4a1e;
     color: whitesmoke;
-    transition: 0.24s ease-in-out;
+    transition: 0.27s ease-in-out;
 }
 
-.button button:hover {
-    background-color: #1a4a1e;
-    border-color: #fefff2c6;
-    color: #fefff2c6;
+.div_button button:hover {
+    background-color: #ffdf4ec9;
+    border: solid 2.4px #1a4a1e;
+    color: #1a4a1e;
 }
 
 /*
@@ -123,7 +126,7 @@ body {
     background-color: #1a4a1e;
     border: 1.5px solid;
 
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 
@@ -131,7 +134,14 @@ body {
 /*   COMEÇO DIV COM RETORNO DO CÁLCULO   */
 .div_msg {
     height: 80%;
-    margin: auto;
+    margin:  10px auto 0px auto;
+    padding: 0;
+}
+
+.div_msg h2 {
+    margin: 0 5%;
+    text-align: center;
+    color: #ffde4e;
 }
 
 .div_msg h4 {
@@ -160,11 +170,11 @@ body {
     
     gap: 16px;
     padding: 4px;
-    margin: 24px auto;
+    margin: 16px auto;
     height: 85%;
     width: 90%;
     background-color: #628952;
-    border-radius: 14px;
+    border-radius: 12px;
 }
 
 .container_grade_metricas {
@@ -177,6 +187,7 @@ body {
 
 .container_grade_metricas .cabecalho_retorno {
     font-size: 20px;
+    font-weight: bold;
 }
 
 .container_estimativas {
@@ -195,21 +206,27 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-around;
-    height: 100%;
-    font-size: 18px;
+    
     gap: 8px;
+    height: 100%;
+    
+    font-size: 18px;
 }
 
 .box .valoresSolucaoPre{
     margin: 0 auto;
     color: #ffde4e;
-    background-color: rgba(220, 20, 60, 0.459);
+    background-color: rgba(220, 20, 60, 0.301);
+    border-radius: 4px;
+    border: none;
 }
 
 .box .valoresSolucaoPos{
     margin: 0 auto;
     color: #ffde4e;
-    background-color: #ffdf4e79;
+    background-color: #1a4a1e5e;
+    border-radius: 4px;
+    border: none;
 }
 
 
@@ -218,13 +235,20 @@ body {
 */
 
 
+
+
+
+
+
+
 /*   COMEÇO DIV COM IMG EXPLICATIVA DA SIMULAÇÃO   */
 
 .txt_explicacao {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
+    margin: 4% 0;
     height: 15%;
 }
 
@@ -233,7 +257,8 @@ body {
     color: whitesmoke;
     border: none;
 
-    margin: auto;
+    height: 5vh;
+    margin: auto -4px auto 0px;
     font-size: 22px;
 
     transition: 0.3s ease-in-out;
@@ -246,7 +271,6 @@ body {
 
 
 .txt_explicacao p {
-    margin: 16px 4px 0px 4px;
     text-align: center;
 
 }
@@ -258,14 +282,14 @@ body {
 
 
 .desc .active {
-    max-height: 50vh;
+    max-height: 35vh;
 }
 
 .desc .active img {
-    max-height: 90%;
-    width: 75%;
-
-
+    max-height: 100%;
+    width: 85%;
+    border: solid 1px rgb(255, 255, 255);
+    border-radius: 4px;
 }
 
 
