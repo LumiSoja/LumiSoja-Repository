@@ -93,10 +93,27 @@ CREATE TABLE leitura_sensor (
 -- ==================== INSERTS ====================
 
 
--- NOSSOS ACESSOS:
+INSERT INTO perfil_acesso (nome, descricao) VALUES
+('Possível Cliente', 'Sem acesso aos dashboards e sensores'),
+('Cliente', 'Responsável por uma empresa cliente cadastrada'),
+('Funcionário', 'Funcionário de empresa cliente com acesso aos dashboards e alertas'),
+('Suporte', 'Funcionário da LumiSoja responsável pelo suporte e cadastros'),
+('Administrador', 'Administradores e desenvolvedores da LumiSoja');
 
--- Possível Cliente - Sem acesso aos dashboards e sensores
--- Cliente - Responsável por uma empresa cliente cadastrada
--- Funcionário - Funcionário de empresa cliente com acesso aos dashboards e alertas
--- Suporte - Funcionário da LumiSoja responsável pelo suporte e cadastros
--- Administrador - Administradores e desenvolvedores da LumiSoja
+INSERT INTO empresa (nome, razao_social, cnpj) VALUES
+('AgroVale', 'AgroVale Agropecuária Ltda', '12345678000190'),
+('Soja Forte', 'Soja Forte Agrícola Ltda', '98765432000110'),
+('Campo Verde', 'Campo Verde Produção Rural Ltda', '45678912000135');
+
+INSERT INTO usuario (nome, senha, cpf, fk_perfil_acesso, fk_empresa) VALUES
+('Vinicius Oliveira', 'senha123', '12345678901', 1, NULL),
+('Thiago Ishikawa', 'senha456', '23456789012', 2, 1),
+('Gustavo Fermino', 'senha789', '34567890123', 3, 2);
+
+INSERT INTO contato (telefone, email, fk_usuario, fk_empresa) VALUES
+('11987654321', 'vini@email.com', 1, NULL),
+('11998765432', 'thiago@agrovale.com', 2, NULL),
+('11999887766', 'gusta@sojaforte.com', 3, NULL),
+('1134567890', 'contato@agrovale.com.br', NULL, 1),
+('1135678901', 'contato@sojaforte.com.br', NULL, 2),
+('1136789012', 'contato@campoverde.com.br', NULL, 3);
