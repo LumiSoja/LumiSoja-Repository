@@ -118,3 +118,17 @@ INSERT INTO contato (telefone, email, fk_usuario, fk_empresa) VALUES
 ('1135678901', 'contato@sojaforte.com.br', NULL, 2),
 ('1136789012', 'contato@campoverde.com.br', NULL, 3);
 
+INSERT INTO sensor (identificacao, posicionamento, ativo, fk_fazenda) VALUES
+('LDR_01', 'Setor Sul', 1, 1),
+('LDR_02', 'Setor Leste', 0, 2),
+('LDR_03', 'Setor Norte', 1, 3),
+('LDR_04', 'Setor Noroeste', 1, 4),
+('LDR_05', 'Setor Nordeste', 1, 5);
+
+INSERT INTO leitura_sensor (lux, data_hora, fk_sensor) VALUES
+
+(35000, NOW(), 1),
+(36000, NOW(), 1),
+(38000, NOW(), 2),
+(39000, NOW(), 3),
+(40000, NOW(), 4);
