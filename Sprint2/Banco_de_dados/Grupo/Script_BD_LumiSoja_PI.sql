@@ -127,7 +127,7 @@ INSERT INTO fazenda (nome_fazenda, hectare, fk_empresa) VALUES
 ('Sítio AgroVerde', 410.10, 3),
 ('Fazenda Ouro Negro', 5000.00, 2);
 
-INSERT endereco (logradouro, numero, bairro, cep, cidade, estado, fk_empresa, fk_fazenda) VALUES
+INSERT INTO endereco (logradouro, numero, bairro, cep, cidade, estado, fk_empresa, fk_fazenda) VALUES
 
 -- ENDEREÇO FAZENDA BOA VISTA
 ('Rodovia BR-163, Km 142' NULL, 'Zona Rural', '78520000', 'Garantã do Norte', 'MT', 1, 1),
