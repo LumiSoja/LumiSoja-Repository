@@ -117,3 +117,4 @@ INSERT INTO contato (telefone, email, fk_usuario, fk_empresa) VALUES
 ('1134567890', 'contato@agrovale.com.br', NULL, 1),
 ('1135678901', 'contato@sojaforte.com.br', NULL, 2),
 ('1136789012', 'contato@campoverde.com.br', NULL, 3);
+
