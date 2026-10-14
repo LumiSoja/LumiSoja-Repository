@@ -54,11 +54,11 @@ fk_empresa INT NOT NULL,
 CREATE TABLE endereco (
 id INT PRIMARY KEY AUTO_INCREMENT,
 logradouro VARCHAR(100),
-numero INT,
+numero INT, -- ALTERAR TIPO DO NÚMERO PARA VARCHAR(10)
 bairro VARCHAR(50),
 cep CHAR(8),
 cidade VARCHAR(45),
-estado VARCHAR(45),
+estado VARCHAR(45), -- ALTERAR O TIPO DO ESTADO PARA CHAR(2)
 fk_empresa INT,
 fk_fazenda INT,
 	CONSTRAINT fk_empresa4_idx
@@ -117,6 +117,42 @@ INSERT INTO contato (telefone, email, fk_usuario, fk_empresa) VALUES
 ('1134567890', 'contato@agrovale.com.br', NULL, 1),
 ('1135678901', 'contato@sojaforte.com.br', NULL, 2),
 ('1136789012', 'contato@campoverde.com.br', NULL, 3);
+
+-- ==================== INSERTS ====================
+
+INSERT INTO fazenda (nome_fazenda, hectare, fk_empresa) VALUES
+('Fazenda Boa Vista', 1500.50, 1),
+('Estância Progresso', 850.00, 1),
+('Fazenda Sol Nascente', 3200.75, 2),
+('Sítio AgroVerde', 410.10, 3),
+('Fazenda Ouro Negro', 5000.00, 2);
+
+INSERT INTO endereco (logradouro, numero, bairro, cep, cidade, estado, fk_empresa, fk_fazenda) VALUES
+
+-- ENDEREÇO FAZENDA BOA VISTA
+('Rodovia BR-163, Km 142' NULL, 'Zona Rural', '78520000', 'Garantã do Norte', 'MT', 1, 1),
+
+-- ENDEREÇO FAZENDA ESTÂNCIA PROGRESSO
+('Estrada Vicinal do Cafezal, S/N', NULL, 'Distrito Industrial Agrícola', '86000000', 'Londrina', 'PR', 1, 2),
+
+-- ENDEREÇO FAZENDA SOL NASCENTE
+('Rodovia GO-341, Km 45', 250, 'Zona Rural', '75830000', 'Mineiros', 'GO', 2, 3),
+
+-- ENDEREÇO FAZENDA SÍTIO AGROVERDE
+('Estrada Municipal da Soja, S/N', NULL, 'Área Rural', '98500000', 'Tenente Portela', 'RS', 3, 4),
+
+-- ENDEREÇO FAZENDA OURO NEGRO
+('Rodovia BR-020, Km 510', NULL, 'Gerais de Balsas', '65800000', 'Balsas', 'MA', 2, 5),
+
+-- ENDEREÇO EMPRESA AGROVALE
+('Avenida Brigadeiro Faria Lima', 1485, 'Pinheiros', '01452002', 'São Paulo', 'SP', 1, NULL),
+
+-- ENDEREÇO EMPRESA SOJA FORTE
+('Avenida Historiador Rubens de Mendonça', 2000, 'Alvorada','78048340', 'Cuiabá', 'MT', 2, NULL),
+
+-- ENDEREÇO EMPRESA CAMPO VERDE
+('Avenida Sete de Setembro', 320, 'Vila Industrial', '85851000', 'Foz do Iguaçu', 'PR', 3, NULL);
+
 
 INSERT INTO sensor (identificacao, posicionamento, ativo, fk_fazenda) VALUES
 ('LDR_01', 'Setor Sul', 1, 1),
