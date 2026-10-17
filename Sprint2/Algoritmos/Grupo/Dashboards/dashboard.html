@@ -9,69 +9,71 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body style="display: flex;">
+<body>
 
     <div class="container">
 
-        <select id="">
-            <option selected value="1">Fazenda Boa Vista</option>
-            <option value="2">Fazenda Sol Nascente</option>
-            <option value="3">Fazenda Ouro Negro</option>
-        </select>
+        <div class="selects">
+            <select>
+                <option selected value="1">Fazenda Boa Vista</option>
+                <option value="2">Fazenda Sol Nascente</option>
+                <option value="3">Fazenda Ouro Negro</option>
+            </select>
 
-        <select>
-            <option selected value="1">Setor: Todos</option>
-            <option value="2">Leste</option>
-            <option value="3">Oeste</option>
-            <option value="4">Norte</option>
-            <option value="5">Sul</option>
-        </select>
+            <select>
+                <option selected value="1">Setor: Todos</option>
+                <option value="2">Leste</option>
+                <option value="3">Oeste</option>
+                <option value="4">Norte</option>
+                <option value="5">Sul</option>
+            </select>
+        </div>
 
-        <div class="box">
+        <div class="box box1">
             <p>LUMINOSIDADE ATUAL</p>
             <h2>34.250 Lux</h2>
             <h5>Ideal (Meta: Minímo 15k Lux)</h5>
         </div>
 
-        <div class="box">
+        <div class="box box2">
             <p>Exposição Diária (Média)<br></p>
             <h2>10h 24m</h2>
             <h5>92% da meta diária de 12h atingida</h5>
         </div>
 
-        <div class="box">
+        <div class="box box3">
             <p>SENSORES ATIVOS (Iot)</p>
             <h2>14/15</h2>
             <h5>ID: SENSOR-03 <br>
                 Offline no Setor Oeste</h5>
         </div>
 
-        <div class="box">
+        <div class="box box4">
             <p>NÍVEL DE RISCO / ÁREA</p>
             <h2>BAIXO</h2>
             <h5>Área Coberta: 100 Hectares</h5>
         </div>
 
-        <div class="box">
+        <div class="box box5">
             <p>PRODUTIVIDADE ESTIMADA
                 (SENSOR)</p>
             <h2>+20%</h2>
             <h5>Produtividade e faturamento</h5>
         </div>
 
-        <div class="grafico">
+        <div class="grafico grafico1">
             <p>Histórico de Luminosidade Diária (Lux) - Fazenda Boa Vista</p>
             <canvas id="myChart" style="position: relative; height: 30vh; width: 30vw;"></canvas>
         </div>
 
-        <div class="grafico">
+        <div class="grafico grafico2">
             <p>Média de Luminosidade por Setor (Lux)</p>
             <canvas id="myChart2" style="position: relative; height: 30vh; width: 30vw;"></canvas>
         </div>
 
-        <div class="grafico">
+        <div class="grafico grafico3">
             <p>Análise de Exposição Geral da Safra</p>
-            <canvas id="myChart3" style="position: relative; height: 30vh; width: 30vw;"></canvas>
+            <canvas id="myChart3" style="position: relative; height: 20vh; width: 20vw;"></canvas>
         </div>
 
     </div>
@@ -90,7 +92,7 @@
             datasets: [{
                 label: 'Média de Luminosidade (Lux)',
                 data: [26000, 23000, 14000, 24000],
-                backgroundColor: ['#43964D', '#43964D', '#F39C12', '#43964D'] 
+                backgroundColor: ['#43964D', '#43964D', '#F39C12', '#43964D']
             }]
 
         }
@@ -118,12 +120,12 @@
             datasets: [{
                 label: 'Temperatura Média',
                 data: [85, 10, 5],
-                backgroundColor: ['#43964D','#F39C12','#E5B32D'],
+                backgroundColor: ['#43964D', '#F39C12', '#E5B32D'],
             }]
 
         }
     });
-    
+
 </script>
 
 </html>
