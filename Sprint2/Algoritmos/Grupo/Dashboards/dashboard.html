@@ -6,42 +6,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body style="display: flex;">
 
-    <div class="box">
+    <div class="container">
 
         <select id="">
-            <option selected disabled>Selecione uma Fazenda</option>
-            <option>Fazenda Boa Vista</option>
-            <option>Fazenda Sol Nascente</option>
-            <option>Fazenda Ouro Negro</option>
+            <option selected value="1">Fazenda Boa Vista</option>
+            <option value="2">Fazenda Sol Nascente</option>
+            <option value="3">Fazenda Ouro Negro</option>
         </select>
 
         <select>
-            <option select disabled>Selecione um setor</option>
-            <option value="1">Setor: Todos</option>
+            <option selected value="1">Setor: Todos</option>
             <option value="2">Leste</option>
             <option value="3">Oeste</option>
             <option value="4">Norte</option>
             <option value="5">Sul</option>
         </select>
 
-    </div>
+        <div class="box">
+            <p>LUMINOSIDADE ATUAL</p>
+            <h2>34.250 Lux</h2>
+            <h5>Ideal (Meta: Minímo 15k Lux)</h5>
+        </div>
 
-    <div class="box">
-        <p>Exposição Diária (Média)<br></p>
-        <h2>10h 24m</h2>
-        <h5>92% da meta diária de 12h atingida</h5>
-    </div>
-    
-    <div class="box1">
-        <p>Nível de Risco / Área<br></p>
-        <h2>Baixo</h2>
-        <h5>Área coberta: 100 Hectares</h5>
+        <div class="box">
+            <p>Exposição Diária (Média)<br></p>
+            <h2>10h 24m</h2>
+            <h5>92% da meta diária de 12h atingida</h5>
+        </div>
+
+        <div class="box">
+            <p>SENSORES ATIVOS (Iot)</p>
+            <h2>14/15</h2>
+            <h5>ID: SENSOR-03 <br>
+                Offline no Setor Oeste</h5>
+        </div>
+
+        <div class="box">
+            <p>NÍVEL DE RISCO / ÁREA</p>
+            <h2>BAIXO</h2>
+            <h5>Área Coberta: 100 Hectares</h5>
+        </div>
+
+        <div class="box">
+            <p>PRODUTIVIDADE ESTIMADA
+                (SENSOR)</p>
+            <h2>+20%</h2>
+            <h5>Produtividade e faturamento</h5>
+        </div>
+
+        <div class="grafico">
+            <p>Histórico de Luminosidade Diária (Lux) - Fazenda Boa Vista</p>
+            <canvas id="myChart" style="position: relative; height: 30vh; width: 30vw;"></canvas>
+        </div>
+
+        <div class="grafico">
+            <p>Média de Luminosidade por Setor (Lux)</p>
+            <canvas id="myChart2" style="position: relative; height: 30vh; width: 30vw;"></canvas>
+        </div>
+
+        <div class="grafico">
+            <p>Análise de Exposição Geral da Safra</p>
+            <canvas id="myChart3" style="position: relative; height: 30vh; width: 30vw;"></canvas>
+        </div>
+
     </div>
 
 </body>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    const ctx2 = document.getElementById('myChart2');
+    const ctx3 = document.getElementById('myChart3');
+
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['Setor Norte', 'Setor Sul', 'Setor Leste', 'Setor Oeste'],
+            datasets: [{
+                label: 'Média de Luminosidade (Lux)',
+                data: [26000, 23000, 14000, 24000],
+                backgroundColor: ['#43964D', '#43964D', '#F39C12', '#43964D'] 
+            }]
+
+        }
+    });
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['06:00', '08:30', '10:00', '12:00', '14:00', '16:00', '18:00'],
+            datasets: [{
+                label: 'Luminosidade (Lux)',
+                data: [0, 4500, 35000, 55000, 36000, 3000, 0],
+                borderColor: '#E5B32D',
+                tension: 0.4,
+                fill: false
+            }]
+
+        }
+    });
+
+    new Chart(ctx3, {
+        type: 'doughnut',
+        data: {
+            labels: ['Ideal', 'Sombreado', 'Excesso'],
+            datasets: [{
+                label: 'Temperatura Média',
+                data: [85, 10, 5],
+                backgroundColor: ['#43964D','#F39C12','#E5B32D'],
+            }]
+
+        }
+    });
+    
+</script>
 
 </html>

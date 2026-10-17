@@ -1,22 +1,27 @@
-box p{
+.container {
+    display: flex;
+    background-color: #E6EAED;
+}
+
+.box p{
     flex-direction: row;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
-box h2{
+.box h2{
     flex-direction: row;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
-box1 p{
+.box p{
     flex-direction: row;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
-box1 h2{
+.box h2{
     flex-direction: row;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
