@@ -8,6 +8,7 @@ body {
     font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
     color: #070c0f;
     padding: 0;
+    height: 100%;
 }
 
 /*    Começo TÍTULO    */
@@ -40,7 +41,7 @@ body {
     gap: 8px;
 
     max-width: 100%;
-    height: 70vh;
+    height: 75vh;
     padding: 4px;
     background-color: whitesmoke;
 }
@@ -258,7 +259,7 @@ body {
     border: none;
 
     height: 5vh;
-    margin: auto -4px auto 0px;
+    margin: auto 0 auto 0px;
     font-size: 22px;
 
     transition: 0.3s ease-in-out;
@@ -295,3 +296,9 @@ body {
 
 
 /*   FIM DIV COM IMG EXPLICATIVA DA SIMULAÇÃO   */
+
+
+
+
+/* COMEÇO FOOTER - SERÁ JOGADO LÁ PRO ARQUIVO DO GRUPO POSTERIORMENTE */
+

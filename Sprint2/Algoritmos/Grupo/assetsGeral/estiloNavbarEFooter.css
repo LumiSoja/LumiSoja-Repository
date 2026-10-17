@@ -70,3 +70,112 @@
 /*
     COMEÇO ESTILO DO FOOTER
 */
+
+.footer {
+    display: flex;
+    width: 100%;
+    height: 200px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0D0D0D;
+    background-color: #458d32;
+    
+    margin: auto;
+    margin-top: 1%;
+    padding: 0px;
+
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+}
+
+
+
+.container-empresa-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 16px auto 0px auto;
+    margin-bottom: 0%;
+    padding: 0px 5%;
+}
+
+.container-empresa-footer .footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 80%;
+    width: 30%;
+    padding: 0;
+    margin: 0;
+}
+.container-empresa-footer .footer-logo img{
+    max-width: 90px;
+    width: 40%;
+}
+
+.container-empresa-footer .footer-titulo {
+    font-size: 24px;
+    font-family: 'Fraunces', Georgia, serif;
+}
+
+.footer-infos-falsas {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    max-width: 30%;
+    margin: 0 auto;
+}
+
+.footer-infos-falsas h4 {
+    text-align: left;
+}
+
+.lista-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    
+    height: 100%;
+    max-width: 30%;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.lista-footer h3 {
+    padding: 0;
+    margin: 0;
+}
+
+.lista-footer .itens-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0;
+    padding: 4px;
+    
+    height: 75%;
+    width: 100%;
+    text-align: left;
+}
+
+.itens-list a {
+    font-size: 16px;
+    color: #0D0D0D;
+    text-decoration: none;
+
+}
+
+.itens-list li {
+    list-style: none;
+}
