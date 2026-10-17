@@ -6,10 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nossas Tecnologias</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../Grupo/assetsGeral/estiloNavbarEFooter.css"">
 </head>
 
 <body>
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="./img/LOGO LUMI SOJA.jpeg">
+                <h1 class="titulo">LumiSoja</h1>
+            </div>
+            <ul class="navbar">
+                <a href="#">Home</a> <!-- definir links quando estiverem todos os arquivos na main -->
+                <li>
+                    <a href="#">Tecnolgia</a>
+                </li>
+                <li>
+                    <a href="#">Simulador</a>
+                </li>
+                <li>
+                    <a href="#">Cadastro</a>
+                </li>
+                <li>
+                    <a href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h1 style="color: whitesmoke; padding-top: 50px; margin: 0%;"><b>Cadastro Fazenda</b></h1>
     <div class="contato">
+        <div id="cabecalho">
         <div class="contato-texto">
             <h1>Pronto para transformar sua lavoura em dados?</h1>
             
@@ -18,22 +44,20 @@
                 <span>contato@lumisoja.com.br</span>
             </div>
         </div>
+        </div>
 
-        <div class="container">
-            <label for="ipt_nome">Nome Completo</label><br>
+        <div class="containerCadastro">
+            <label for="ipt_nome">Nome da Fazenda</label><br>
             <input type="text" id="ipt_nome"><br><br>
 
-            <label for="ipt_empresa">Razão Social</label><br>
-            <input type="text" id="ipt_empresa"><br><br>
+            <label for="ipt_hectares">Hectares</label><br>
+            <input type="text" id="ipt_hectares" placeholder="ha"><br><br>
             
-            <label for="ipt_cnpj">CNPJ</label><br>
-            <input type="text" id="ipt_cnpj" placeholder="00.000.000/0001-00"><br><br>
-
             <label for="ipt_email">E-mail Corporativo</label><br>
             <input type="email" id="ipt_email" placeholder="usuario@empresa.com"><br><br>
             
-            <label for="ipt_hectares">Hectares</label><br>
-            <input type="text" id="ipt_hectares" placeholder="ha"><br><br>
+            <label for="ipt_tel">Telefone</label><br>
+            <input type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br><br>
             
             <label for="ipt_logradouro">Logradouro</label><br>
             <input type="text" id="ipt_logradouro"><br><br>
@@ -53,16 +77,6 @@
             <label for="ipt_estado">Estado</label><br>
             <input type="text" id="ipt_estado"><br><br>
             
-            <label for="ipt_tel">Telefone</label><br>
-            <input type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br><br>
-            
-            <label for="ipt_senha">Senha</label><br>
-            <input type="password" id="ipt_senha" oninput="mostrarNivelSenha()"><br><br>
-            <div>Nível da senha: <span id="div_nivel">SENHA EM BRANCO</span></div><br>
-
-            <label for="ipt_confirmacao">Confirmar Senha</label><br>
-            <input type="password" id="ipt_confirmacao" oninput="verificarSenhas()"><br>
-            <div id="div_confirmacao"></div><br>
             
             <button onclick="cadastrar()">Cadastrar</button><br><br>
             <div id="div_msg"></div>

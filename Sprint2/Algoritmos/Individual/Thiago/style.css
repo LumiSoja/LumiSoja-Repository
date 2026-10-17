@@ -47,26 +47,26 @@ body {
 .banner h5{
     padding-left: 10px;
     margin-bottom: 10px;
-    margin-left: 50px;
+    margin-left: 5%;
+    font-size: 1vw;
 }
 
 .banner p{
     padding-left: 10px;
     margin-bottom: 10px;
     margin-left: 5%;
-    font-size: 4vw;
+    font-size: 5vw;
     line-height: 1.1;
     font-weight: bold;
 }
 
 .header{
     width: 100%;
-    background-image: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0, 0.7)), url("assets/imgs/bg-Soy-background_img.png");
+    background-image: linear-gradient(rgba(0,0,0, 0.65), rgba(0,0,0, 0.55)), url("assets/imgs/bg-Soy-background_img.png");
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    background-color: #1a4a1e;
     height: 70px;
-    font-size: 11px;
+    font-size: 16px;
 }
 
 .header .container{
@@ -95,11 +95,22 @@ body {
     border-color: #d4a017;
 }
 
+button {
+    color: black;
+    background-color: #f2c400;
+    font-weight: bold;
+    border-radius: 30px;
+    height: 40px;
+    width: 180px;
+    margin-left: 6%;
+    border-color: azure;
+}
+
 
 .footer {
     display: flex;
     width: 100%;
-    background-image: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.4)), url("assets/imgs/bg-Soy-background_img.png");
+    background-image: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0, 0.7)), url("assets/imgs/bg-Soy-background_img.png");
     background-size: cover;
     background-position: center;
 }
@@ -115,6 +126,7 @@ body {
     width: 50%;
     text-align: center;
     border-top: 2px solid #f2c400;
+    border-right: 2px solid #f2c400; 
 }
 
 .footer1, .footer2 {
@@ -125,13 +137,13 @@ body {
 
 .footer1 h2, .footer2 h2 {
     color: #f2c400;
-    margin: 5px 0 0 0;
-    font-size: 25px;
+    margin: 0.5px;
+    font-size: 55px;
 }
 
 .footer1 p, .footer2 p {
     margin: 0;
     color: white;
-    font-size: 11px;
+    font-size: 21px;
     font-weight: bold;
 }
