@@ -54,11 +54,11 @@ fk_empresa INT NOT NULL,
 CREATE TABLE endereco (
 id INT PRIMARY KEY AUTO_INCREMENT,
 logradouro VARCHAR(100),
-numero INT, -- ALTERAR TIPO DO NÚMERO PARA VARCHAR(10)
+numero VARCHAR(6),
 bairro VARCHAR(50),
 cep CHAR(8),
 cidade VARCHAR(45),
-estado VARCHAR(45), -- ALTERAR O TIPO DO ESTADO PARA CHAR(2)
+estado VARCHAR(45),
 fk_empresa INT,
 fk_fazenda INT,
 	CONSTRAINT fk_empresa4_idx
@@ -130,36 +130,36 @@ INSERT INTO fazenda (nome_fazenda, hectare, fk_empresa) VALUES
 INSERT INTO endereco (logradouro, numero, bairro, cep, cidade, estado, fk_empresa, fk_fazenda) VALUES
 
 -- ENDEREÇO FAZENDA BOA VISTA
-('Rodovia BR-163, Km 142' NULL, 'Zona Rural', '78520000', 'Garantã do Norte', 'MT', 1, 1),
+('Rodovia BR-163, Km 142', NULL, 'Zona Rural', '78520000', 'Garantã do Norte', 'Mato Grosso', 1, 1),
 
 -- ENDEREÇO FAZENDA ESTÂNCIA PROGRESSO
-('Estrada Vicinal do Cafezal, S/N', NULL, 'Distrito Industrial Agrícola', '86000000', 'Londrina', 'PR', 1, 2),
+('Estrada Vicinal do Cafezal, S/N', NULL, 'Distrito Industrial Agrícola', '86000000', 'Londrina', 'Paraná', 1, 2),
 
 -- ENDEREÇO FAZENDA SOL NASCENTE
-('Rodovia GO-341, Km 45', 250, 'Zona Rural', '75830000', 'Mineiros', 'GO', 2, 3),
+('Rodovia GO-341, Km 45', '250', 'Zona Rural', '75830000', 'Mineiros', 'Goiás', 2, 3),
 
 -- ENDEREÇO FAZENDA SÍTIO AGROVERDE
-('Estrada Municipal da Soja, S/N', NULL, 'Área Rural', '98500000', 'Tenente Portela', 'RS', 3, 4),
+('Estrada Municipal da Soja, S/N', NULL, 'Área Rural', '98500000', 'Tenente Portela', 'Rio Grande do Sul', 3, 4),
 
 -- ENDEREÇO FAZENDA OURO NEGRO
-('Rodovia BR-020, Km 510', NULL, 'Gerais de Balsas', '65800000', 'Balsas', 'MA', 2, 5),
+('Rodovia BR-020, Km 510', NULL, 'Gerais de Balsas', '65800000', 'Balsas', 'Maranhão', 2, 5),
 
 -- ENDEREÇO EMPRESA AGROVALE
-('Avenida Brigadeiro Faria Lima', 1485, 'Pinheiros', '01452002', 'São Paulo', 'SP', 1, NULL),
+('Avenida Brigadeiro Faria Lima', '1485', 'Pinheiros', '01452002', 'São Paulo', 'São Paulo', 1, NULL),
 
 -- ENDEREÇO EMPRESA SOJA FORTE
-('Avenida Historiador Rubens de Mendonça', 2000, 'Alvorada','78048340', 'Cuiabá', 'MT', 2, NULL),
+('Avenida Historiador Rubens de Mendonça', '2000', 'Alvorada','78048340', 'Cuiabá', 'Mato Grosso', 2, NULL),
 
 -- ENDEREÇO EMPRESA CAMPO VERDE
-('Avenida Sete de Setembro', 320, 'Vila Industrial', '85851000', 'Foz do Iguaçu', 'PR', 3, NULL);
+('Avenida Sete de Setembro', '320', 'Vila Industrial', '85851000', 'Foz do Iguaçu', 'Paraná', 3, NULL);
 
 
 INSERT INTO sensor (identificacao, posicionamento, ativo, fk_fazenda) VALUES
 ('LDR_01', 'Setor Sul', 1, 1),
 ('LDR_02', 'Setor Leste', 0, 2),
 ('LDR_03', 'Setor Norte', 1, 3),
-('LDR_04', 'Setor Noroeste', 1, 4),
-('LDR_05', 'Setor Nordeste', 1, 5);
+('LDR_04', 'Setor Oeste', 1, 4),
+('LDR_05', 'Setor Leste', 1, 5);
 
 INSERT INTO leitura_sensor (lux, data_hora, fk_sensor) VALUES
 
