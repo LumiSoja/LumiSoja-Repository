@@ -7,9 +7,10 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    flex-direction: column;
 }
 
-.container {
+.main {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
