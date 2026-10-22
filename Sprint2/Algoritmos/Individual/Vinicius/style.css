@@ -2,6 +2,8 @@ body {
    background-image: url(imgs/fundo.svg);
    background-size: cover;
    font-family: Arial, Helvetica, sans-serif;
+   padding: 0;
+   margin: 0;
 }
 
 .title {
@@ -13,7 +15,7 @@ body {
    height: 180px;
 }
 
-.container {
+.boxes {
    display: flex;
    flex-direction: row;
    justify-content: space-evenly;
@@ -41,12 +43,12 @@ body {
    border: solid 2px;
    border-radius: 20px;
    border-color: #828282;
-   height: 500px;
+   height: 450px;
    width: 400px;
    text-align: center;
 }
 
-.logo {
+.icone {
    height: 100px;
    width: 100px;
    margin: auto;
@@ -54,7 +56,7 @@ body {
 }
 
 
-.logo img {
+.icone img {
    height: 100%;
    width: 100%;
 }

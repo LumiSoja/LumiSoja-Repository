@@ -33,7 +33,7 @@ body {
 
 .banner {
     flex: 1;
-    background-image: linear-gradient(rgba(0,0,0, 0.5), rgba(0,0,0, 0.5)), url("assets/imgs/bg-Soy-background_img.png");
+    background-image: linear-gradient(rgba(0,0,0, 0.6), rgba(0,0,0, 0.6)), url("assets/imgs/bg-Soy-background_img.png");
     background-size: cover;
     background-position: center;
     font-family: 'Fraunces', Georgia, serif;
@@ -62,7 +62,7 @@ body {
 
 .header{
     width: 100%;
-    background-image: linear-gradient(rgba(0,0,0, 0.65), rgba(0,0,0, 0.55)), url("assets/imgs/bg-Soy-background_img.png");
+    background-image: linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.65)), url("assets/imgs/bg-Soy-background_img.png");
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     height: 70px;
