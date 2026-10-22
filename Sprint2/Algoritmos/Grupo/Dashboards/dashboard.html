@@ -7,17 +7,46 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../../Grupo/assetsGeral/estiloNavbarEFooter.css">
+</head>
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="../../Grupo/assetsGeral/icon/LOGO LUMI SOJA.jpeg">
+                <h1 class="titulo">LumiSoja</h1>
+            </div>
+            <ul class="navbar">
+                <li>
+                    <a href="home.html">Home</a>
+                </li>
+                <li>
+                    <a href="tecnologia.html">Tecnolgia</a>
+                </li>
+                <li>
+                    <a href="#">Simulador</a>
+                </li>
+                <li>
+                    <a href="cadastro.html">Cadastro</a>
+                </li>
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main">
 
         <div class="selects">
             <select>
-                <option selected value="1">Fazenda Boa Vista</option>
-                <option value="2">Fazenda Sol Nascente</option>
-                <option value="3">Fazenda Ouro Negro</option>
+                <option selected value="1">Fazenda: Todos</option>
+                <option value="2">Fazenda Boa Vista</option>
+                <option value="3">Fazenda Sol Nascente</option>
+                <option value="4">Fazenda Ouro Negro</option>
             </select>
 
             <select>
@@ -32,11 +61,12 @@
         <div class="box box1">
             <p>LUMINOSIDADE ATUAL</p>
             <h2>34.250 Lux</h2>
-            <h5>Ideal (Meta: Minímo 15k Lux)</h5>
+            <h5>Ideal Minímo 15k Lux</h5>
+            <h5>Ideal Máximo 80k Lux</h5>
         </div>
 
         <div class="box box2">
-            <p>Exposição Diária (Média)<br></p>
+            <p>Exposição Diária<br></p>
             <h2>10h 24m</h2>
             <h5>92% da meta diária de 12h atingida</h5>
         </div>
@@ -50,15 +80,9 @@
 
         <div class="box box4">
             <p>NÍVEL DE RISCO / ÁREA</p>
-            <h2>BAIXO</h2>
-            <h5>Área Coberta: 100 Hectares</h5>
-        </div>
-
-        <div class="box box5">
-            <p>PRODUTIVIDADE ESTIMADA
-                (SENSOR)</p>
-            <h2>+20%</h2>
-            <h5>Produtividade e faturamento</h5>
+            <h2>ALTO</h2>
+            <h5>Setor: Leste (28 hectares)</h5>
+            <h5>Motivo: Pouca incidência luminosa, risco de desnutrição das plantas (13k Lux)</h5>
         </div>
 
         <div class="grafico grafico1">
@@ -77,6 +101,42 @@
         </div>
 
     </div>
+
+    <div class="footer">
+            <div class="container-empresa-footer">
+                <div class="footer-logo">
+                    <img src="../../Grupo/assetsGeral/icon/LOGO LUMI SOJA.jpeg">
+                    <h4><span class="footer-titulo">LumiSoja</span> ©</h4>
+                </div>
+                <div class="footer-infos-falsas">
+                    <!-- <h4>© 2026 LumiSoja & Cia.</h4> -->
+                    <h4>CNPJ: 31.872.495/0001-72</h4>
+                    <h4>Av. Paulista, 1267 - Bela Vista, São Paulo - 07259-002</h4>
+                </div>
+
+                <div class="lista-footer">
+                    <h3>Navegação</h3>
+                    <ul class="itens-list">
+                        <li>
+                            <a href="sobre_nos.html">Sobre Nós</a>
+                        </li>
+                        <li>
+                            <a href="tecnologia.html">Tecnolgias</a>
+                        </li>
+                        <li>
+                            <a href="login.html">Login</a>
+                        </li>
+                        <li>
+                            <a href="cadastro.html">Cadastre-se</a>
+                        </li>
+                        <li>
+                            <a href="#">Simulador</a>
+                        </li>
+                    </ul>
+                </div> <!-- Fim lista-footer -->
+
+            </div> <!-- Fim container-empresa-footer -->
+        </div> <!-- Fim footer -->
 
 </body>
 
