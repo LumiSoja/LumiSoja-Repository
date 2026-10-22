@@ -83,7 +83,7 @@ fk_fazenda INT UNIQUE,
 CREATE TABLE leitura_sensor (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     lux DECIMAL(10,2) NOT NULL,
-    data_hora DATETIME NOT NULL,
+    data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
     fk_sensor INT,
     INDEX fk_sensor_idx (fk_sensor),
     CONSTRAINT fk_sensor FOREIGN KEY (fk_sensor) REFERENCES sensor(id)
