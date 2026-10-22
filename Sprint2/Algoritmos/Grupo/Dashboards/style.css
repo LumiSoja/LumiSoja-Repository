@@ -1,8 +1,29 @@
-.container {
+body {
     display: flex;
-    background-color: #E6EAED;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(imgs/fundo.svg);
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    flex-direction: column;
 }
 
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+    background-color: #E6EAED;
+    width: 90%;
+    margin: auto;
+    border: solid 1px;
+    border-radius: 10px
+}
+
+<<<<<<< HEAD
 .body{
     background-size: 100%;
 }
@@ -12,17 +33,84 @@
     border-radius: 16px;
     width: 60%;
     height: fit-content;
+=======
+.selects {
+    display: flex;
+    width: 100%;
+    gap: 2%;
 }
 
-.box p{
-    flex-direction: row;
-    font-family: Arial, Helvetica, sans-serif;
+select {
+    width: 180px;
+    height: 30px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 245px;
+    height: 125px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.box p {
+    font-size: 12px;
     font-weight: bold;
 }
 
+.box h2 {
+    font-size: 26px;
+    margin: 5px;
+>>>>>>> dbf9114d299d1dd055ce4f16200c9f2de3ffb5de
+}
+
+.box h5 {
+    font-size: 11px;
+    margin: 5px;
+}
+
+<<<<<<< HEAD
 .box h2{
     flex-direction: row;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
+=======
+.box1 {
+    background-color: #E0BC42;
+}
+
+.box4 h2,
+.box5 h2 {
+    color: red;
+}
+
+.grafico {
+    display: flex;
+    background-color: white;
+    border-radius: 8px;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.grafico1 {
+    height: 43vh; 
+    width: 35vw;
+}
+
+.grafico2 {
+    height: 43vh; 
+    width: 25vw;
+}
+
+.grafico3 {
+    height: 43vh; 
+    width: 20vw;
+}
+>>>>>>> dbf9114d299d1dd055ce4f16200c9f2de3ffb5de
