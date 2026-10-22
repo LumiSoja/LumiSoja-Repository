@@ -72,12 +72,15 @@ fk_fazenda INT,
 CREATE TABLE sensor (
 id INT PRIMARY KEY AUTO_INCREMENT,
 identificacao VARCHAR(45) NOT NULL UNIQUE,
-posicionamento VARCHAR(45) NOT NULL,
+setor VARCHAR(10) NOT NULL,
+coordenada VARCHAR(45) NOT NULL,
 ativo TINYINT NOT NULL,
 fk_fazenda INT UNIQUE,
     CONSTRAINT fk_fazenda2_idx
 		FOREIGN KEY (fk_fazenda) 
-        REFERENCES fazenda(id)
+        REFERENCES fazenda(id),
+    CONSTRAINT chSetor 
+        CHECK (setor IN ('leste', 'oeste', 'norte', 'sul'))
 );
 
 CREATE TABLE leitura_sensor (
@@ -118,8 +121,6 @@ INSERT INTO contato (telefone, email, fk_usuario, fk_empresa) VALUES
 ('1135678901', 'contato@sojaforte.com.br', NULL, 2),
 ('1136789012', 'contato@campoverde.com.br', NULL, 3);
 
--- ==================== INSERTS ====================
-
 INSERT INTO fazenda (nome_fazenda, hectare, fk_empresa) VALUES
 ('Fazenda Boa Vista', 1500.50, 1),
 ('Estância Progresso', 850.00, 1),
@@ -154,12 +155,12 @@ INSERT INTO endereco (logradouro, numero, bairro, cep, cidade, estado, fk_empres
 ('Avenida Sete de Setembro', '320', 'Vila Industrial', '85851000', 'Foz do Iguaçu', 'Paraná', 3, NULL);
 
 
-INSERT INTO sensor (identificacao, posicionamento, ativo, fk_fazenda) VALUES
-('LDR_01', 'Setor Sul', 1, 1),
-('LDR_02', 'Setor Leste', 0, 2),
-('LDR_03', 'Setor Norte', 1, 3),
-('LDR_04', 'Setor Oeste', 1, 4),
-('LDR_05', 'Setor Leste', 1, 5);
+INSERT INTO sensor (identificacao, setor, coordenada, ativo, fk_fazenda) VALUES
+('LDR_01', 'sul', '-23.5615 -46.6553', 1, 1),
+('LDR_02', 'leste', '-27.6723 -51.8913', 0, 2),
+('LDR_03', 'norte', '-18.2351 -40.2123', 1, 3),
+('LDR_04', 'oeste', '-34.5625 -62.6554', 1, 4),
+('LDR_05', 'leste', '-13.3695 -36.2757', 1, 5);
 
 INSERT INTO leitura_sensor (lux, data_hora, fk_sensor) VALUES
 
