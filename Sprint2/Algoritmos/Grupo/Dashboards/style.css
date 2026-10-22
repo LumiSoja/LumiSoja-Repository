@@ -3,6 +3,17 @@
     background-color: #E6EAED;
 }
 
+.body{
+    background-size: 100%;
+}
+
+.box{
+    border: black;
+    border-radius: 16px;
+    width: 60%;
+    height: fit-content;
+}
+
 .box p{
     flex-direction: row;
     font-family: Arial, Helvetica, sans-serif;
@@ -15,16 +26,3 @@
     font-weight: bold;
 }
 
-.box p{
-    flex-direction: row;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-}
-
-.box h2{
-    flex-direction: row;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    color: green;
-
-}

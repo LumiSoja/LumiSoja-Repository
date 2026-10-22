@@ -9,11 +9,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body style="display: flex;">
+<body style="display: flex; flex-direction: column;">
 
-    <div class="container">
-
-        <select id="">
+    <div class="select">
+        <select>
             <option selected value="1">Fazenda Boa Vista</option>
             <option value="2">Fazenda Sol Nascente</option>
             <option value="3">Fazenda Ouro Negro</option>
@@ -26,6 +25,10 @@
             <option value="4">Norte</option>
             <option value="5">Sul</option>
         </select>
+    
+    
+
+    <div class="container">
 
         <div class="box">
             <p>LUMINOSIDADE ATUAL</p>
@@ -71,9 +74,9 @@
 
         <div class="grafico">
             <p>Análise de Exposição Geral da Safra</p>
-            <canvas id="myChart3" style="position: relative; height: 30vh; width: 30vw;"></canvas>
+            <canvas id="myChart3" style="position: relative; height: 20vh; width: 20vw;"></canvas>
         </div>
-
+      </div>
     </div>
 
 </body>
