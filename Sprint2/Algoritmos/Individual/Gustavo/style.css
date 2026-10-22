@@ -5,6 +5,11 @@ body {
 }
 
 .container_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
     font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
     color: #070c0f;
     padding: 0;
@@ -296,9 +301,3 @@ body {
 
 
 /*   FIM DIV COM IMG EXPLICATIVA DA SIMULAÇÃO   */
-
-
-
-
-/* COMEÇO FOOTER - SERÁ JOGADO LÁ PRO ARQUIVO DO GRUPO POSTERIORMENTE */
-
