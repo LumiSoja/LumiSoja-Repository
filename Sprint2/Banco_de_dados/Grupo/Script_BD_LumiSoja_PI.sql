@@ -169,3 +169,22 @@ INSERT INTO leitura_sensor (lux, data_hora, fk_sensor) VALUES
 (38000, NOW(), 2),
 (39000, NOW(), 3),
 (40000, NOW(), 4);
+
+/* Indica o nome da empresa, suas credenciais de contato e suas fazendas 
+correspondentes junto ao endereço das fazendas */
+SELECT emp.nome "Nome da empresa", ctt.telefone "Contato", ctt.email "Email", 
+fznd.nome_Fazenda "Fazenda", ende.logradouro "Rua da fazenda", ende.numero "Numero"
+FROM empresa emp JOIN contato ctt ON ctt.fk_Empresa = emp.id
+JOIN endereco ende ON ende.fk_empresa = emp.id
+JOIN fazenda fznd ON fznd.fk_Empresa = emp.id
+JOIN endereco ON ende.fk_Fazenda = fznd.id;
+
+/* Indica a fazenda com seus respectivos sensores e dados capturados */
+SELECT fznd.id "Id", fznd.nome_fazenda "Nome da fazenda", s.identificacao "Identificação do sensor",
+ s.setor "Setor", s.coordenada "Coordenada", 
+ CASE 
+	WHEN s.ativo = 1 THEN "Sensor ligado"
+	ELSE "Sensor desligado"
+ END AS "Situação do sensor" , ls.lux "lux"
+FROM fazenda fznd JOIN sensor s ON s.fk_Fazenda = fznd.id
+JOIN leitura_sensor ls ON ls.fk_sensor = s.id;

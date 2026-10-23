@@ -55,7 +55,7 @@ const serial = async (
         // const sensorDigital = (valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
-        valoresSensorAnalogico.push(lux);
+        valoresSensorAnalogico.push(lux); // Depois ele envia esse dado lux para a lista valoresSensorAnalogico que sera criada posteriormente
         // valoresSensorDigital.push(sensorDigital);
 
         // insere os dados no banco de dados (se habilitado)
@@ -64,11 +64,11 @@ const serial = async (
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
                 'INSERT INTO leitura_sensor (lux) VALUES (?)',
-                [lux]
+                [lux] // Da um insert no banco de dados na tabela leitura_sensor no campo lux, acessando o dado lux.
             );
             console.log("valores inseridos no banco: ", lux + "." /*", 2" + sensorDigital*/);
 
-        } // Caso a Função de isnerir dados esteja ligada ele insere os valores no banco de dados
+        } // Caso a Função de inserir dados esteja ligada ele insere os valores no banco de dados
 
     });
 
