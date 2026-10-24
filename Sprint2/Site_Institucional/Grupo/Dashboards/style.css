@@ -23,7 +23,6 @@ body {
     border-radius: 10px
 }
 
-<<<<<<< HEAD
 .body{
     background-size: 100%;
 }
@@ -33,7 +32,7 @@ body {
     border-radius: 16px;
     width: 60%;
     height: fit-content;
-=======
+}
 .selects {
     display: flex;
     width: 100%;
@@ -66,7 +65,6 @@ select {
 .box h2 {
     font-size: 26px;
     margin: 5px;
->>>>>>> dbf9114d299d1dd055ce4f16200c9f2de3ffb5de
 }
 
 .box h5 {
@@ -74,14 +72,12 @@ select {
     margin: 5px;
 }
 
-<<<<<<< HEAD
 .box h2{
     flex-direction: row;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
-=======
 .box1 {
     background-color: #E0BC42;
 }
@@ -100,17 +96,16 @@ select {
 }
 
 .grafico1 {
-    height: 43vh; 
+    height: 43vh;
     width: 35vw;
 }
 
 .grafico2 {
-    height: 43vh; 
+    height: 43vh;
     width: 25vw;
 }
 
 .grafico3 {
-    height: 43vh; 
+    height: 43vh;
     width: 20vw;
 }
->>>>>>> dbf9114d299d1dd055ce4f16200c9f2de3ffb5de

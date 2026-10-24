@@ -1,0 +1,390 @@
+/* Cores padronizadas */
+:root {
+    --verdePrincipal: #1b4d24;
+    --verdeSecundario: #4f8742;
+    --verdeHover: #123619;
+    --amareloDestaque: #d4a017;
+    --corBranca: #ffffff;
+    --corTexto: #333333;
+    --cinzaBorda: #828282;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabeçalho */
+.cabecalho {
+    width: 100%;
+    height: 70px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.55)), url("img/bg-Soy-background_img.png");
+    backdrop-filter: blur(2px);
+}
+
+.containerCabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 50px;
+    padding-left: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.tituloLogo {
+    color: var(--corBranca);
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 20px;
+}
+
+.barraNavegacao {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.barraNavegacao a {
+    color: var(--corBranca);
+    font-family: 'Banbauri', Georgia, serif;
+    text-decoration: none;
+    border-color: var(--amareloDestaque);
+}
+
+.barraNavegacao li {
+    color: var(--amareloDestaque);
+    text-decoration: none;
+    border-color: var(--amareloDestaque);
+}
+
+.barraNavegacao .linkAtivo {
+    border-bottom: 1px solid var(--corBranca);
+}
+
+/* Início */
+.banner {
+    flex: 1;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("img/bg-Soy-background_img.png");
+    background-size: cover;
+    background-position: center;
+    font-family: 'Fraunces', Georgia, serif;
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.banner h5 {
+    padding-left: 10px;
+    margin-bottom: 10px;
+    margin-left: 5%;
+    font-size: 1vw;
+}
+
+.banner p {
+    padding-left: 10px;
+    margin-bottom: 10px;
+    margin-left: 5%;
+    font-size: 5vw;
+    line-height: 1.1;
+    font-weight: bold;
+}
+
+.corBranca,
+.descricaoBanner {
+    color: var(--corBranca);
+}
+
+.corAmarela {
+    color: var(--amareloDestaque);
+}
+
+.botaoEspecialista {
+    color: var(--corTexto);
+    background-color: var(--amareloDestaque);
+    font-weight: bold;
+    border-radius: 30px;
+    height: 40px;
+    width: 180px;
+    margin-left: 6%;
+    border-color: var(--corBranca);
+}
+
+/* Indicadores */
+.indicadores {
+    display: flex;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("img/bg-Soy-background_img.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.indicadorProducao,
+.indicadorPerda {
+    width: 50%;
+    text-align: center;
+    border-top: 2px solid var(--amareloDestaque);
+    border-right: 2px solid var(--amareloDestaque);
+    box-sizing: border-box;
+    vertical-align: top;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.indicadorProducao h2,
+.indicadorPerda h2 {
+    color: var(--amareloDestaque);
+    margin: 0.5px;
+    font-size: 55px;
+}
+
+.indicadorProducao p,
+.indicadorPerda p {
+    margin: 0;
+    color: var(--corBranca);
+    font-size: 21px;
+    font-weight: bold;
+}
+
+/* Desafio e solução */
+.secaoDesafio {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px 20px;
+    color: var(--corTexto);
+}
+
+.destaqueAmarelo {
+    color: var(--amareloDestaque);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.tituloVerde {
+    color: var(--verdePrincipal);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.conteudoColunas {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.colunaTexto {
+    flex: 1;
+}
+
+.subtituloVerde {
+    color: var(--verdePrincipal);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.colunaTexto p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.colunaImagem {
+    flex: 1;
+    background-image: url("img/prototipo-soja.png");
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.tituloBranco {
+    color: var(--corBranca);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    margin: 15px 0;
+    line-height: 1.3;
+}
+
+.textoBranco {
+    color: var(--corBranca);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.bannerInferior {
+    background-color: var(--verdeSecundario);
+    padding: 35px 20px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.textoBanner {
+    color: var(--corBranca);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+.botaoSimulador {
+    background-color: var(--verdePrincipal);
+    color: var(--corBranca);
+    border: none;
+    padding: 12px 35px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.botaoSimulador:hover {
+    background-color: var(--verdeHover);
+}
+
+/* Tecnologias */
+.secaoTecnologias {
+    background-image: url("img/fundo.svg");
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tituloTecnologias {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: var(--verdePrincipal);
+    align-items: center;
+    height: 180px;
+}
+
+.caixasTecnologias {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 50px;
+}
+
+.caixaTecnologia h2 {
+    color: var(--verdePrincipal);
+    padding: 15px;
+}
+
+.caixaTecnologia span {
+    display: flex;
+    color: var(--corTexto);
+    padding: 20px;
+    flex-direction: column;
+    align-items: end;
+    margin-top: 8%;
+    font-size: 22px;
+}
+
+.caixaTecnologia {
+    background-color: var(--corBranca);
+    border: solid 2px var(--cinzaBorda);
+    border-radius: 20px;
+    height: 450px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 3px 10px #00000020;
+}
+
+.iconeTecnologia {
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.iconeTecnologia img {
+    height: 100%;
+    width: 100%;
+}
+
+/* Rodapé: estilos reunidos neste arquivo */
+.rodape {
+    width: 100%;
+    background-color: var(--verdePrincipal);
+    color: var(--corBranca);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.containerEmpresaRodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.logoRodape {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logoRodape img {
+    width: 50px;
+}
+
+.tituloRodape {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 20px;
+}
+
+.informacoesRodape h4 {
+    margin-bottom: 10px;
+}
+
+.listaRodape h3 {
+    color: var(--amareloDestaque);
+    margin-bottom: 10px;
+}
+
+.itensLista {
+    list-style: none;
+}
+
+.itensLista li {
+    margin-bottom: 8px;
+}
+
+.itensLista a {
+    color: var(--corBranca);
+    text-decoration: none;
+}

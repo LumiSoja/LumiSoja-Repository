@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LumiSoja | HomePage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <div class="cabecalho" id="inicio">
+        <div class="containerCabecalho">
+            <div class="logo">
+                <img src="img/LOGO LUMI SOJA.jpeg" alt="Logo LumiSoja">
+                <h1 class="tituloLogo">LumiSoja</h1>
+            </div>
+
+            <ul class="barraNavegacao">
+                <li><a class="linkAtivo" href="#inicio">Home</a></li>
+                <li><a href="#tecnologia">Tecnologia</a></li>
+                <li><a href="simulador.html">Simulador</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Início -->
+    <div class="banner">
+        <div class="containerBanner">
+            <p>
+                <span class="corBranca"><b>Luz certa,</b></span>
+                <span class="corAmarela"><b>colheita</b><br></span>
+                <span class="corBranca"><b>excepcional.</b></span>
+            </p>
+
+            <h5 class="descricaoBanner">
+                Monitoramento inteligente da luminosidade em plantações <br>de soja para maximizar.
+            </h5>
+
+            <button class="botaoEspecialista" onclick="exibir()">Falar com Especialista</button>
+        </div>
+    </div>
+
+    <!-- Indicadores -->
+    <div class="indicadores">
+        <div class="indicadorProducao">
+            <div class="containerIndicador">
+                <h2>42%</h2>
+                <p><span><br>da produção mundial de soja é brasileira</span></p>
+            </div>
+        </div>
+
+        <div class="indicadorPerda">
+            <div class="containerIndicador">
+                <h2>17% a 26%</h2>
+                <p><span><br>de perda estimada por deficiência luminosa</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desafio e solução -->
+    <section class="secaoDesafio">
+        <div class="cabecalhoDesafio">
+            <span class="destaqueAmarelo">O DESAFIO —</span>
+            <h1 class="tituloVerde">A falta de luz pode reduzir o rendimento da safra</h1>
+        </div>
+
+        <div class="conteudoColunas">
+            <div class="colunaTexto">
+                <h3 class="subtituloVerde">A lavoura precisa de radiação solar<br>para se desenvolver.</h3>
+
+                <p>A soja é a principal commoditie agrícola do Brasil, responsável por mais de 42% da produção mundial. Ainda assim, um fator crítico permanece sistematicamente subestimado: a luminosidade.</p>
+
+                <p>A radiação fotossinteticamente ativa (PAR) é o motor invisível da produção vegetal. Distribuição irregular de luz entre as plantas — causada por adensamento excessivo, geometria de plantio inadequada ou sombreamento — resulta em perdas silenciosas de até 26% na produtividade por safra.</p>
+
+                <p>Hoje, a maior parte dos produtores toma decisões de manejo sem qualquer dado sobre como a luz está sendo captada pelas plantas. O LumiSoja muda essa realidade.</p>
+            </div>
+
+            <div class="colunaImagem">
+                <span class="destaqueAmarelo">NOSSA SOLUÇÃO —</span>
+                <h3 class="tituloBranco">Antecipar o problema antes<br>que ele vire perda.</h3>
+                <p class="textoBranco">O LumiSoja transforma o monitoramento da luminosidade em dados visuais para apoiar decisões.</p>
+            </div>
+        </div>
+
+        <div class="bannerInferior">
+            <h2 class="textoBanner">Gostaria de saber o quanto você esta <span class="destaqueAmarelo">perdendo</span> sem o nosso monitoramento e quanto poderia <span class="destaqueAmarelo">ganhar</span> com ele?</h2>
+            <button class="botaoSimulador">SIMULADOR</button>
+        </div>
+    </section>
+
+    <!-- Tecnologias -->
+    <section class="secaoTecnologias" id="tecnologia">
+        <div class="tituloTecnologias">
+            <h1>NOSSAS TECNOLOGIAS</h1>
+        </div>
+
+        <div class="caixasTecnologias">
+            <div class="caixaTecnologia">
+                <div class="iconeTecnologia">
+                    <img src="img/logo1.png" alt="Ícone de monitoramento">
+                </div>
+                <h2>Monitoramento</h2>
+                <span>Acompanhe os índices de luminosidade da sua lavoura em tempo real, garantindo precisão e respostas ágeis no controle do microclima.</span>
+            </div>
+
+            <div class="caixaTecnologia">
+                <div class="iconeTecnologia">
+                    <img src="img/logo2.png" alt="Ícone de gráficos">
+                </div>
+                <h2>Gráficos</h2>
+                <span>Identifique padrões históricos e tendências com facilidade, transformando dados brutos de incidência solar em inteligência acionável para o seu manejo.</span>
+            </div>
+
+            <div class="caixaTecnologia">
+                <div class="iconeTecnologia">
+                    <img src="img/logo3.png" alt="Ícone de relatórios">
+                </div>
+                <h2>Relatórios</h2>
+                <span>Receba diagnósticos consolidados que embasam o seu planejamento estratégico, otimizando o uso de recursos e maximizando o potencial produtivo da safra.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <div class="rodape">
+        <div class="containerEmpresaRodape">
+            <div class="logoRodape">
+                <img src="img/LOGO LUMI SOJA.jpeg" alt="Logo LumiSoja">
+                <h4><span class="tituloRodape">LumiSoja</span> ©</h4>
+            </div>
+
+            <div class="informacoesRodape">
+                <!-- <h4>© 2026 LumiSoja & Cia.</h4> -->
+                <h4>CNPJ: 31.872.495/0001-72</h4>
+                <h4>Av. Paulista, 1267 - Bela Vista, São Paulo - 07259-002</h4>
+            </div>
+
+            <div class="listaRodape">
+                <h3>Navegação</h3>
+                <ul class="itensLista">
+                    <li><a href="sobre_nos.html">Sobre Nós</a></li>
+                    <li><a href="#tecnologia">Tecnolgias</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cadastro.html">Cadastre-se</a></li>
+                    <li><a href="simulador.html">Simulador</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
