@@ -280,6 +280,7 @@ body {
     background-image: url("img/fundo.svg");
     background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
+    padding: 50px;
 }
 
 .tituloTecnologias {
@@ -297,6 +298,7 @@ body {
     justify-content: space-evenly;
     align-items: center;
     gap: 50px;
+    margin-bottom: 100px;
 }
 
 .caixaTecnologia h2 {
