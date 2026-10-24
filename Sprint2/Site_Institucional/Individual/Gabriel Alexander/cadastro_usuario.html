@@ -50,10 +50,10 @@
             <label for="ipt_nome">Nome Completo</label><br>
             <input type="text" id="ipt_nome"><br><br>
             
-            <label for="ipt_cnpj">CPF</label><br>
-            <input type="text" id="ipt_cnpj" placeholder="XXX.XXX.XXX-XX"><br><br>
+            <label for="ipt_cpf">CPF</label><br>
+            <input type="text" id="ipt_cpf" placeholder="XXX.XXX.XXX-XX"><br><br>
             
-            <label for="ipt_email">E-mail Corporativo</label><br>
+            <label for="ipt_email">E-mail</label><br>
             <input type="email" id="ipt_email" placeholder="usuario@empresa.com"><br><br>
             
             <label for="ipt_tel">Telefone</label><br>
@@ -84,13 +84,10 @@
 <script>
     function cadastrar() {
         let nome = ipt_nome.value;
-        let empresa = ipt_empresa.value;
-        let cnpj = ipt_cnpj.value;
+        let cpf = ipt_cpf.value;
         let email = ipt_email.value;
         let senha = ipt_senha.value;
         let confirmacao = ipt_confirmacao.value;
-        let hectares = ipt_hectares.value;
-        let logradouro = ipt_logradouro.value;
         let telefone = ipt_tel.value;
         let tamanho_senha = senha.length;
         let minuscula = senha.toLowerCase();
@@ -127,16 +124,12 @@
             div_msg.innerHTML = 'O campo Nome Completo é obrigatório.';
         } 
 
-        else if (empresa == '') {
-            div_msg.innerHTML = 'O campo Razão Social é obrigatório.';
-        }
-
-        else if (cnpj == '') {
-            div_msg.innerHTML = 'O campo CNPJ é obrigatório.';
+        else if (cpf == '') {
+            div_msg.innerHTML = 'O campo CPF é obrigatório.';
         }
 
         else if (email == '') {
-            div_msg.innerHTML = 'O campo E-mail Corporativo é obrigatório.';
+            div_msg.innerHTML = 'O campo E-mail é obrigatório.';
         }
 
         else if (senha == '') {
@@ -149,14 +142,6 @@
 
         else if (senha != confirmacao) {
             div_msg.innerHTML = 'As senhas não conferem.';
-        }
-
-        else if (hectares == '') {
-            div_msg.innerHTML = 'O campo Hectares é obrigatório.';
-        }
-
-        else if (logradouro == '') {
-            div_msg.innerHTML = 'O campo Logradouro é obrigatório.';
         }
 
         else if (telefone == '') {
@@ -184,7 +169,7 @@
         }
 
         else {
-            div_msg.innerHTML = `Senha ${nivelSenha}!<br>Empresa cadastrada com sucesso!<br>Por favor, faça login.`;
+            div_msg.innerHTML = `Senha ${nivelSenha}!<br>Usuário cadastrado com sucesso!<br>`;
         }
     }
 
