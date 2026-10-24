@@ -50,81 +50,80 @@
 
             </div>
 
-            
+
             <div class="func">
-                    
+
                 <h3>Cadastrar usuário</h3>
 
                 <span>Nome do usuário:</span>
                 <input type="text" id="ipt_usuario">
 
                 <span>Empresa vinculada:</span>
-                <input type="text" id="ipt_empresa">
+                <input type="text" id="ipt_empresa" placeholder="Preencha se necessário">
 
                 <span>Acesso do usuário</span>
                 <select id="acesso">
                     <option selected disabled>Selecione uma opção</option>
-                    <option>Possível Cliente</option>
                     <option>Cliente</option>
                     <option>Funcionário</option>
                     <option>Suporte</option>
                     <option>Administrador</option>
                 </select>
-                
-                <button class="adicionar">Adicionar usuário</button>
+
+                <button class="adicionar" onclick="add()">Adicionar usuário</button>
 
             </div>
-            
+
 
         </div>
 
         <div class="card">
 
-            <div class="boxes">
+            <div class="boxes" id="boxes">
 
-                <div class="box box1">
+                <div class="box box1" id="box1">
                     <img src="./img/usuario.png">
-                        <div class="info-box">
-                            <span class="nome-usuario">Gustavo Fermino</span>
-                            <span class="cargo-usuario">Administrador</span>
-                        </div>
-                    <button>X</button>
+                    <div class="info-box">
+                        <span class="nome-usuario">Gustavo Fermino</span>
+                        <span class="cargo-usuario">Administrador</span>
+                    </div>
+                    <button onclick="remove(this.parentElement)">X</button>
                 </div>
 
-                <div class="box box2">
+                <div class="box box2" id="box2">
                     <img src="./img/usuario.png">
-                        <div class="info-box">
-                            <span class="nome-usuario">Gabriel Aleksander</span>
-                            <span class="cargo-usuario">Cliente</span>
-                        </div>
-                    <button>X</button>
+                    <div class="info-box">
+                        <span class="nome-usuario">Gabriel Aleksander</span>
+                        <span class="cargo-usuario">Cliente</span>
+                    </div>
+                    <button onclick="remove(this.parentElement)">X</button>
                 </div>
 
-                <div class="box box3">
+                <div class="box box3" id="box3">
                     <img src="./img/usuario.png">
-                        <div class="info-box">
-                            <span class="nome-usuario">Raphael Takakura</span>
-                            <span class="cargo-usuario">Suporte</span>
-                        </div>
-                    <button>X</button>
+                    <div class="info-box">
+                        <span class="nome-usuario">Raphael Takakura</span>
+                        <span class="cargo-usuario">Suporte</span>
+                    </div>
+                    <button onclick="remove(this.parentElement)">X</button>
                 </div>
 
-                <div class="box box4">
+                <div class="box box4" id="box4">
                     <img src="./img/usuario.png">
-                        <div class="info-box">
-                            <span class="nome-usuario">Gabriel Pereira</span>
-                            <span class="cargo-usuario">Suporte</span>
-                        </div>
-                    <button>X</button>
+                    <div class="info-box">
+                        <span class="nome-usuario">Gabriel Pereira</span>
+                        <span class="cargo-usuario">Suporte</span>
+                    </div>
+                    <button onclick="remove(this.parentElement)">X</button>
                 </div>
 
-                <div class="box box5">
+                <div class="box box5" id="box5">
                     <img src="./img/usuario.png">
-                        <div class="info-box">
-                            <span class="nome-usuario">Thiago Ishikawa</span>
-                            <span class="cargo-usuario">Funcionário</span>
-                        </div>
-                    <button>X</button>
+                    <div class="info-box">
+                        <span class="nome-usuario">Thiago Ishikawa</span>
+                        <span class="cargo-usuario">Funcionário</span>
+                    </div>
+                    <button onclick="remove(this.parentElement)">X</button>
                 </div>
 
             </div>
@@ -170,5 +169,53 @@
     </div> <!-- Fim footer -->
 
 </body>
+
+<script>
+
+    let contadorBox = 5;
+
+
+    function add() {
+
+        let usuario = ipt_usuario.value;
+        let empresa = ipt_empresa.value;
+        let perfil = acesso.value;
+
+        if (usuario == "" || acesso.selectedIndex == 0) {
+
+            alert("Preencha o nome e selecione um perfil!");
+
+        } else {
+            
+            contadorBox++;
+
+            boxes.innerHTML += `
+                <div class="box box${contadorBox}" id="box${contadorBox}">
+                    <img src="./img/usuario.png">
+
+                    <div class="info-box">
+                        <span class="nome-usuario">${usuario}</span>
+                        <span class="cargo-usuario">${perfil}</span>
+                    </div>
+
+                    <button onclick="remove(this.parentElement)">X</button>
+                </div>`;
+
+            ipt_usuario.value = "";
+            ipt_empresa.value = "";
+            acesso.selectedIndex = 0;
+        }
+    }
+
+    function remove(cartao) {
+
+        if (confirm("Deseja realmente remover este usuário?")) {
+            
+            cartao.remove();
+
+        }
+    }
+
+</script>
 
 </html>
