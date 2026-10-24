@@ -128,31 +128,42 @@ INSERT INTO fazenda (nome_fazenda, hectare, fk_empresa) VALUES
 ('Sítio AgroVerde', 410.10, 3),
 ('Fazenda Ouro Negro', 5000.00, 2);
 
-INSERT INTO endereco (logradouro, numero, bairro, cep, cidade, estado, fk_empresa, fk_fazenda) VALUES
+INSERT INTO endereco (
+    logradouro, numero, bairro, cep,
+    cidade, estado, fk_empresa, fk_fazenda
+) VALUES
 
 -- ENDEREÇO FAZENDA BOA VISTA
-('Rodovia BR-163, Km 142', NULL, 'Zona Rural', '78520000', 'Garantã do Norte', 'Mato Grosso', 1, 1),
+('Rodovia BR-163, Km 142', '100', 'Zona Rural',
+ '78520000', 'Guarantã do Norte', 'Mato Grosso', 1, 1),
 
 -- ENDEREÇO FAZENDA ESTÂNCIA PROGRESSO
-('Estrada Vicinal do Cafezal, S/N', NULL, 'Distrito Industrial Agrícola', '86000000', 'Londrina', 'Paraná', 1, 2),
+('Estrada Vicinal do Cafezal', '450', 'Distrito Industrial Agrícola',
+ '86000000', 'Londrina', 'Paraná', 1, 2),
 
 -- ENDEREÇO FAZENDA SOL NASCENTE
-('Rodovia GO-341, Km 45', '250', 'Zona Rural', '75830000', 'Mineiros', 'Goiás', 2, 3),
+('Rodovia GO-341, Km 45', '250', 'Zona Rural',
+ '75830000', 'Mineiros', 'Goiás', 2, 3),
 
 -- ENDEREÇO FAZENDA SÍTIO AGROVERDE
-('Estrada Municipal da Soja, S/N', NULL, 'Área Rural', '98500000', 'Tenente Portela', 'Rio Grande do Sul', 3, 4),
+('Estrada Municipal da Soja', '780', 'Área Rural',
+ '98500000', 'Tenente Portela', 'Rio Grande do Sul', 3, 4),
 
 -- ENDEREÇO FAZENDA OURO NEGRO
-('Rodovia BR-020, Km 510', NULL, 'Gerais de Balsas', '65800000', 'Balsas', 'Maranhão', 2, 5),
+('Rodovia BR-020, Km 510', '1200', 'Gerais de Balsas',
+ '65800000', 'Balsas', 'Maranhão', 2, 5),
 
 -- ENDEREÇO EMPRESA AGROVALE
-('Avenida Brigadeiro Faria Lima', '1485', 'Pinheiros', '01452002', 'São Paulo', 'São Paulo', 1, NULL),
+('Avenida Brigadeiro Faria Lima', '1485', 'Pinheiros',
+ '01452002', 'São Paulo', 'São Paulo', 1, NULL),
 
 -- ENDEREÇO EMPRESA SOJA FORTE
-('Avenida Historiador Rubens de Mendonça', '2000', 'Alvorada','78048340', 'Cuiabá', 'Mato Grosso', 2, NULL),
+('Avenida Historiador Rubens de Mendonça', '2000', 'Alvorada',
+ '78048340', 'Cuiabá', 'Mato Grosso', 2, NULL),
 
 -- ENDEREÇO EMPRESA CAMPO VERDE
-('Avenida Sete de Setembro', '320', 'Vila Industrial', '85851000', 'Foz do Iguaçu', 'Paraná', 3, NULL);
+('Avenida Sete de Setembro', '320', 'Vila Industrial',
+ '85851000', 'Foz do Iguaçu', 'Paraná', 3, NULL);
 
 
 INSERT INTO sensor (identificacao, setor, coordenada, ativo, fk_fazenda) VALUES
@@ -170,21 +181,30 @@ INSERT INTO leitura_sensor (lux, data_hora, fk_sensor) VALUES
 (39000, NOW(), 3),
 (40000, NOW(), 4);
 
-/* Indica o nome da empresa, suas credenciais de contato e suas fazendas 
-correspondentes junto ao endereço das fazendas */
-SELECT emp.nome "Nome da empresa", ctt.telefone "Contato", ctt.email "Email", 
-fznd.nome_Fazenda "Fazenda", ende.logradouro "Rua da fazenda", ende.numero "Numero"
-FROM empresa emp JOIN contato ctt ON ctt.fk_Empresa = emp.id
-JOIN endereco ende ON ende.fk_empresa = emp.id
-JOIN fazenda fznd ON fznd.fk_Empresa = emp.id
-JOIN endereco ON ende.fk_Fazenda = fznd.id;
+/* Nome da empresa, contato e suas fazendas com os respectivos endereços */
+SELECT
+emp.nome AS "Nome da empresa",
+ctt.telefone AS "Contato",
+ctt.email AS "Email",
+fznd.nome_fazenda AS "Fazenda",
+ende.logradouro AS "Rua da fazenda",
+ende.numero AS "Numero"
+FROM empresa emp
+JOIN contato ctt ON ctt.fk_empresa = emp.id
+JOIN fazenda fznd ON fznd.fk_empresa = emp.id
+JOIN endereco ende ON ende.fk_fazenda = fznd.id;
 
 /* Indica a fazenda com seus respectivos sensores e dados capturados */
-SELECT fznd.id "Id", fznd.nome_fazenda "Nome da fazenda", s.identificacao "Identificação do sensor",
- s.setor "Setor", s.coordenada "Coordenada", 
- CASE 
+SELECT 
+fznd.id "Id", 
+fznd.nome_fazenda "Nome da fazenda", 
+s.identificacao "Identificação do sensor",
+s.setor "Setor", 
+s.coordenada "Coordenada", 
+CASE 
 	WHEN s.ativo = 1 THEN "Sensor ligado"
 	ELSE "Sensor desligado"
- END AS "Situação do sensor" , ls.lux "lux"
-FROM fazenda fznd JOIN sensor s ON s.fk_Fazenda = fznd.id
+END AS "Situação do sensor" , ls.lux "lux"
+FROM fazenda fznd 
+JOIN sensor s ON s.fk_Fazenda = fznd.id
 JOIN leitura_sensor ls ON ls.fk_sensor = s.id;
