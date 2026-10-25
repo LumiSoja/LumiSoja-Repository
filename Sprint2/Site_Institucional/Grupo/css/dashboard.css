@@ -116,8 +116,8 @@ th { background-color: #f0f0f0; }
 details { margin-top: 10px; font-size: 12px; }
 summary { cursor: pointer; }
 
-#sensores-dialog { width: 90%; max-width: 1000px; max-height: 85vh; padding: 20px; box-sizing: border-box; border: 1px solid #999; border-radius: 8px; }
-#sensores-dialog::backdrop { background-color: rgba(0, 0, 0, 0.4); }
-#fechar-sensores { float: right; padding: 5px 10px; cursor: pointer; }
+#sensores_dialog { width: 90%; max-width: 1000px; max-height: 85vh; padding: 20px; box-sizing: border-box; border: 1px solid #999; border-radius: 8px; }
+#sensores_dialog::backdrop { background-color: rgba(0, 0, 0, 0.4); }
+#fechar_sensores { float: right; padding: 5px 10px; cursor: pointer; }
 .tabela-sensores { margin-top: 15px; overflow: auto; max-height: 45vh; }
 .tabela-sensores table { min-width: 750px; }

@@ -7,6 +7,7 @@
     min-height: 580px;
     padding: 65px 7% 50px;
     background: url('../img/lumiSoja-loginBg.png') center / cover no-repeat;
+    background-size: 110%;
 }
 .login_texto { width: 500px; max-width: 100%; margin-top: 70px; padding-left: 45px; color: white; font-weight: 600; }
 .login_texto h1 { margin: 0; font-size: 50px; }

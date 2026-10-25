@@ -84,6 +84,6 @@
 .tabela-scroll { max-width: 100%; overflow: auto; margin-top: 20px; }
 .tabela-scroll table { width: 100%; min-width: 400px; border-collapse: collapse; font-size: 12px; }
 .tabela-scroll th, .tabela-scroll td { padding: 8px; text-align: left; border-bottom: 1px solid #bbb; }
-#editar-acesso { width: 90%; max-width: 450px; padding: 25px; border: 1px solid #999; border-radius: 12px; background-color: #E6EAED; }
-#editar-acesso::backdrop { background-color: rgba(0,0,0,0.4); }
-#fechar-edicao { float: right; }
+#editar_acesso { width: 90%; max-width: 450px; padding: 25px; border: 1px solid #999; border-radius: 12px; background-color: #E6EAED; }
+#editar_acesso::backdrop { background-color: rgba(0,0,0,0.4); }
+#fechar_edicao { float: right; }

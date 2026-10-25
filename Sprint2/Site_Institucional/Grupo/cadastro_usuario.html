@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/comum.css">
     <link rel="stylesheet" href="css/cadastro.css">
     
-    <script src="js/sistema.js" defer></script>
     <script src="js/layout.js" defer></script>
     <script src="js/cadastro.js" defer></script>
 </head>
@@ -19,20 +18,21 @@
             <h2>Pronto para transformar<br>sua lavoura em dados?</h2>
             <p>contato@lumisoja.com.br</p>
         </div>
-        <form class="containerCadastro" id="form-cadastro">
+        <form class="containerCadastro" id="form-cadastro" onsubmit="return false">
             <div class="campo"><label for="ipt_nome">Nome completo</label><input id="ipt_nome" name="nome" required maxlength="50" autocomplete="name"></div>
             <div class="campo"><label for="ipt_cpf">CPF</label><input id="ipt_cpf" name="cpf" required maxlength="14" inputmode="numeric" placeholder="000.000.000-00"></div>
             <div class="campo"><label for="ipt_email">E-mail</label><input type="email" id="ipt_email" name="email" required maxlength="65" autocomplete="email" placeholder="voce@empresa.com"></div>
             <div class="campo"><label for="ipt_tel">Telefone com DDD</label><input type="tel" id="ipt_tel" name="telefone" required maxlength="16" autocomplete="tel" placeholder="(11) 99999-9999"></div>
-            <div class="campo"><label for="ipt_senha">Senha</label><input type="password" id="ipt_senha" name="senha" required minlength="8" maxlength="128" autocomplete="new-password"><p class="nota">Mínimo de 8 caracteres, letra maiúscula, número e símbolo.</p><p class="nota">Nível da senha: <span id="div_nivel">Em branco</span></p></div>
-            <div class="campo"><label for="ipt_confirmacao">Confirmar senha</label><input type="password" id="ipt_confirmacao" name="confirmacao" required minlength="8" maxlength="128" autocomplete="new-password"><p id="div_confirmacao" class="nota" aria-live="polite"></p></div>
-            <button type="submit">Cadastrar</button>
+            <div class="campo"><label for="ipt_senha">Senha</label><input type="password" id="ipt_senha" oninput="mostrarNivelSenha()" name="senha" required minlength="8" maxlength="128" autocomplete="new-password"><p class="nota">Mínimo de 8 caracteres, letra maiúscula, número e símbolo.</p><p class="nota">Nível da senha: <span id="div_nivel">Em branco</span></p></div>
+            <div class="campo"><label for="ipt_confirmacao">Confirmar senha</label><input type="password" id="ipt_confirmacao" oninput="verificarSenhas()" name="confirmacao" required minlength="8" maxlength="128" autocomplete="new-password"><p id="div_confirmacao" class="nota" aria-live="polite"></p></div>
+            <button type="button" onclick="cadastrar()">Cadastrar</button>
             <p id="div_msg" class="mensagem" role="status" aria-live="polite"></p>
+            <p class="nota">Demonstração local: os dados não são salvos no banco.</p>
             <p class="nota">Já tem uma conta? <a href="login.html">Faça login</a>.</p>
         </form>
         </div>
     </main>
     <footer class="rodape" id="rodape"></footer>
-    <noscript><p>Ative o JavaScript para usar os menus, os formulários e os filtros do site.</p></noscript>
+    <noscript><p>Ative o JavaScript para usar o site.</p></noscript>
 </body>
 </html>

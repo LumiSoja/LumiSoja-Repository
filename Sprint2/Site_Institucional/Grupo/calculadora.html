@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/comum.css">
     <link rel="stylesheet" href="css/simulador.css">
     
-    <script src="js/sistema.js" defer></script>
     <script src="js/layout.js" defer></script>
     <script src="js/simulador.js" defer></script>
 </head>
@@ -51,7 +50,7 @@
 
                 <div class="txt_explicacao">
 
-                    <button type="button" class="ocultaMostra" onclick="textoExplicativo()" aria-expanded="false" aria-controls="desc">Como funciona esta calculadora?</button>
+                    <button type="button" class="ocultaMostra" id="btn_explicacao" onclick="textoExplicativo()" aria-expanded="false" aria-controls="desc">Como funciona esta calculadora?</button>
 
                     <div class="desc" id="desc" hidden>
                         <img src="img/LumiSoja_Calculadora_Visual.svg" alt="Diagrama do cálculo: entradas, produtividade por hectare, produção anual e comparação do faturamento com e sem monitoramento.">
@@ -67,6 +66,6 @@
 
     </main>
     <footer class="rodape" id="rodape"></footer>
-    <noscript><p>Ative o JavaScript para usar os menus, os formulários e os filtros do site.</p></noscript>
+    <noscript><p>Ative o JavaScript para usar o site.</p></noscript>
 </body>
 </html>

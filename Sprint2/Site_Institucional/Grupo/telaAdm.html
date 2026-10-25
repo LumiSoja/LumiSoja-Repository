@@ -6,66 +6,65 @@
     <link rel="stylesheet" href="css/comum.css">
     <link rel="stylesheet" href="css/administracao.css">
     
-    <script src="js/sistema.js" defer></script>
     <script src="js/layout.js" defer></script>
     <script src="js/admin.js" defer></script>
 </head>
 <body>
     <header class="cabecalho" id="cabecalho"></header>
-    <main class="main conteudo-pagina" id="conteudo-admin" hidden>
-    <p id="msg-admin" class="mensagem" role="status"></p>
+    <main class="main conteudo-pagina" id="conteudo_admin">
+    <p id="msg_admin" class="mensagem" role="status">Modo demonstrativo: nenhuma alteração é salva no banco ou mantida após atualizar a página.</p>
     <div class="area-usuarios">
         <div class="column">
             <div class="perfil">
                 <img src="img/usuario.svg" alt="">
-                <div class="info-perfil"><span class="nome-perfil" id="nome-perfil"></span><span class="cargo-usuario" id="cargo-perfil"></span></div>
+                <div class="info-perfil"><span class="nome-perfil" id="nome_perfil"></span><span class="cargo-usuario" id="cargo_perfil"></span></div>
             </div>
-            <form class="func" id="form-usuario">
+            <form class="func" id="form_usuario" onsubmit="return false">
                 <h3>Cadastrar usuário</h3>
                 <label for="ipt_usuario">Nome do usuário</label><input id="ipt_usuario" name="nome" required maxlength="50" autocomplete="name">
-                <label for="cpf-usuario">CPF</label><input id="cpf-usuario" name="cpf" required maxlength="14" inputmode="numeric">
-                <label for="email-usuario">E-mail</label><input type="email" id="email-usuario" name="email" required maxlength="65" autocomplete="email">
-                <label for="telefone-usuario">Telefone com DDD</label><input type="tel" id="telefone-usuario" name="telefone" required maxlength="16" autocomplete="tel">
-                <label for="senha-usuario">Senha inicial</label><input type="password" id="senha-usuario" name="senha" required minlength="8" maxlength="128" autocomplete="new-password">
-                <label for="confirmacao-usuario">Confirmar senha inicial</label><input type="password" id="confirmacao-usuario" name="confirmacao" required minlength="8" maxlength="128" autocomplete="new-password">
+                <label for="cpf_usuario">CPF</label><input id="cpf_usuario" name="cpf" required maxlength="14" inputmode="numeric">
+                <label for="email_usuario">E-mail</label><input type="email" id="email_usuario" name="email" required maxlength="65" autocomplete="email">
+                <label for="telefone_usuario">Telefone com DDD</label><input type="tel" id="telefone_usuario" name="telefone" required maxlength="16" autocomplete="tel">
+                <label for="senha_usuario">Senha inicial</label><input type="password" id="senha_usuario" name="senha" required minlength="8" maxlength="128" autocomplete="new-password">
+                <label for="confirmacao_usuario">Confirmar senha inicial</label><input type="password" id="confirmacao_usuario" name="confirmacao" required minlength="8" maxlength="128" autocomplete="new-password">
                 <p class="nota">Use 8 caracteres ou mais, letra maiúscula, número e símbolo.</p>
                 <label for="acesso">Tipo de usuário</label><select id="acesso" name="perfil" required></select>
-                <label for="empresa-usuario">Empresa vinculada</label><select id="empresa-usuario" name="empresa"></select>
-                <button class="adicionar" type="submit">Adicionar usuário</button><p id="msg-usuario" class="mensagem" role="status"></p>
+                <label for="empresa_usuario">Empresa vinculada</label><select id="empresa_usuario" name="empresa"></select>
+                <button class="adicionar" type="button" onclick="adicionarUsuario()">Adicionar usuário</button><p id="msg_usuario" class="mensagem" role="status"></p>
             </form>
         </div>
-        <section class="card" aria-labelledby="titulo-usuarios">
-            <div class="cabecalho-usuarios"><h2 id="titulo-usuarios">Usuários</h2><p id="total-usuarios"></p></div>
+        <section class="card" aria-labelledby="titulo_usuarios">
+            <div class="cabecalho-usuarios"><h2 id="titulo_usuarios">Usuários</h2><p id="total_usuarios"></p></div>
             <div class="boxes" id="boxes"></div>
         </section>
     </div>
-    <div class="area-dev" id="area-dev" hidden>
-        <section class="cadastro-dev" aria-labelledby="titulo-empresa">
-            <form class="func" id="form-empresa"><h3 id="titulo-empresa">Cadastrar empresa</h3>
-                <label for="nome-empresa">Nome fantasia</label><input id="nome-empresa" name="nome" required maxlength="45">
-                <label for="razao-empresa">Razão social</label><input id="razao-empresa" name="razao" required maxlength="45">
-                <label for="cnpj-empresa">CNPJ</label><input id="cnpj-empresa" name="cnpj" required maxlength="18" inputmode="numeric">
-                <button type="submit" class="adicionar">Cadastrar empresa</button><p id="msg-empresa" class="mensagem" role="status"></p>
+    <div class="area-dev" id="area_dev">
+        <section class="cadastro-dev" aria-labelledby="titulo_empresa">
+            <form class="func" id="form_empresa" onsubmit="return false"><h3 id="titulo_empresa">Cadastrar empresa</h3>
+                <label for="nome_empresa">Nome fantasia</label><input id="nome_empresa" name="nome" required maxlength="45">
+                <label for="razao_empresa">Razão social</label><input id="razao_empresa" name="razao" required maxlength="45">
+                <label for="cnpj_empresa">CNPJ</label><input id="cnpj_empresa" name="cnpj" required maxlength="18" inputmode="numeric">
+                <button type="button" class="adicionar" onclick="adicionarEmpresa()">Cadastrar empresa</button><p id="msg_empresa" class="mensagem" role="status"></p>
             </form>
-            <div class="tabela-scroll" tabindex="0" role="region" aria-label="Empresas cadastradas"><table><thead><tr><th scope="col">Empresa</th><th scope="col">Razão social</th><th scope="col">CNPJ</th></tr></thead><tbody id="lista-empresas"></tbody></table></div>
+            <div class="tabela-scroll" tabindex="0" role="region" aria-label="Empresas cadastradas"><table><thead><tr><th scope="col">Empresa</th><th scope="col">Razão social</th><th scope="col">CNPJ</th></tr></thead><tbody id="lista_empresas"></tbody></table></div>
         </section>
-        <section class="cadastro-dev" aria-labelledby="titulo-fazenda">
-            <form class="func" id="form-fazenda"><h3 id="titulo-fazenda">Cadastrar fazenda</h3>
-                <label for="empresa-fazenda">Empresa da fazenda</label><select id="empresa-fazenda" name="empresa" required></select>
-                <label for="nome-fazenda">Nome da fazenda</label><input id="nome-fazenda" name="nome" required maxlength="45">
-                <label for="hectares-fazenda">Área em hectares</label><input type="number" id="hectares-fazenda" name="hectares" required min="0.01" max="99999999.99" step="0.01">
-                <label for="cidade-fazenda">Cidade / UF</label><input id="cidade-fazenda" name="cidade" required maxlength="70" placeholder="Ex.: Londrina / PR">
-                <button type="submit" class="adicionar">Cadastrar fazenda</button><p id="msg-fazenda" class="mensagem" role="status"></p>
+        <section class="cadastro-dev" aria-labelledby="titulo_fazenda">
+            <form class="func" id="form_fazenda" onsubmit="return false"><h3 id="titulo_fazenda">Cadastrar fazenda</h3>
+                <label for="empresa_fazenda">Empresa da fazenda</label><select id="empresa_fazenda" name="empresa" required></select>
+                <label for="nome_fazenda">Nome da fazenda</label><input id="nome_fazenda" name="nome" required maxlength="45">
+                <label for="hectares_fazenda">Área em hectares</label><input type="number" id="hectares_fazenda" name="hectares" required min="0.01" max="99999999.99" step="0.01">
+                <label for="cidade_fazenda">Cidade / UF</label><input id="cidade_fazenda" name="cidade" required maxlength="70" placeholder="Ex.: Londrina / PR">
+                <button type="button" class="adicionar" onclick="adicionarFazenda()">Cadastrar fazenda</button><p id="msg_fazenda" class="mensagem" role="status"></p>
             </form>
-            <div class="tabela-scroll" tabindex="0" role="region" aria-label="Fazendas cadastradas"><table><thead><tr><th scope="col">Fazenda</th><th scope="col">Empresa</th><th scope="col">Hectares</th><th scope="col">Cidade / UF</th></tr></thead><tbody id="lista-fazendas"></tbody></table></div>
+            <div class="tabela-scroll" tabindex="0" role="region" aria-label="Fazendas cadastradas"><table><thead><tr><th scope="col">Fazenda</th><th scope="col">Empresa</th><th scope="col">Hectares</th><th scope="col">Cidade / UF</th></tr></thead><tbody id="lista_fazendas"></tbody></table></div>
         </section>
     </div>
-    <dialog id="editar-acesso" aria-labelledby="titulo-editar">
-        <button type="button" id="fechar-edicao">Fechar</button><h3 id="titulo-editar">Alterar acesso</h3><p id="editar-nome"></p>
-        <form id="form-editar" class="func"><input type="hidden" id="editar-id"><label for="editar-perfil">Tipo de usuário</label><select id="editar-perfil" required></select><label for="editar-empresa">Empresa vinculada</label><select id="editar-empresa"></select><button type="submit" class="adicionar">Salvar acesso</button><p id="msg-editar" class="mensagem erro" role="status"></p></form>
+    <dialog id="editar_acesso" aria-labelledby="titulo_editar">
+        <button type="button" id="fechar_edicao" onclick="editar_acesso.close()">Fechar</button><h3 id="titulo_editar">Alterar acesso</h3><p id="editar_nome"></p>
+        <form id="form_editar" class="func" onsubmit="return false"><input type="hidden" id="editar_id"><label for="editar_perfil">Tipo de usuário</label><select id="editar_perfil" required></select><label for="editar_empresa">Empresa vinculada</label><select id="editar_empresa"></select><button type="button" class="adicionar" onclick="salvarAcesso()">Salvar acesso</button><p id="msg_editar" class="mensagem erro" role="status"></p></form>
     </dialog>
 </main>
     <footer class="rodape" id="rodape"></footer>
-    <noscript><p>Ative o JavaScript para usar os menus, os formulários e os filtros do site.</p></noscript>
+    <noscript><p>Ative o JavaScript para usar o site.</p></noscript>
 </body>
 </html>

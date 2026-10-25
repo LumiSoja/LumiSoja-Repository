@@ -94,7 +94,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .itensLista a { color: #0D0D0D; font-size: 12px; text-decoration: none; }
 .itensLista a:hover { text-decoration: underline; }
 
-body:has(.login_container),
-body:has(.pagina-cadastro) {
-    background-color: #1b4d24;
-}
+/* Nos cantos arredondados do rodapé das páginas com fundo de plantas,
+   a cor atrás do rodapé fica verde em vez de branca. */
+body:has(.login_container), body:has(.pagina-cadastro) { background-color: #1b4d24; }
