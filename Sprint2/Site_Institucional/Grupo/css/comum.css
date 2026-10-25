@@ -1,0 +1,95 @@
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 1200px; min-height: 100vh; display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; }
+.conteudo-pagina { flex: 1; }
+[hidden] { display: none !important; }
+input, select, button { font-family: inherit; }
+button, summary { cursor: pointer; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #d4a017; outline-offset: 3px; }
+.mensagem { font-size: 14px; line-height: 1.5; margin: 12px 0; }
+.erro { color: #b00020; }
+.sucesso { color: #275331; }
+.nota { font-size: 12px; line-height: 1.5; }
+
+/* Navbar: estilo do arquivo original, usando os links atuais. */
+.cabecalho {
+    width: 100%;
+    min-height: 60px;
+    background-color: #1b4d24;
+    background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.55)), url('../img/bg-Soy-background_img.png');
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+.containerCabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    min-height: 60px;
+    padding: 0 25px;
+}
+.cabecalho .logo { display: flex; align-items: center; gap: 8px; width: 20%; text-decoration: none; }
+.cabecalho .logo img { display: block; width: 25%; max-width: 70px; height: auto; padding: 0; object-fit: contain; }
+.tituloLogo { color: white; font-family: 'Fraunces', Georgia, serif; font-size: 24px; font-weight: bold; }
+.barraNavegacao { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; margin: 0; padding: 0; list-style: none; }
+.barraNavegacao a, .barraNavegacao button, .saudacao { color: white; font-size: 16px; font-weight: bold; text-decoration: none; }
+.barraNavegacao a { padding-bottom: 5px; }
+.barraNavegacao a[aria-current='page'] { border-bottom: 2px solid #e0e0e0; }
+.barraNavegacao a:hover { color: #ffde4e; }
+.barraNavegacao button { width: auto; height: auto; padding: 7px 12px; border: 1px solid #d4a017; border-radius: 4px; background: none; }
+
+/* Rodapé: verde original, logo em coluna e três áreas centralizadas. */
+.rodape {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 10vh;
+    margin-top: 6vh;
+    padding: 4px;
+    border-radius: 16px 16px 0 0;
+    background-color: #458d32;
+    color: #0D0D0D;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.containerEmpresaRodape { display: flex; align-items: center; width: 100%; }
+.logoRodape {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 30%;
+    margin: 0;
+    padding: 4px;
+    text-decoration: none;
+}
+.logoRodape img { display: block; width: 40%; max-width: 60px; height: auto; margin: 0; padding: 0; object-fit: contain; }
+.tituloRodape { color: #0D0D0D; font-family: 'Fraunces', Georgia, serif; font-size: 12px; font-weight: bold; }
+.informacoesRodape {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 30%;
+    margin: 0 auto;
+    padding: 4px;
+    text-align: center;
+}
+.informacoesRodape p { margin: 0; font-size: 12px; line-height: 1.3; }
+.containerEmpresaRodape > nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    margin: 0 10% 0 0;
+    padding: 4px;
+    text-align: center;
+}
+.rodape h3 { margin: 0 0 4px; padding: 0; color: #0D0D0D; font-size: 14px; }
+.itensLista { display: flex; flex-direction: column; flex-wrap: wrap; gap: 4px 12px; height: 52px; margin: 0; padding: 0; text-align: left; list-style: none; }
+.itensLista li { margin: 0; padding: 0; line-height: 1.2; }
+.itensLista a { color: #0D0D0D; font-size: 12px; text-decoration: none; }
+.itensLista a:hover { text-decoration: underline; }

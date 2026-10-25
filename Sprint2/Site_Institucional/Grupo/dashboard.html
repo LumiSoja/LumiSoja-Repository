@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard — LumiSoja</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/comum.css">
+    <script src="js/vendor/chart.umd.js"></script>
+    <script src="js/sistema.js" defer></script>
+    <script src="js/layout.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
+</head>
+<body>
+    <header class="cabecalho" id="cabecalho"></header>
+        <main class="main conteudo-pagina" id="conteudo-dashboard" hidden>
+        <div class="selects">
+            <label for="fazenda-select">Fazenda:
+                <span id="bolinha-selecao" class="bolinha" aria-hidden="true"></span>
+                <select id="fazenda-select">
+                    <option value="todas">Todas as fazendas</option>
+                </select>
+            </label>
+            <label for="setor-select">Setor:
+                <select id="setor-select">
+                    <option value="todos">Todos os setores</option>
+                    <option value="norte">Norte</option>
+                    <option value="sul">Sul</option>
+                    <option value="leste">Leste</option>
+                    <option value="oeste">Oeste</option>
+                </select>
+            </label>
+        </div>
+        <p class="aviso">Modo estático: todas as fazendas estão disponíveis sem login. Leituras demonstrativas até as 14h.</p>
+
+        <div class="conteudo">
+            <!-- A tabela fica à esquerda, e os cards e gráficos ficam à direita. -->
+            <aside class="fazendas">
+                <h3>Fazendas disponíveis</h3>
+                <table>
+                    <thead><tr><th scope="col">Fazenda</th><th scope="col">Situação</th></tr></thead>
+                    <tbody id="fazendas-body"></tbody>
+                </table>
+                <p class="aviso">Clique em uma fazenda para atualizar os dados. A situação considera a pior leitura atual no setor selecionado.</p>
+                <details>
+                    <summary>Entenda as cores</summary>
+                    <p><span class="bolinha ideal" aria-hidden="true"></span> Verde: dentro da faixa ideal.</p>
+                    <p><span class="bolinha atencao" aria-hidden="true"></span> Laranja: até 6.500 lux de distância de um limite, dentro da faixa.</p>
+                    <p><span class="bolinha perigo" aria-hidden="true"></span> Vermelho: 15.000 lux ou menos; 80.000 lux ou mais.</p>
+                    <p><span class="bolinha sem-dados" aria-hidden="true"></span> Cinza: sem sensor ativo com leitura.</p>
+                </details>
+            </aside>
+
+            <section class="area-dashboard" aria-labelledby="titulo-selecao">
+                <h3 id="titulo-selecao">Todas as fazendas</h3>
+                <p id="situacao-selecao" role="status" aria-live="polite"></p>
+                <div class="cards">
+                    <div class="box box1">
+                        <p>LUMINOSIDADE ATUAL</p>
+                        <h2 id="lux-atual">—</h2>
+                        <h5 id="lux-detalhe">Média dos sensores ativos</h5>
+                        <h5>Ideal Mínimo: 15 mil Lux</h5>
+                        <h5>Ideal Máximo: 80 mil Lux</h5>
+                    </div>
+                    <div class="box box2">
+                        <p>EXPOSIÇÃO DIÁRIA</p>
+                        <h2 id="exposicao">—</h2>
+                        <h5 id="meta-exposicao">Meta diária de 12h</h5>
+                        <h5>Horas acima de 15 mil lux até as 14h</h5>
+                    </div>
+                    <button class="box box3" id="abrir-sensores" type="button" aria-haspopup="dialog" aria-controls="sensores-dialog">
+                        <span class="rotulo">SENSORES ATIVOS (IoT)</span>
+                        <span class="valor" id="sensores-contagem">—</span>
+                        <span class="detalhe" id="sensores-desativados"></span>
+                        <span class="detalhe">Clique para ver sensores e localizações</span>
+                    </button>
+                    <div class="box box4">
+                        <p>SITUAÇÃO / LUMINOSIDADE</p>
+                        <h2 id="risco-atual">—</h2>
+                        <h5 id="risco-detalhe"></h5>
+                        <h5 id="risco-local"></h5>
+                    </div>
+                </div>
+
+                <p class="aviso" id="sem-leituras" hidden>Sem sensores ativos com leitura neste recorte. Sensores desativados não entram nas médias.</p>
+                <p class="aviso perigo" id="erro-graficos" hidden>Não foi possível carregar o Chart.js. Verifique a conexão com a internet para exibir os gráficos.</p>
+                <div class="graficos">
+                    <div class="grafico grafico1">
+                        <p id="titulo-historico">Histórico de Luminosidade Diária (Lux)</p>
+                        <div class="area-grafico"><canvas id="myChart" role="img" aria-label="Histórico de luminosidade em lux"></canvas></div>
+                        <details>
+                            <summary>Ver valores do histórico</summary>
+                            <div id="valores-historico"></div>
+                        </details>
+                    </div>
+                    <div class="grafico grafico2">
+                        <p>Média de Luminosidade por Setor (Lux)</p>
+                        <div class="area-grafico"><canvas id="myChart2" role="img" aria-label="Média de luminosidade por setor"></canvas></div>
+                        <small>A cor da barra indica a situação da média do setor.</small>
+                    </div>
+                    <div class="grafico grafico3">
+                        <p>Análise de Exposição Geral da Safra</p>
+                        <div class="area-grafico"><canvas id="myChart3" role="img" aria-label="Distribuição das leituras atuais por situação"></canvas></div>
+                        <small id="resumo-distribuicao"></small>
+                        <small>Sensores desativados ficam fora dos cálculos.</small>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <dialog id="sensores-dialog" aria-labelledby="titulo-sensores">
+        <button id="fechar-sensores" type="button">Fechar</button>
+        <h3 id="titulo-sensores">Sensores e localizações</h3>
+        <p id="escopo-sensores"></p>
+        <p id="contagem-sensores"></p>
+        <label for="sensor-status-filter">Exibir:
+            <select id="sensor-status-filter">
+                <option value="todos">Todos os sensores</option>
+                <option value="ativo">Apenas ativos</option>
+                <option value="desativado">Apenas desativados</option>
+            </select>
+        </label>
+        <div class="tabela-sensores" tabindex="0" role="region" aria-label="Detalhes dos sensores; role para ver todas as colunas">
+            <table>
+                <thead><tr><th scope="col">Sensor</th><th scope="col">Fazenda</th><th scope="col">Setor</th><th scope="col">Estado</th><th scope="col">Leitura</th><th scope="col">Coordenadas</th></tr></thead>
+                <tbody id="sensores-body"></tbody>
+            </table>
+        </div>
+        <p class="aviso" id="resultado-sensores" role="status"></p>
+        <p class="aviso">Coordenadas demonstrativas (latitude, longitude). Sensores desativados aparecem sem leitura.</p>
+    </dialog>
+
+
+    <footer class="rodape" id="rodape"></footer>
+    <noscript><p>Ative o JavaScript para usar os menus, os formulários e os filtros do site.</p></noscript>
+</body>
+</html>

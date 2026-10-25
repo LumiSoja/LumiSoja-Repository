@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Login — LumiSoja</title>
+    <link rel="stylesheet" href="css/comum.css">
+    <link rel="stylesheet" href="css/login.css">
+    
+    <script src="js/sistema.js" defer></script>
+    <script src="js/layout.js" defer></script>
+    <script src="js/login.js" defer></script>
+</head>
+<body>
+    <header class="cabecalho" id="cabecalho"></header>
+    <main class="login_container conteudo-pagina">
+        <div class="login_texto">
+            <h1>Hora do Login</h1>
+            <h2>Vamos acessar sua<br>dashboard!</h2>
+        </div>
+        <form class="login_formulario" id="form-login">
+            <h2 class="login_titulo">Login</h2>
+            <div class="login_input"><label for="ipt_email">E-mail</label><input type="email" id="ipt_email" name="email" required maxlength="65" autocomplete="username"></div>
+            <div class="login_input"><label for="ipt_senha">Senha</label><input type="password" id="ipt_senha" name="senha" required maxlength="128" autocomplete="current-password"></div>
+            <div class="login_botoes"><button type="submit">Login</button></div>
+            <p id="msg-login" class="mensagem erro" role="status" aria-live="polite"></p>
+            <p class="nota">Ainda não tem uma conta? <a href="cadastro_usuario.html">Cadastre-se</a>.</p>
+        </form>
+    </main>
+    <footer class="rodape" id="rodape"></footer>
+    <noscript><p>Ative o JavaScript para usar os menus, os formulários e os filtros do site.</p></noscript>
+</body>
+</html>

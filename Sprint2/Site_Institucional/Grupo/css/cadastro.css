@@ -1,0 +1,88 @@
+/* Completa o cadastro original: formulário à esquerda e chamada à direita. */
+.pagina-cadastro { background: url('../img/lumiSoja-loginBg.png') center / cover no-repeat; }
+.titulo-cadastro { margin: 0 0 10px; color: white; font-size: 50px; line-height: 1.15; }
+.contato {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: 70px;
+    padding: 65px 7% 60px;
+}
+.contato-texto {
+    flex: 0 0 500px;
+    margin-top: 100px;
+    color: white;
+    text-align: left;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+}
+.contato-texto h2 { margin: 0; color: #ffde4e; font-size: 34px; font-style: italic; line-height: 1.3; }
+.contato-texto p { margin: 25px 0 0; font-size: 16px; line-height: 1.5; }
+.containerCadastro {
+    flex: 0 0 450px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    min-width: 0;
+    height: auto;
+    padding: 25px;
+    border-radius: 6px;
+    background-color: rgba(98, 137, 82, 0.8);
+    box-shadow: 0 2px 8px #18351f;
+    color: #112817;
+}
+.containerCadastro .campo { margin-bottom: 18px; }
+.containerCadastro label {
+    display: block;
+    margin-bottom: 6px;
+    color: #112817;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+.containerCadastro input {
+    width: 100%;
+    min-height: 40px;
+    padding: 10px;
+    border: 1px solid #b7c9b8;
+    border-radius: 4px;
+    background-color: white;
+    color: #18351f;
+    font-size: 15px;
+    line-height: 1.4;
+}
+.containerCadastro input::placeholder { color: #6a6a6a; opacity: 1; }
+.containerCadastro input:focus { border-color: #275331; outline: 2px solid #275331; outline-offset: 2px; }
+.containerCadastro .nota { margin: 8px 0 0; font-size: 13px; line-height: 1.5; }
+.containerCadastro > .nota { margin-top: 18px; text-align: center; }
+.containerCadastro button {
+    width: 100%;
+    padding: 11px;
+    border: 0;
+    border-radius: 4px;
+    background-color: #275331;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.containerCadastro button:hover { background-color: #18351f; }
+.containerCadastro button:disabled { opacity: 0.6; cursor: wait; }
+.containerCadastro a { color: #112817; font-weight: bold; text-decoration: underline; }
+.containerCadastro a:hover { color: white; }
+
+/* Mensagens existentes de cadastro e confirmação de senha. */
+.containerCadastro .mensagem, #div_confirmacao {
+    margin: 12px 0 0;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+.containerCadastro .erro { color: #a11b2e; background-color: #fff1f3; }
+.containerCadastro .sucesso { color: #173b20; background-color: #edf7e9; }
+#div_nivel { display: inline-block; padding: 2px 6px; border-radius: 3px; background-color: #f4f7f0; color: #a11b2e; font-weight: bold; }
+#div_nivel.sucesso { color: #173b20; }
+.containerCadastro .mensagem:empty, #div_confirmacao:empty { display: none; }

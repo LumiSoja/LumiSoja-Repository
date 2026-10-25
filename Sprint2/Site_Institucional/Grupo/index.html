@@ -1,34 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LumiSoja | HomePage</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <title>Home — LumiSoja</title>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/comum.css">
+    
+    <script src="js/sistema.js" defer></script>
+    <script src="js/layout.js" defer></script>
+    <script src="js/home.js" defer></script>
 </head>
-
 <body>
-    <!-- Cabeçalho -->
-    <div class="cabecalho" id="inicio">
-        <div class="containerCabecalho">
-            <div class="logo">
-                <img src="img/LOGO LUMI SOJA.jpeg" alt="Logo LumiSoja">
-                <h1 class="tituloLogo">LumiSoja</h1>
-            </div>
-
-            <ul class="barraNavegacao">
-                <li><a class="linkAtivo" href="#inicio">Home</a></li>
-                <li><a href="#tecnologia">Tecnologia</a></li>
-                <li><a href="simulador.html">Simulador</a></li>
-                <li><a href="cadastro.html">Cadastro</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Início -->
+    <header class="cabecalho" id="cabecalho"></header>
+    <main class="conteudo-pagina" id="inicio"><p id="aviso-acesso" class="mensagem erro" hidden>Acesso não autorizado para o seu perfil.</p>    <!-- Início -->
     <div class="banner">
         <div class="containerBanner">
             <p>
@@ -41,7 +25,7 @@
                 Monitoramento inteligente da luminosidade em plantações <br>de soja para maximizar.
             </h5>
 
-            <button class="botaoEspecialista" onclick="exibir()">Falar com Especialista</button>
+            <button class="botaoEspecialista" onclick="location.href='#contato'">Falar com Especialista</button>
         </div>
     </div>
 
@@ -63,7 +47,7 @@
     </div>
 
     <!-- Desafio e solução -->
-    <section class="secaoDesafio">
+    <section class="secaoDesafio" id="sobre">
         <div class="cabecalhoDesafio">
             <span class="destaqueAmarelo">O DESAFIO —</span>
             <h1 class="tituloVerde">A falta de luz pode reduzir o rendimento da safra</h1>
@@ -89,7 +73,7 @@
 
         <div class="bannerInferior">
             <h2 class="textoBanner">Gostaria de saber o quanto você esta <span class="destaqueAmarelo">perdendo</span> sem o nosso monitoramento e quanto poderia <span class="destaqueAmarelo">ganhar</span> com ele?</h2>
-            <button class="botaoSimulador">SIMULADOR</button>
+            <button class="botaoSimulador" onclick="location.href='calculadora.html'">SIMULADOR</button>
         </div>
     </section>
 
@@ -126,32 +110,8 @@
         </div>
     </section>
 
-    <!-- Rodapé -->
-    <div class="rodape">
-        <div class="containerEmpresaRodape">
-            <div class="logoRodape">
-                <img src="img/LOGO LUMI SOJA.jpeg" alt="Logo LumiSoja">
-                <h4><span class="tituloRodape">LumiSoja</span> ©</h4>
-            </div>
-
-            <div class="informacoesRodape">
-                <!-- <h4>© 2026 LumiSoja & Cia.</h4> -->
-                <h4>CNPJ: 31.872.495/0001-72</h4>
-                <h4>Av. Paulista, 1267 - Bela Vista, São Paulo - 07259-002</h4>
-            </div>
-
-            <div class="listaRodape">
-                <h3>Navegação</h3>
-                <ul class="itensLista">
-                    <li><a href="sobre_nos.html">Sobre Nós</a></li>
-                    <li><a href="#tecnologia">Tecnolgias</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastro.html">Cadastre-se</a></li>
-                    <li><a href="simulador.html">Simulador</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<section class="contato-home" id="contato"><h2>Converse com a LumiSoja</h2><p>Quer levar nossa solução para sua empresa? Entre em contato para negociar.</p><a href="mailto:contato@lumisoja.com.br">contato@lumisoja.com.br</a></section></main>
+    <footer class="rodape" id="rodape"></footer>
+    <noscript><p>Ative o JavaScript para usar os menus, os formulários e os filtros do site.</p></noscript>
 </body>
-
 </html>

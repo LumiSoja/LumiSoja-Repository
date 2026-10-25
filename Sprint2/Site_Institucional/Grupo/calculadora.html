@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador — LumiSoja</title>
+    <link rel="stylesheet" href="css/comum.css">
+    <link rel="stylesheet" href="css/simulador.css">
+    
+    <script src="js/sistema.js" defer></script>
+    <script src="js/layout.js" defer></script>
+    <script src="js/simulador.js" defer></script>
+</head>
+<body>
+    <header class="cabecalho" id="cabecalho"></header>
+    <main class="container_main conteudo-pagina">
+        <div class="titulo_calc">
+            <h2>SIMULAÇÃO COM CALCULADORA FINANCEIRA</h2>
+        </div>
+
+        <div class="container_inOUt">
+
+
+            <div class="inputs">
+
+                <div class="input_field">
+                    <label for="ipt_empresa">Empresa:</label>
+                    <input type="text" id="ipt_empresa" placeholder="O nome do seu negócio">
+                </div>
+                <div class="input_field">
+                    <label for="ipt_hectares">Informe o tamanho da sua fazenda de soja:</label>
+                    <input type="text" id="ipt_hectares" placeholder="Quantos hectares (ha)">
+                </div>
+
+                <div class="input_field">
+                    <label for="ipt_valor_sacas">Informe o valor das sacas/ha na sua fazenda:</label>
+                    <input type="text" id="ipt_valor_sacas" placeholder="Valor das sacas, ex: 200">
+                </div>
+
+
+                <div class="div_button">
+                    <button onclick="calcular()">Calcular economia</button>
+                </div>
+
+
+            </div>
+
+            <div class="output">
+
+                <div class="div_msg" id="div_msg"></div>
+
+
+                <div class="txt_explicacao">
+
+                    <button type="button" class="ocultaMostra" onclick="textoExplicativo()" aria-expanded="false" aria-controls="desc">Como funciona esta calculadora?</button>
+
+                    <div class="desc" id="desc" hidden>
+                        <img src="img/LumiSoja_Calculadora_Visual.svg" alt="Diagrama do cálculo: entradas, produtividade por hectare, produção anual e comparação do faturamento com e sem monitoramento.">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+    <footer class="rodape" id="rodape"></footer>
+    <noscript><p>Ative o JavaScript para usar os menus, os formulários e os filtros do site.</p></noscript>
+</body>
+</html>

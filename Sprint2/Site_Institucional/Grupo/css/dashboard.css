@@ -1,0 +1,123 @@
+/* Base do CSS original: Flexbox, cards brancos e KPI amarela. */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    background-image: url('../img/fundo.svg');
+    background-size: cover;
+}
+
+.main {
+    width: 90%;
+    box-sizing: border-box;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #E6EAED;
+    border: 1px solid #999;
+    border-radius: 10px;
+}
+
+.selects {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+select {
+    width: 190px;
+    height: 32px;
+}
+
+.conteudo {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.fazendas {
+    width: 260px;
+    flex-shrink: 0;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.area-dashboard {
+    flex: 1;
+    min-width: 0;
+}
+
+.area-dashboard h3 { margin-top: 0; }
+.cards, .graficos { display: flex; flex-wrap: wrap; gap: 10px; }
+.graficos { margin-top: 15px; }
+
+.box {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 170px;
+    min-height: 145px;
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: white;
+    border: 0;
+    border-radius: 8px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box p, .box .rotulo { margin: 5px; font-size: 12px; font-weight: bold; }
+.box h2, .box .valor { margin: 5px; font-size: 26px; font-weight: bold; }
+.box h5, .box .detalhe { margin: 5px; font-size: 11px; font-weight: bold; }
+.box1 { background-color: #E0BC42; }
+.box3 { cursor: pointer; }
+.box3:hover { background-color: #f0f0f0; }
+
+.grafico {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 8px;
+    min-width: 0;
+}
+
+.grafico1 { width: 100%; }
+.grafico2 { flex: 2; min-width: 260px; }
+.grafico3 { flex: 1; min-width: 220px; }
+.grafico p { margin-top: 0; text-align: center; }
+.grafico small { margin-top: 8px; }
+.area-grafico { position: relative; height: 270px; }
+
+/* Acréscimos: tabela, cores de situação e janela dos sensores. */
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th, td { padding: 9px 5px; border-bottom: 1px solid #ddd; text-align: left; }
+th { background-color: #f0f0f0; }
+.fazendas td:last-child { white-space: nowrap; }
+.fazendas tr[data-fazenda] { cursor: pointer; }
+.fazendas tr:hover { background-color: #f0f0f0; }
+.fazendas tr.selecionada { background-color: #fff2be; }
+.botao-fazenda { padding: 0; border: 0; background: none; text-align: left; font: inherit; cursor: pointer; }
+.bolinha { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background-color: currentColor; }
+.ideal { color: #43964D; }
+.atencao { color: #bf7400; }
+.perigo { color: #d32f2f; }
+.sem-dados { color: #777; }
+.aviso { font-size: 12px; line-height: 1.5; }
+details { margin-top: 10px; font-size: 12px; }
+summary { cursor: pointer; }
+
+#sensores-dialog { width: 90%; max-width: 1000px; max-height: 85vh; padding: 20px; box-sizing: border-box; border: 1px solid #999; border-radius: 8px; }
+#sensores-dialog::backdrop { background-color: rgba(0, 0, 0, 0.4); }
+#fechar-sensores { float: right; padding: 5px 10px; cursor: pointer; }
+.tabela-sensores { margin-top: 15px; overflow: auto; max-height: 45vh; }
+.tabela-sensores table { min-width: 750px; }
