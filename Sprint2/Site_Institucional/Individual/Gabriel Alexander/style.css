@@ -1,21 +1,10 @@
-.title_1 {
-  color: #275331;
-}
-
-.box h3 {
-  color: #275331;
-}
-
-.box span {
-  color: #888888;
-}
-
-.contato h1 {
-  color: white;
-}
-
-.contato span {
-  color: white;
+:root {
+  --verde-profundo: #18351f;
+  --verde: #275331;
+  --verde-claro: #628952;
+  --creme: #f7f4e9;
+  --texto: #26352b;
+  --erro: #a12d2d;
 }
 
 * {
@@ -23,81 +12,324 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  --cor-destaque: #d4a017;
+  --cor-fundo: #e9f0df;
+  --cor-painel: #fdfcf6;
+  --cor-suave: #edf4e6;
+  min-height: 100vh;
   margin: 0;
-  display: flex;
-  flex-direction: column;
+  color: var(--texto);
+  font-family: Arial, sans-serif;
+  background-color: var(--cor-fundo);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(218, 232, 201, 0.45)),
+    url("img/lumiSoja-loginBg.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url(img/lumiSoja-loginBg.png);
+}
+
+body.cadastro-usuario {
+  --cor-destaque: #d4a017;
+  --cor-fundo: #e9f0df;
+  --cor-painel: #fffdf5;
+  --cor-suave: #f4edda;
+}
+
+body.cadastro-fazenda {
+  --cor-destaque: #6d9b45;
+  --cor-fundo: #e2efdc;
+  --cor-painel: #fbfdf7;
+  --cor-suave: #e8f2e2;
+}
+
+body.cadastro-empresa {
+  --cor-destaque: #3b7180;
+  --cor-fundo: #e5eef0;
+  --cor-painel: #fbfdfd;
+  --cor-suave: #e8f1f2;
+}
+
+/* Cada cadastro possui uma composição própria, além da paleta compartilhada. */
+body.cadastro-usuario {
+  background-image: radial-gradient(circle at 15% 25%, rgba(212, 160, 23, 0.22), transparent 28%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(218, 232, 201, 0.5)),
+    url("img/lumiSoja-loginBg.png");
+}
+
+.cadastro-usuario .page-title {
+  color: var(--verde-profundo);
+}
+
+.cadastro-usuario .contato-texto {
+  padding: 28px 30px;
+  border-left: 6px solid var(--cor-destaque);
+  border-radius: 0 20px 20px 0;
+  background: rgba(255, 253, 245, 0.76);
+}
+
+.cadastro-usuario .containerCadastro {
+  border-top-width: 0;
+  border-bottom: 5px solid var(--cor-destaque);
+  border-radius: 28px;
+}
+
+body.cadastro-fazenda {
+  background-image: linear-gradient(90deg, rgba(20, 55, 29, 0.5), rgba(218, 239, 210, 0.72)),
+    url("img/lumiSoja-loginBg.png");
+  background-position: center;
+}
+
+.cadastro-fazenda .page-title {
+  color: #f7f4e9;
+  text-shadow: 0 2px 8px rgba(24, 53, 31, 0.5);
+}
+
+.cadastro-fazenda .contato-texto {
+  max-width: 430px;
+  padding: 34px;
+  border-radius: 0 42px 0 42px;
+  background: rgba(24, 53, 31, 0.9);
+}
+
+.cadastro-fazenda .contato-texto h1,
+.cadastro-fazenda .email-info {
+  color: #f7f4e9;
+}
+
+.cadastro-fazenda .contato-texto h1::after {
+  width: 76px;
+  background: #b7d66c;
+}
+
+.cadastro-fazenda .containerCadastro {
+  border-top: 0;
+  border-right: 7px solid var(--cor-destaque);
+  border-radius: 12px 38px 12px 38px;
+}
+
+body.cadastro-empresa {
+  background-color: #173840;
+  background-image: linear-gradient(125deg, rgba(16, 48, 56, 0.94), rgba(59, 113, 128, 0.72)),
+    url("img/lumiSoja-loginBg.png");
+  background-position: center;
+}
+
+.cadastro-empresa .page-title {
+  color: #f3f8f7;
+}
+
+.cadastro-empresa .contato-texto h1,
+.cadastro-empresa .email-info {
+  color: #f3f8f7;
+}
+
+.cadastro-empresa .contato-texto h1::after {
+  width: 92px;
+  height: 3px;
+  background: #83c2c9;
+}
+
+.cadastro-empresa .containerCadastro {
+  max-width: 590px;
+  border: 0;
+  border-left: 8px solid var(--cor-destaque);
+  border-radius: 5px;
+  box-shadow: 12px 18px 0 rgba(11, 39, 46, 0.35);
+}
+
+.cadastro-empresa .containerCadastro input {
+  border-radius: 4px;
+  background: #fff;
+}
+
+.cadastro-empresa .containerCadastro button {
+  border-radius: 4px;
+  background: #255b66;
+}
+
+.cadastro-empresa .containerCadastro button:hover {
+  background: #173840;
+}
+
+.page-title {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 36px 0 0;
+  color: var(--verde-profundo);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.04em;
 }
 
 .contato {
-  padding: 40px 20px;
-  height: 90vh;
-  display: flex;
-  flex-direction: row-reverse;
+  width: min(1120px, calc(100% - 40px));
+  min-height: 650px;
+  margin: 0 auto;
+  padding: 42px 0 70px;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(360px, 1.2fr);
+  gap: clamp(36px, 7vw, 96px);
   align-items: center;
 }
 
 .contato-texto {
+  max-width: 390px;
   margin-bottom: 25px;
-  text-align: center;
+}
+
+.contato-texto h1 {
+  margin: 0 0 20px;
+  color: var(--verde-profundo);
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  line-height: 1.12;
+}
+
+.contato-texto h1::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 5px;
+  margin-top: 18px;
+  border-radius: 5px;
+  background: var(--cor-destaque);
+}
+
+.email-info {
+  color: var(--verde);
+  font-size: 0.95rem;
+  font-weight: bold;
 }
 
 .containerCadastro {
   width: 100%;
-  max-width: 500px;
+  max-width: 560px;
+  max-height: 650px;
   margin: 0 auto;
-  padding: 25px;
-  background-color: rgba(98, 137, 82, 0.8);
-  border-radius: 6px;
-  box-shadow: 0 2px 8px #18351f;
-  overflow-y: scroll;
-  height: 100%;
+  padding: clamp(24px, 4vw, 38px);
+  overflow-y: auto;
+  border: 1px solid rgba(39, 83, 49, 0.12);
+  border-top: 5px solid var(--cor-destaque);
+  border-radius: 18px;
+  background: var(--cor-painel);
+  box-shadow: 0 18px 45px rgba(24, 53, 31, 0.14);
 }
 
 .containerCadastro label {
-  color: #275331;
+  display: inline-block;
+  margin-bottom: 7px;
+  color: var(--verde-profundo);
+  font-size: 0.88rem;
   font-weight: bold;
 }
 
 .containerCadastro input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #b7c9b8;
-  border-radius: 4px;
-  font-size: 15px;
+  min-height: 44px;
+  padding: 10px 13px;
+  border: 1px solid #cbd8c8;
+  border-radius: 9px;
+  color: var(--texto);
+  background: var(--cor-suave);
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.containerCadastro input::placeholder {
+  color: #7c8b80;
+}
+
+.containerCadastro input:focus {
+  outline: none;
+  border-color: var(--cor-destaque);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(39, 83, 49, 0.16);
 }
 
 .containerCadastro button {
   width: 100%;
+  min-height: 46px;
   padding: 11px;
   border: 0;
-  border-radius: 4px;
-  background-color: #275331;
-  color: white;
-  font-size: 16px;
+  border-radius: 9px;
+  color: #fff;
+  background: var(--verde);
+  font: inherit;
   font-weight: bold;
   cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .containerCadastro button:hover {
-  background-color: #18351f;
+  background: var(--verde-profundo);
+  transform: translateY(-2px);
+}
+
+.containerCadastro button:focus-visible {
+  outline: 3px solid var(--cor-destaque);
+  outline-offset: 2px;
 }
 
 #div_msg,
 #div_confirmacao {
-  color: #b00020;
+  color: var(--erro);
   font-weight: bold;
+  line-height: 1.45;
 }
 
 #div_nivel {
-  color: red;
+  color: var(--verde);
   font-weight: bold;
 }
 
-input:focus {
-  outline: 2px solid #275331;
+.footer {
+  margin-top: 0;
+}
+
+@media (max-width: 760px) {
+  .page-title {
+    padding-top: 28px;
+  }
+
+  .contato {
+    min-height: 0;
+    padding-top: 28px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .contato-texto {
+    max-width: none;
+    margin-bottom: 18px;
+  }
+
+  .contato-texto h1 {
+    font-size: 1.7rem;
+  }
+
+  .containerCadastro {
+    max-height: none;
+  }
+
+  .cadastro-fazenda .contato-texto {
+    padding: 26px;
+  }
+
+  .cadastro-empresa .containerCadastro {
+    box-shadow: 6px 8px 0 rgba(11, 39, 46, 0.28);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title,
+  .contato {
+    width: min(100% - 28px, 560px);
+  }
+
+  .contato {
+    padding-bottom: 42px;
+  }
+
+  .containerCadastro {
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
 }

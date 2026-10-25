@@ -208,3 +208,21 @@ END AS "Situação do sensor" , ls.lux "lux"
 FROM fazenda fznd 
 JOIN sensor s ON s.fk_Fazenda = fznd.id
 JOIN leitura_sensor ls ON ls.fk_sensor = s.id;
+
+/* Lista as fazendas e suas respectivas empresas */
+SELECT
+	fznd.nome_fazenda AS "Fazenda",
+	emp.nome AS "Empresa",
+	fznd.hectare AS "Área em hectares"
+FROM fazenda fznd
+JOIN empresa emp ON emp.id = fznd.fk_empresa;
+
+/* Lista os usuários com seus respectivos perfis e empresas */
+SELECT
+	usr.nome AS "Usuário",
+	pfa.nome AS "Perfil de acesso",
+	emp.nome AS "Empresa"
+FROM usuario usr
+JOIN perfil_acesso pfa ON pfa.id = usr.fk_perfil_acesso
+LEFT JOIN empresa emp ON emp.id = usr.fk_empresa
+ORDER BY usr.nome;
