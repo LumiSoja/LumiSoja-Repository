@@ -229,20 +229,6 @@ INSERT INTO leitura_sensor (lux, data_hora, fk_sensor) VALUES
 
 -- ==================== SELECTS ====================
 
-/* Indica a fazenda com seus respectivos sensores e dados capturados */
-SELECT 
-fznd.id "Id", 
-fznd.nome_fazenda "Nome da fazenda", 
-s.identificacao "Identificação do sensor",
-s.setor "Setor", 
-s.coordenada "Coordenada", 
-CASE 
-	WHEN s.ativo = 1 THEN "Sensor ligado"
-	ELSE "Sensor desligado"
-END AS "Situação do sensor" , ls.lux "lux"
-FROM fazenda fznd 
-JOIN sensor s ON s.fk_Fazenda = fznd.id
-JOIN leitura_sensor ls ON ls.fk_sensor = s.id;
 
 /* Lista as fazendas e suas respectivas empresas */
 SELECT
