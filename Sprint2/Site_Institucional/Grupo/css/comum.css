@@ -45,7 +45,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     justify-content: center;
     width: 100%;
     min-height: 10vh;
-    margin-top: 6vh;
+    margin-top: 0;
     padding: 4px;
     border-radius: 16px 16px 0 0;
     background-color: #458d32;
@@ -93,3 +93,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .itensLista li { margin: 0; padding: 0; line-height: 1.2; }
 .itensLista a { color: #0D0D0D; font-size: 12px; text-decoration: none; }
 .itensLista a:hover { text-decoration: underline; }
+
+body:has(.login_container),
+body:has(.pagina-cadastro) {
+    background-color: #1b4d24;
+}
