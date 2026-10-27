@@ -2,19 +2,19 @@
 // Os cadastros ficam apenas nos vetores desta página, até atualizar o navegador.
 // Não há banco de dados, login real ou permissões de usuário nesta versão.
 
-var empresas = [
+let empresas = [
     { nome: 'AgroVale', razao: 'AgroVale Agropecuária Ltda', cnpj: '12345678000190' },
     { nome: 'Soja Forte', razao: 'Soja Forte Agrícola Ltda', cnpj: '98765432000110' },
     { nome: 'Campo Verde', razao: 'Campo Verde Produção Rural Ltda', cnpj: '45678912000135' }
 ];
-var fazendas = [
+let fazendas = [
     { nome: 'Fazenda Boa Vista', empresa: 0, hectare: 1500.50, cidade: 'Guarantã do Norte / MT' },
     { nome: 'Estância Progresso', empresa: 0, hectare: 850, cidade: 'Londrina / PR' },
     { nome: 'Fazenda Sol Nascente', empresa: 1, hectare: 3200.75, cidade: 'Mineiros / GO' },
     { nome: 'Sítio AgroVerde', empresa: 2, hectare: 410.10, cidade: 'Tenente Portela / RS' },
     { nome: 'Fazenda Ouro Negro', empresa: 1, hectare: 5000, cidade: 'Balsas / MA' }
 ];
-var usuarios = [
+let usuarios = [
     { nome: 'Thiago - exemplo', cpf: '23456789012', email: 'thiago@exemplo.com', empresa: 0, perfil: 'Administrador' },
     { nome: 'Gustavo - exemplo', cpf: '34567890123', email: 'gustavo@exemplo.com', empresa: 1, perfil: 'Funcionário' }
 ];
@@ -27,9 +27,9 @@ function textoSeguro(texto) {
 }
 
 function atualizarAdministracao() {
-    var listaOpcoes = '<option value="">Selecione a empresa</option>';
-    var tabelaEmpresas = '';
-    for (var i = 0; i < empresas.length; i++) {
+    let listaOpcoes = '<option value="">Selecione a empresa</option>';
+    let tabelaEmpresas = '';
+    for (let i = 0; i < empresas.length; i++) {
         listaOpcoes += `<option value="${i}">${textoSeguro(empresas[i].nome)}</option>`;
         tabelaEmpresas += `<tr><td>${textoSeguro(empresas[i].nome)}</td><td>${textoSeguro(empresas[i].razao)}</td><td>${textoSeguro(empresas[i].cnpj)}</td></tr>`;
     }
@@ -38,21 +38,21 @@ function atualizarAdministracao() {
     editar_empresa.innerHTML = listaOpcoes;
     lista_empresas.innerHTML = tabelaEmpresas;
 
-    var tipos = '<option value="Comum">Comum</option><option value="Funcionário">Funcionário</option><option value="Administrador">Administrador</option><option value="DEV comum">DEV comum</option><option value="DEV administrador">DEV administrador</option>';
+    let tipos = '<option value="Comum">Comum</option><option value="Funcionário">Funcionário</option><option value="Administrador">Administrador</option><option value="DEV comum">DEV comum</option><option value="DEV administrador">DEV administrador</option>';
     acesso.innerHTML = tipos;
     editar_perfil.innerHTML = tipos;
 
-    var tabelaFazendas = '';
-    for (var i = 0; i < fazendas.length; i++) {
+    let tabelaFazendas = '';
+    for (let i = 0; i < fazendas.length; i++) {
         tabelaFazendas += `<tr><td>${textoSeguro(fazendas[i].nome)}</td><td>${textoSeguro(empresas[fazendas[i].empresa].nome)}</td>
             <td>${fazendas[i].hectare.toLocaleString('pt-BR')}</td><td>${textoSeguro(fazendas[i].cidade)}</td></tr>`;
     }
     lista_fazendas.innerHTML = tabelaFazendas;
 
-    var cards = '';
-    for (var i = 0; i < usuarios.length; i++) {
-        var pessoa = usuarios[i];
-        var empresa = 'Sem vínculo com empresa';
+    let cards = '';
+    for (let i = 0; i < usuarios.length; i++) {
+        let pessoa = usuarios[i];
+        let empresa = 'Sem vínculo com empresa';
         if (String(pessoa.empresa) != '') empresa = empresas[pessoa.empresa].nome;
         cards += `<div class="box"><img src="img/usuario.svg" alt="">
             <div class="info-box"><span class="nome-usuario">${textoSeguro(pessoa.nome)}</span>
@@ -68,14 +68,14 @@ function atualizarAdministracao() {
 }
 
 function adicionarUsuario() {
-    var nome = ipt_usuario.value.trim();
-    var cpf = cpf_usuario.value.replaceAll('.', '').replaceAll('-', '');
-    var email = email_usuario.value.trim();
-    var telefone = telefone_usuario.value.trim();
-    var senha = senha_usuario.value;
-    var confirmacao = confirmacao_usuario.value;
-    var empresa = empresa_usuario.value;
-    var perfil = acesso.value;
+    let nome = ipt_usuario.value.trim();
+    let cpf = cpf_usuario.value.replaceAll('.', '').replaceAll('-', '');
+    let email = email_usuario.value.trim();
+    let telefone = telefone_usuario.value.trim();
+    let senha = senha_usuario.value;
+    let confirmacao = confirmacao_usuario.value;
+    let empresa = empresa_usuario.value;
+    let perfil = acesso.value;
 
     if (nome == '' || cpf.length != 11 || !email.includes('@') || telefone == '') {
         msg_usuario.innerHTML = 'Preencha corretamente nome, CPF, e-mail e telefone.';
@@ -98,11 +98,11 @@ function adicionarUsuario() {
 }
 
 function adicionarEmpresa() {
-    var nome = nome_empresa.value.trim();
-    var razao = razao_empresa.value.trim();
-    var cnpj = cnpj_empresa.value.replaceAll('.', '').replaceAll('/', '').replaceAll('-', '');
-    var repetido = false;
-    for (var i = 0; i < empresas.length; i++) {
+    let nome = nome_empresa.value.trim();
+    let razao = razao_empresa.value.trim();
+    let cnpj = cnpj_empresa.value.replaceAll('.', '').replaceAll('/', '').replaceAll('-', '');
+    let repetido = false;
+    for (let i = 0; i < empresas.length; i++) {
         if (empresas[i].cnpj == cnpj) repetido = true;
     }
 
@@ -121,10 +121,10 @@ function adicionarEmpresa() {
 }
 
 function adicionarFazenda() {
-    var nome = nome_fazenda.value.trim();
-    var empresa = empresa_fazenda.value;
-    var hectare = Number(hectares_fazenda.value);
-    var cidade = cidade_fazenda.value.trim();
+    let nome = nome_fazenda.value.trim();
+    let empresa = empresa_fazenda.value;
+    let hectare = Number(hectares_fazenda.value);
+    let cidade = cidade_fazenda.value.trim();
 
     if (nome == '' || empresa == '' || isNaN(hectare) || hectare <= 0 || cidade == '') {
         msg_fazenda.innerHTML = 'Preencha os dados da fazenda e escolha uma empresa.';
@@ -155,10 +155,10 @@ function editarUsuario(posicao) {
     editar_acesso.showModal();
 }
 
-function salvarAcesso() {
-    var posicao = Number(editar_id.value);
-    var perfil = editar_perfil.value;
-    var empresa = editar_empresa.value;
+function salletAcesso() {
+    let posicao = Number(editar_id.value);
+    let perfil = editar_perfil.value;
+    let empresa = editar_empresa.value;
     if ((perfil == 'Administrador' || perfil == 'Funcionário') && empresa == '') {
         msg_editar.innerHTML = 'Selecione a empresa deste usuário.';
     } else {
