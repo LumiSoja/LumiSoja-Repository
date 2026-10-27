@@ -97,3 +97,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 /* Nos cantos arredondados do rodapé das páginas com fundo de plantas,
    a cor atrás do rodapé fica verde em vez de branca. */
 body:has(.login_container), body:has(.pagina-cadastro) { background-color: #1b4d24; }
+body:has(.contato-home) .rodape {
+    margin-top: -15px;
+    position: relative;
+    z-index: 1;
+}

@@ -1,13 +1,13 @@
 // Dashboard estática: valores fictícios para apresentar a interface.
 // Não recebe dados reais do Arduino e não consulta o MySQL.
 
-var setores = ['norte', 'sul', 'leste', 'oeste'];
-var horarios = ['06:00', '07:30', '09:00', '10:30', '12:00', '13:00', '14:00'];
-var fatores = [0.04, 0.28, 0.70, 1.08, 1.20, 1.08, 1];
+let setores = ['norte', 'sul', 'leste', 'oeste'];
+let horarios = ['06:00', '07:30', '09:00', '10:30', '12:00', '13:00', '14:00'];
+let fatores = [0.04, 0.28, 0.70, 1.08, 1.20, 1.08, 1];
 
 // Cada vetor de leituras acompanha os setores na ordem acima.
 // null representa um sensor desligado.
-var fazendas = [
+let fazendas = [
     { id: 1, nome: 'Fazenda Boa Vista', cidade: 'Guarantã do Norte - MT', coordenada: '-9.7875, -54.9120', leituras: [34250, 38500, 13000, null] },
     { id: 2, nome: 'Estância Progresso', cidade: 'Londrina - PR', coordenada: '-23.3045, -51.1696', leituras: [28500, 30500, 32500, 26500] },
     { id: 3, nome: 'Fazenda Sol Nascente', cidade: 'Mineiros - GO', coordenada: '-17.5694, -52.5510', leituras: [74500, 62000, 54000, 57000] },
@@ -15,9 +15,9 @@ var fazendas = [
     { id: 5, nome: 'Fazenda Ouro Negro', cidade: 'Balsas - MA', coordenada: '-7.5325, -46.0356', leituras: [83500, null, 51000, 46000] }
 ];
 
-var sensores = [];
-for (var i = 0; i < fazendas.length; i++) {
-    for (var j = 0; j < setores.length; j++) {
+let sensores = [];
+for (let i = 0; i < fazendas.length; i++) {
+    for (let j = 0; j < setores.length; j++) {
         sensores.push({
             identificacao: 'LDR_' + (i * 4 + j + 1),
             fazenda: fazendas[i].id,
@@ -29,9 +29,9 @@ for (var i = 0; i < fazendas.length; i++) {
     }
 }
 
-var graficoHistorico = null;
-var graficoSetores = null;
-var graficoSituacoes = null;
+let graficoHistorico = null;
+let graficoSetores = null;
+let graficoSituacoes = null;
 
 function situacaoLux(lux) {
     if (lux == null) return 'Sem dados';
@@ -52,26 +52,26 @@ function numero(valor) {
 }
 
 function iniciarFazendas() {
-    for (var i = 0; i < fazendas.length; i++) {
+    for (let i = 0; i < fazendas.length; i++) {
         fazenda_select.innerHTML += `<option value="${fazendas[i].id}">${fazendas[i].nome}</option>`;
     }
     atualizarDashboard();
 }
 
 function atualizarDashboard() {
-    var escolhaFazenda = fazenda_select.value;
-    var escolhaSetor = setor_select.value;
-    var ativos = [];
-    var quantidadeDesativados = 0;
-    var total = 0;
-    var perigo = 0;
-    var atencao = 0;
-    var ideal = 0;
-    var medias = [0, 0, 0, 0];
-    var contagens = [0, 0, 0, 0];
+    let escolhaFazenda = fazenda_select.value;
+    let escolhaSetor = setor_select.value;
+    let ativos = [];
+    let quantidadeDesativados = 0;
+    let total = 0;
+    let perigo = 0;
+    let atencao = 0;
+    let ideal = 0;
+    let medias = [0, 0, 0, 0];
+    let contagens = [0, 0, 0, 0];
 
-    for (var i = 0; i < sensores.length; i++) {
-        var s = sensores[i];
+    for (let i = 0; i < sensores.length; i++) {
+        let s = sensores[i];
         if ((escolhaFazenda == 'todas' || s.fazenda == escolhaFazenda) &&
             (escolhaSetor == 'todos' || s.setor == escolhaSetor)) {
             if (s.lux == null) {
@@ -79,11 +79,11 @@ function atualizarDashboard() {
             } else {
                 ativos.push(s);
                 total += s.lux;
-                var tipo = situacaoLux(s.lux);
+                let tipo = situacaoLux(s.lux);
                 if (tipo == 'Perigo') perigo++;
                 else if (tipo == 'Atenção') atencao++;
                 else ideal++;
-                for (var j = 0; j < setores.length; j++) {
+                for (let j = 0; j < setores.length; j++) {
                     if (s.setor == setores[j]) {
                         medias[j] += s.lux;
                         contagens[j]++;
@@ -93,8 +93,8 @@ function atualizarDashboard() {
         }
     }
 
-    var nome = 'Todas as fazendas';
-    for (var i = 0; i < fazendas.length; i++) {
+    let nome = 'Todas as fazendas';
+    for (let i = 0; i < fazendas.length; i++) {
         if (fazendas[i].id == escolhaFazenda) nome = fazendas[i].nome;
     }
     titulo_selecao.innerHTML = nome;
@@ -103,8 +103,8 @@ function atualizarDashboard() {
     sensores_desativados.innerHTML = quantidadeDesativados + ' desativado(s)';
     sem_leituras.hidden = ativos.length > 0;
 
-    var mediaGeral = 0;
-    var risco = 'Sem dados';
+    let mediaGeral = 0;
+    let risco = 'Sem dados';
     if (ativos.length > 0) {
         mediaGeral = total / ativos.length;
         if (perigo > 0) risco = 'Perigo';
@@ -123,24 +123,24 @@ function atualizarDashboard() {
     resumo_distribuicao.innerHTML = 'Sensores com leitura: ' + ativos.length;
 
     // Estimativa simples de exposição a partir da curva ilustrativa de 06h a 14h.
-    var historico = [];
-    var horas = 0;
-    for (var i = 0; i < fatores.length; i++) {
-        var leituraHora = Math.round(mediaGeral * fatores[i]);
+    let historico = [];
+    let horas = 0;
+    for (let i = 0; i < fatores.length; i++) {
+        let leituraHora = Math.round(mediaGeral * fatores[i]);
         historico.push(leituraHora);
         if (leituraHora > 15000 && i > 0) horas += 8 / (fatores.length - 1);
     }
     exposicao.innerHTML = ativos.length > 0 ? horas.toFixed(1).replace('.', ',') + ' h' : '—';
     meta_exposicao.innerHTML = 'Meta de 12h (curva demonstrativa)';
 
-    var linhasTabela = '';
-    for (var i = 0; i < fazendas.length; i++) {
-        var soma = 0;
-        var quantidade = 0;
-        var situacaoFazenda = 'Sem dados';
-        for (var j = 0; j < setores.length; j++) {
+    let linhasTabela = '';
+    for (let i = 0; i < fazendas.length; i++) {
+        let soma = 0;
+        let quantidade = 0;
+        let situacaoFazenda = 'Sem dados';
+        for (let j = 0; j < setores.length; j++) {
             if (escolhaSetor == 'todos' || escolhaSetor == setores[j]) {
-                var valor = fazendas[i].leituras[j];
+                let valor = fazendas[i].leituras[j];
                 if (valor != null) {
                     soma += valor;
                     quantidade++;
@@ -171,8 +171,8 @@ function atualizarDashboard() {
         options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
     });
 
-    var coresSetores = [];
-    for (var i = 0; i < medias.length; i++) {
+    let coresSetores = [];
+    for (let i = 0; i < medias.length; i++) {
         if (contagens[i] > 0) medias[i] = Math.round(medias[i] / contagens[i]);
         else medias[i] = 0;
         coresSetores.push(corSituacao(contagens[i] > 0 ? situacaoLux(medias[i]) : 'Sem dados'));
@@ -188,8 +188,8 @@ function atualizarDashboard() {
         options: { responsive: true, maintainAspectRatio: false }
     });
 
-    var texto = '';
-    for (var i = 0; i < historico.length; i++) {
+    let texto = '';
+    for (let i = 0; i < historico.length; i++) {
         texto += horarios[i] + ': ' + numero(historico[i]) + ' lux<br>';
     }
     valores_historico.innerHTML = texto;
@@ -207,14 +207,14 @@ function abrirSensores() {
 }
 
 function atualizarSensores() {
-    var texto = '';
-    var quantidade = 0;
-    for (var i = 0; i < sensores.length; i++) {
-        var s = sensores[i];
-        var ligar = s.lux != null;
-        var escolhaFazenda = fazenda_select.value;
-        var escolhaSetor = setor_select.value;
-        var tipo = sensor_status_filter.value;
+    let texto = '';
+    let quantidade = 0;
+    for (let i = 0; i < sensores.length; i++) {
+        let s = sensores[i];
+        let ligar = s.lux != null;
+        let escolhaFazenda = fazenda_select.value;
+        let escolhaSetor = setor_select.value;
+        let tipo = sensor_status_filter.value;
         if ((escolhaFazenda == 'todas' || escolhaFazenda == s.fazenda) &&
             (escolhaSetor == 'todos' || escolhaSetor == s.setor) &&
             (tipo == 'todos' || (tipo == 'ativo' && ligar) || (tipo == 'desativado' && !ligar))) {
