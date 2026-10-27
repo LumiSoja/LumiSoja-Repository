@@ -20,7 +20,7 @@
             <ul class="navbar">
                 <a href="#">Home</a> <!-- definir links quando estiverem todos os arquivos na main -->
                 <li>
-                    <a href="#">Tecnolgia</a>
+                    <a href="#">Tecnologia</a>
                 </li>
                 <li>
                     <a href="#">Simulador</a>
@@ -82,8 +82,10 @@
 
 <script>
 
-    let usuarioEmail = ['fernando.brandao@sptech.school', 'julia.araripe@sptech.school', 'marcos.antonio@sptech.school']
-    let usuarioSenha = ['fbrand1@3', 'juli4@#$', 'ma2&8an']
+    let usuarioEmail = ['brandao@email.com', 'julia@email.com', 'marcos@email.com']
+    let usuarioSenha = ['#Senha10', '%Senha20', '&Senha30']
+
+    let tentativasLogin = 0
 
     function EmailToLowerCase() {
 
@@ -97,15 +99,26 @@
 
         if (email.includes('@') && email.includes('.') && email.indexOf('@') != email.indexOf('.') - 1) {
 
-            if ((email == usuarioEmail[0] && senha == usuarioSenha[0]) || (email == usuarioEmail[1] && senha == usuarioSenha[1]) ||
+            while(tentativasLogin < 3) {
+
+                if ((email == usuarioEmail[0] && senha == usuarioSenha[0]) || (email == usuarioEmail[1] && senha == usuarioSenha[1]) ||
                 (email == usuarioEmail[2] && senha == usuarioSenha[2])) {
 
-                alert('Login realizado com sucesso!')
-            }
+                    alert('Login realizado com sucesso!')
+                    tentativasLogin = 0
+                }
 
-            else {
+                else {
 
-                alert('Senha ou usuário incorretos!')
+                    alert('Senha ou usuário incorretos!')
+                    tentativasLogin++
+                }
+                break
+            } 
+
+            if (tentativasLogin == 3) {
+                
+                alert('Muitas tentativas incorretas, contate um administrador.')
             }
         }
 
@@ -113,11 +126,6 @@
 
             alert('Insira um e-mail válido!')
         }
-    }
-
-    function RedirecionarCadastro() {
-
-        alert('Essa função irá redirecionar ao bloco de cadastro no futuro.')
     }
 
 </script>
