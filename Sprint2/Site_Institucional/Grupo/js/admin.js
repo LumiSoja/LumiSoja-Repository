@@ -44,8 +44,14 @@ function atualizarAdministracao() {
 
     let tabelaFazendas = '';
     for (let i = 0; i < fazendas.length; i++) {
+        let cidadeEstado = fazendas[i].cidade;
+
+        if (fazendas[i].estado != undefined && fazendas[i].estado != '') {
+            cidadeEstado += ' / ' + fazendas[i].estado;
+        }
+
         tabelaFazendas += `<tr><td>${textoSeguro(fazendas[i].nome)}</td><td>${textoSeguro(empresas[fazendas[i].empresa].nome)}</td>
-            <td>${fazendas[i].hectare.toLocaleString('pt-BR')}</td><td>${textoSeguro(fazendas[i].cidade)}</td></tr>`;
+            <td>${fazendas[i].hectare.toLocaleString('pt-BR')}</td><td>${textoSeguro(cidadeEstado)}</td></tr>`;
     }
     lista_fazendas.innerHTML = tabelaFazendas;
 
@@ -101,6 +107,14 @@ function adicionarEmpresa() {
     let nome = nome_empresa.value.trim();
     let razao = razao_empresa.value.trim();
     let cnpj = cnpj_empresa.value.replaceAll('.', '').replaceAll('/', '').replaceAll('-', '');
+    let email = email_empresa.value.trim();
+    let telefone = telefone_empresa.value.replaceAll('(', '').replaceAll(')', '').replaceAll(' ', '').replaceAll('-', '');
+    let logradouro = logradouro_empresa.value.trim();
+    let numero = numero_empresa.value.trim();
+    let bairro = bairro_empresa.value.trim();
+    let cep = cep_empresa.value.replaceAll('-', '');
+    let cidade = cidade_empresa.value.trim();
+    let estado = estado_empresa.value.trim();
     let repetido = false;
     for (let i = 0; i < empresas.length; i++) {
         if (empresas[i].cnpj == cnpj) repetido = true;
@@ -111,12 +125,20 @@ function adicionarEmpresa() {
     } else if (repetido) {
         msg_empresa.innerHTML = 'Este CNPJ já está na demonstração.';
     } else {
-        empresas.push({ nome: nome, razao: razao, cnpj: cnpj });
+        empresas.push({ nome: nome, razao: razao, cnpj: cnpj, email: email, telefone: telefone, logradouro: logradouro, numero: numero, bairro: bairro, cep: cep, cidade: cidade, estado: estado });
         atualizarAdministracao();
         msg_empresa.innerHTML = 'Empresa adicionada à demonstração.';
         nome_empresa.value = '';
         razao_empresa.value = '';
         cnpj_empresa.value = '';
+        email_empresa.value = '';
+        telefone_empresa.value = '';
+        logradouro_empresa.value = '';
+        numero_empresa.value = '';
+        bairro_empresa.value = '';
+        cep_empresa.value = '';
+        cidade_empresa.value = '';
+        estado_empresa.value = '';
     }
 }
 
@@ -125,16 +147,26 @@ function adicionarFazenda() {
     let empresa = empresa_fazenda.value;
     let hectare = Number(hectares_fazenda.value);
     let cidade = cidade_fazenda.value.trim();
+    let logradouro = logradouro_fazenda.value.trim();
+    let numero = numero_fazenda.value.trim();
+    let bairro = bairro_fazenda.value.trim();
+    let cep = cep_fazenda.value.replaceAll('-', '');
+    let estado = estado_fazenda.value.trim();
 
     if (nome == '' || empresa == '' || isNaN(hectare) || hectare <= 0 || cidade == '') {
         msg_fazenda.innerHTML = 'Preencha os dados da fazenda e escolha uma empresa.';
     } else {
-        fazendas.push({ nome: nome, empresa: Number(empresa), hectare: hectare, cidade: cidade });
+        fazendas.push({ nome: nome, empresa: Number(empresa), hectare: hectare, cidade: cidade, logradouro: logradouro, numero: numero, bairro: bairro, cep: cep, estado: estado });
         atualizarAdministracao();
         msg_fazenda.innerHTML = 'Fazenda adicionada à demonstração (não vai automaticamente para a dashboard).';
         nome_fazenda.value = '';
         hectares_fazenda.value = '';
         cidade_fazenda.value = '';
+        logradouro_fazenda.value = '';
+        numero_fazenda.value = '';
+        bairro_fazenda.value = '';
+        cep_fazenda.value = '';
+        estado_fazenda.value = '';
     }
 }
 

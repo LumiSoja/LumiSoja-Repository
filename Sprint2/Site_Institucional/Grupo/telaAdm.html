@@ -44,6 +44,14 @@
                 <label for="nome_empresa">Nome fantasia</label><input id="nome_empresa" name="nome" required maxlength="45">
                 <label for="razao_empresa">Razão social</label><input id="razao_empresa" name="razao" required maxlength="45">
                 <label for="cnpj_empresa">CNPJ</label><input id="cnpj_empresa" name="cnpj" required maxlength="18" inputmode="numeric">
+                <label for="email_empresa">E-mail da empresa</label><input type="email" id="email_empresa" name="email" maxlength="65">
+                <label for="telefone_empresa">Telefone com DDD</label><input type="tel" id="telefone_empresa" name="telefone" maxlength="16">
+                <label for="logradouro_empresa">Logradouro</label><input id="logradouro_empresa" name="logradouro" maxlength="100">
+                <label for="numero_empresa">Número</label><input id="numero_empresa" name="numero" maxlength="6">
+                <label for="bairro_empresa">Bairro</label><input id="bairro_empresa" name="bairro" maxlength="50">
+                <label for="cep_empresa">CEP</label><input id="cep_empresa" name="cep" maxlength="9" placeholder="00000-000">
+                <label for="cidade_empresa">Cidade</label><input id="cidade_empresa" name="cidade" maxlength="45">
+                <label for="estado_empresa">Estado / UF</label><input id="estado_empresa" name="estado" maxlength="45">
                 <button type="button" class="adicionar" onclick="adicionarEmpresa()">Cadastrar empresa</button><p id="msg_empresa" class="mensagem" role="status"></p>
             </form>
             <div class="tabela-scroll" tabindex="0" role="region" aria-label="Empresas cadastradas"><table><thead><tr><th scope="col">Empresa</th><th scope="col">Razão social</th><th scope="col">CNPJ</th></tr></thead><tbody id="lista_empresas"></tbody></table></div>
@@ -53,7 +61,12 @@
                 <label for="empresa_fazenda">Empresa da fazenda</label><select id="empresa_fazenda" name="empresa" required></select>
                 <label for="nome_fazenda">Nome da fazenda</label><input id="nome_fazenda" name="nome" required maxlength="45">
                 <label for="hectares_fazenda">Área em hectares</label><input type="number" id="hectares_fazenda" name="hectares" required min="0.01" max="99999999.99" step="0.01">
-                <label for="cidade_fazenda">Cidade / UF</label><input id="cidade_fazenda" name="cidade" required maxlength="70" placeholder="Ex.: Londrina / PR">
+                <label for="logradouro_fazenda">Logradouro</label><input id="logradouro_fazenda" name="logradouro" maxlength="100">
+                <label for="numero_fazenda">Número</label><input id="numero_fazenda" name="numero" maxlength="6">
+                <label for="bairro_fazenda">Bairro</label><input id="bairro_fazenda" name="bairro" maxlength="50">
+                <label for="cep_fazenda">CEP</label><input id="cep_fazenda" name="cep" maxlength="9" placeholder="00000-000">
+                <label for="cidade_fazenda">Cidade</label><input id="cidade_fazenda" name="cidade" required maxlength="45" placeholder="Ex.: Londrina">
+                <label for="estado_fazenda">Estado / UF</label><input id="estado_fazenda" name="estado" maxlength="45" placeholder="Ex.: PR">
                 <button type="button" class="adicionar" onclick="adicionarFazenda()">Cadastrar fazenda</button><p id="msg_fazenda" class="mensagem" role="status"></p>
             </form>
             <div class="tabela-scroll" tabindex="0" role="region" aria-label="Fazendas cadastradas"><table><thead><tr><th scope="col">Fazenda</th><th scope="col">Empresa</th><th scope="col">Hectares</th><th scope="col">Cidade / UF</th></tr></thead><tbody id="lista_fazendas"></tbody></table></div>
