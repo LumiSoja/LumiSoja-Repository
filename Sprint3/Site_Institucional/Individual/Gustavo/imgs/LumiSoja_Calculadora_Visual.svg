@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1420" viewBox="0 0 1280 1420" role="img" aria-labelledby="title desc">
+<title id="title">LumiSoja — Calculadora financeira</title><desc id="desc">Fluxo de entradas, estimativa de sacas, conversão anual e comparação dos cenários sem sensores e com monitoramento.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#497363"/></marker></defs><rect width="1280" height="1420" fill="white"/>
+<rect x="40" y="30" width="1200" height="195" rx="20" fill="#F3F9F5" stroke="#BAD2C5" stroke-width="2"/>
+<path d="M558 58V197" stroke="#C9DED1" stroke-width="2"/>
+<g transform="translate(65 50)" fill="none" stroke="#176347" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="2" width="28" height="32" rx="4"/><path d="M10 10h14M10 18h14M10 26h8"/></g>
+<text x="117" y="77" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#176347" font-weight="700">1. ENTRADAS DO USUÁRIO</text>
+<text x="65" y="126" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#233E34">H = área da propriedade (ha)</text>
+<text x="65" y="162" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#233E34">V = preço da saca (R$)</text>
+<g transform="translate(585 50)" fill="none" stroke="#176347" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 34V14M18 24C3 25 2 12 2 12c13-2 16 5 16 12ZM18 17C32 17 34 4 34 4 21 2 18 10 18 17Z"/></g>
+<text x="637" y="77" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#176347" font-weight="700">PARÂMETROS FIXOS DO PROJETO</text>
+<text x="585" y="123" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">225.000 plantas/ha • 69 vagens/planta</text>
+<text x="585" y="155" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">2,5 grãos/vagem • PMG de 180 g</text>
+<text x="585" y="187" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">Saca de 60 kg • 1,5 ciclo/ano • acréscimo de 43%</text>
+<path d="M640 225V270" fill="none" stroke="#497363" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="40" y="280" width="1200" height="405" rx="20" fill="#FFFFFF" stroke="#BAD2C5" stroke-width="2"/>
+<g transform="translate(65 298)" fill="none" stroke="#176347" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="1" width="27" height="34" rx="4"/><path d="M10 8h15M10 16h3m8 0h3M10 23h3m8 0h3M10 30h3m8 0h3"/></g>
+<text x="117" y="325" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#176347" font-weight="700">2. ESTIMAR SACAS POR HECTARE E POR CICLO</text>
+<rect x="65" y="350" width="1150" height="52" rx="10" fill="#EAF5ED" stroke="#EAF5ED" stroke-width="2"/>
+<text x="84" y="383" font-family="DejaVu Sans, Arial, sans-serif" font-size="24" fill="#176347" font-weight="700">Fórmula: (225.000 × 69 × 2,5 × 180) ÷ (1.000 × 1.000 × 60)</text>
+<text x="65" y="437" font-family="DejaVu Sans, Arial, sans-serif" font-size="21" fill="#233E34" font-weight="700">Por que dividir por 1.000, depois por 1.000 e por 60?</text>
+<text x="65" y="476" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">Primeiro ÷ 1.000: o PMG é o peso de mil grãos. Assim, 180 ÷ 1.000 = 0,18 g por grão.</text>
+<text x="65" y="504" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">São 225.000 × 69 × 2,5 = 38.812.500 grãos/ha/ciclo; multiplicados por 0,18 g,</text>
+<text x="65" y="532" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">resultam em 6.986.250 g/ha/ciclo.</text>
+<path d="M65 552H1215" stroke="#E0EBE4"/>
+<text x="65" y="582" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">Segundo ÷ 1.000: converte gramas em quilogramas:</text>
+<text x="65" y="610" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">6.986.250 ÷ 1.000 = 6.986,25 kg/ha/ciclo.</text>
+<text x="65" y="652" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">Por fim ÷ 60: cada saca pesa 60 kg. Então, 6.986,25 ÷ 60 = 116,4375 sacas/ha/ciclo.</text>
+<path d="M640 685V730" fill="none" stroke="#497363" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="245" y="740" width="790" height="125" rx="20" fill="#F3F9F5" stroke="#BAD2C5" stroke-width="2"/>
+<g transform="translate(275 758)" fill="none" stroke="#176347" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="32" height="29" rx="4"/><path d="M10 1v10M26 1v10M2 16h32M10 23h5m6 0h5M10 29h5"/></g>
+<text x="327" y="785" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#176347" font-weight="700">3. CONVERTER PARA UM ANO</text>
+<text x="275" y="830" font-family="DejaVu Sans, Arial, sans-serif" font-size="24" fill="#176347" font-weight="700">116,4375 × 1,5 = 174,65625 sacas/ha/ano</text>
+<path d="M640 865V890" fill="none" stroke="#497363" stroke-width="2.5"/>
+<path d="M640 890H330V925" fill="none" stroke="#497363" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M640 890H950V925" fill="none" stroke="#497363" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="40" y="935" width="580" height="255" rx="20" fill="#F6F9F7" stroke="#BAD2C5" stroke-width="2"/>
+<rect x="660" y="935" width="580" height="255" rx="20" fill="#EFF7FB" stroke="#AFCBDA" stroke-width="2"/>
+<g transform="translate(65 955)" fill="none" stroke="#176347" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 33h34M3 28l11-14h10l10 14M18 34V18M4 5h8m-4-4v8"/></g>
+<text x="117" y="982" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#176347" font-weight="700">4A. SEM SENSORES</text>
+<g transform="translate(685 955)" fill="none" stroke="#27658A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="34" height="25" rx="3"/><path d="M12 35h12M18 28v7M6 21l7-7 6 4 10-10"/></g>
+<text x="737" y="982" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#27658A" font-weight="700">4B. COM MONITORAMENTO</text>
+<text x="65" y="1030" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">Produção anual da propriedade</text>
+<text x="65" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" fill="#176347" font-weight="700">174,65625 × H = sacas/ano</text>
+<text x="65" y="1120" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">Faturamento anual (F₀)</text>
+<text x="65" y="1155" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" fill="#176347" font-weight="700">174,65625 × H × V</text>
+<text x="685" y="1030" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">Produção anual da propriedade</text>
+<text x="685" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" fill="#27658A" font-weight="700">174,65625 × 1,43 × H = sacas/ano</text>
+<text x="685" y="1120" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" fill="#233E34">Faturamento anual (F₁)</text>
+<text x="685" y="1155" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" fill="#27658A" font-weight="700">174,65625 × 1,43 × H × V</text>
+<path d="M330 1190V1220H950V1190" fill="none" stroke="#497363" stroke-width="2.5"/>
+<path d="M640 1220V1250" fill="none" stroke="#497363" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="120" y="1260" width="1040" height="130" rx="20" fill="#EAF5ED" stroke="#A8CCB8" stroke-width="2"/>
+<g transform="translate(145 1278)" fill="none" stroke="#176347" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v31h32M9 27v-9h5v9M19 27V12h5v15M29 27V5h5v22"/></g>
+<text x="197" y="1305" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#176347" font-weight="700">5. EXIBIR E COMPARAR OS RESULTADOS</text>
+<text x="145" y="1345" font-family="DejaVu Sans, Arial, sans-serif" font-size="21" fill="#233E34">Em cada cenário: produção e faturamento anuais; médias mensais = anuais ÷ 12.</text>
+<text x="145" y="1375" font-family="DejaVu Sans, Arial, sans-serif" font-size="21" fill="#233E34">Diferença anual de faturamento = F₁ − F₀; diferença mensal = (F₁ − F₀) ÷ 12.</text>
+</svg>

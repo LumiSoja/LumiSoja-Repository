@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> LumiSoja - Login </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../Grupo/assetsGeral/estiloNavbarEFooter.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="./img/LOGO LUMI SOJA.jpeg">
+                <h1 class="titulo">LumiSoja</h1>
+            </div>
+            <ul class="navbar">
+                <a href="#">Home</a> <!-- definir links quando estiverem todos os arquivos na main -->
+                <li>
+                    <a href="#">Tecnologia</a>
+                </li>
+                <li>
+                    <a href="#">Simulador</a>
+                </li>
+                <li>
+                    <a href="#">Cadastro</a>
+                </li>
+                <li>
+                    <a href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="login_container">
+
+        <div class="login_texto" id="div_login_texto">
+
+            <span style="color: white; font-size: 60px;"> Hora do Login </span>
+            <span style="color: #ffde4e; font-style: italic; font-size: 40px;"> Vamos acessar sua <br> dashboard!</span>
+
+        </div>
+
+        <div class="login_formulario" id="div_login_formulario">
+
+            <span style="align-self: center; font-size: 50px; font-weight: 900; color: #1e502d; padding: 20px;"> Login </span>
+            
+            <div class="login_input">
+
+                <span style="align-self: flex-start; margin-left: 50px; font-size: 25px; font-weight: bold;"> E-mail </span>
+                <br>
+                <input type="text" id="ipt_email" oninput="EmailToLowerCase()">
+                <br>
+
+            </div>
+
+            <div class="login_input">
+
+                <span style="align-self: flex-start; margin-left: 50px; font-size: 25px; font-weight: bold;"> Senha </span>
+                <br>
+                <input type="password" id="ipt_senha">
+
+                <br>
+            </div>
+
+            <div class="login_botoes">
+
+                <button onclick="ValidarEmail()"> Entrar </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    let usuarioEmail = ['brandao@email.com', 'julia@email.com', 'marcos@email.com']
+    let usuarioSenha = ['#Senha10', '%Senha20', '&Senha30']
+
+    let tentativasLogin = 0
+
+    function EmailToLowerCase() {
+
+        ipt_email.value = ipt_email.value.toLowerCase()
+    }
+
+    function ValidarEmail() {
+
+        let email = ipt_email.value.replaceAll(' ', '')
+        let senha = ipt_senha.value
+
+        if (email.includes('@') && email.includes('.') && email.indexOf('@') != email.indexOf('.') - 1) {
+
+            while(tentativasLogin < 3) {
+
+                if ((email == usuarioEmail[0] && senha == usuarioSenha[0]) || (email == usuarioEmail[1] && senha == usuarioSenha[1]) ||
+                (email == usuarioEmail[2] && senha == usuarioSenha[2])) {
+
+                    alert('Login realizado com sucesso!')
+                    tentativasLogin = 0
+                }
+
+                else {
+
+                    alert('Senha ou usuário incorretos!')
+                    tentativasLogin++
+                }
+                break
+            } 
+
+            if (tentativasLogin == 3) {
+                
+                alert('Muitas tentativas incorretas, contate um administrador.')
+            }
+        }
+
+        else {
+
+            alert('Insira um e-mail válido!')
+        }
+    }
+
+</script>

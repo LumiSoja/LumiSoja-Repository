@@ -1,0 +1,21 @@
+{
+  "name": "lumisoja-repository",
+  "version": "1.0.0",
+  "description": "Sistema de monitorização IoT para análise de luminosidade em plantações de soja, focado no apoio à tomada de decisão no agronegócio.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LumiSoja/LumiSoja-Repository.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/LumiSoja/LumiSoja-Repository/issues"
+  },
+  "homepage": "https://github.com/LumiSoja/LumiSoja-Repository#readme"
+}

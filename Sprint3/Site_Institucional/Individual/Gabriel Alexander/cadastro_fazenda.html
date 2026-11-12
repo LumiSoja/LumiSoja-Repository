@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LumiSoja - Cadastro Fazenda</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../Grupo/assetsGeral/estiloNavbarEFooter.css"">
+</head>
+
+<body class="cadastro-fazenda">
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="./img/LOGO LUMI SOJA.jpeg">
+                <h1 class="titulo">LumiSoja</h1>
+            </div>
+            <ul class="navbar">
+                <a href="#">Home</a> <!-- definir links quando estiverem todos os arquivos na main -->
+                <li>
+                    <a href="#">Tecnologia</a>
+                </li>
+                <li>
+                    <a href="#">Simulador</a>
+                </li>
+                <li>
+                    <a href="#">Cadastro</a>
+                </li>
+                <li>
+                    <a href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h1 class="page-title"><b>Cadastro Fazenda</b></h1>
+    <div class="contato">
+        <div id="cabecalho">
+        <div class="contato-texto">
+            <h1>Dê nome e contexto à sua operação no campo.</h1>
+            
+            <div class="email-info">
+                <img class="emoji" src="">
+                <span>contato@lumisoja.com.br</span>
+            </div>
+        </div>
+        </div>
+
+        <div class="containerCadastro">
+            <label for="ipt_nome">Nome da Fazenda</label><br>
+            <input type="text" id="ipt_nome"><br><br>
+
+            <label for="ipt_hectares">Hectares</label><br>
+            <input type="text" id="ipt_hectares" placeholder="ha"><br><br>
+            
+            <label for="ipt_email">E-mail</label><br>
+            <input type="email" id="ipt_email" placeholder="usuario@empresa.com"><br><br>
+            
+            <label for="ipt_tel">Telefone</label><br>
+            <input type="tel" id="ipt_tel" placeholder="(DD) 99999-9999"><br><br>
+            
+            <label for="ipt_logradouro">Logradouro</label><br>
+            <input type="text" id="ipt_logradouro"><br><br>
+
+            <label for="ipt_numero">Número</label><br>
+            <input type="text" id="ipt_numero"><br><br>
+
+            <label for="ipt_bairro">Bairro</label><br>
+            <input type="text" id="ipt_bairro"><br><br>
+
+            <label for="ipt_cep">CEP</label><br>
+            <input type="text" id="ipt_cep" placeholder="00000-000"><br><br>
+
+            <label for="ipt_cidade">Cidade</label><br>
+            <input type="text" id="ipt_cidade"><br><br>
+
+            <label for="ipt_estado">Estado</label><br>
+            <input type="text" id="ipt_estado"><br><br>
+            
+            
+            <button onclick="cadastrar()">Cadastrar</button><br><br>
+            <div id="div_msg"></div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <img class="logo" src="">
+        <span>&copy; 2026 LumiSoja. Monitoramento de luminosidade para o agronegócio brasileiro.</span>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function cadastrar() {
+        let nome = ipt_nome.value;
+        let cnpj = ipt_cnpj.value;
+        let email = ipt_email.value;
+        let hectares = ipt_hectares.value;
+        let logradouro = ipt_logradouro.value;
+        let telefone = ipt_tel.value;
+        let arroba = email.includes('@');
+        let pontoCom = email.includes('.com');
+
+        if (nome == '') {
+            div_msg.innerHTML = 'O campo Nome da Fazenda é obrigatório.';
+        } 
+
+        else if (cnpj == '') {
+            div_msg.innerHTML = 'O campo CNPJ é obrigatório.';
+        }
+
+        else if (email == '') {
+            div_msg.innerHTML = 'O campo e-mail é obrigatório.';
+        }
+
+        else if (hectares == '') {
+            div_msg.innerHTML = 'O campo Hectares é obrigatório.';
+        }
+
+        else if (logradouro == '') {
+            div_msg.innerHTML = 'O campo Logradouro é obrigatório.';
+        }
+
+        else if (telefone == '') {
+            div_msg.innerHTML = 'O campo Telefone é obrigatório.';
+        }
+
+        else if (arroba == false || pontoCom == false) {
+            div_msg.innerHTML = `Por favor, insira um e-mail válido com @ e .com.`;
+        }
+    }
+</script>

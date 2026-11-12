@@ -286,3 +286,5 @@ JOIN sensor s
     ON s.fk_fazenda = fznd.id
 JOIN leitura_sensor ls
     ON ls.fk_sensor = s.id;
+    
+    

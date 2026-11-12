@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo img {
+    width: 50px;
+    padding-left: 0px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.titulo {
+    color: white;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 20px;
+}
+.topo{
+    flex:1;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.55)), url("assets/imgs/bg-Soy-background_img.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.banner{
+    flex: 1;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Fraunces', Georgia, serif;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 8rem;
+    
+    
+}
+
+.banner h5{
+    padding-left: 0;
+    margin-bottom: 15px;
+    margin-left: 6%;
+    font-size: 1vw;
+}
+
+.banner p{
+    padding-left: 10px;
+    margin-bottom: 15px;
+    margin-left: 5%;
+    font-size: 4.5vw;
+    line-height: 1.05;
+    font-weight: bold;
+}
+
+.header{
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    height: 70px;
+    font-size: 16px;
+    background-color: rgba(10, 25, 15, 0.45);
+    backdrop-filter: blur(5px);
+}
+
+.header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+}
+
+.navbar a {
+    color: white;
+    font-family: 'Banbauri', Georgia, serif;
+    text-decoration: none;
+    border-color: #d4a017;
+}
+
+.navbar li{
+    color: #d4a017;
+    text-decoration: none;
+    border-color: #d4a017;
+}
+
+button {
+    color: black;
+    background-color: #f2c400;
+    font-weight: bold;
+    border-radius: 30px;
+    height: 40px;
+    width: 180px;
+    margin-left: 6%;
+    border-color: azure;
+}
+
+
+.footer {
+    display: flex;
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0, 0.7)), url("assets/imgs/bg-Soy-background_img.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.footer1 {
+    width: 50%;
+    text-align: center;
+    border-top: 2px solid #f2c400;
+    border-right: 2px solid #f2c400; 
+}
+
+.footer2 {
+    width: 50%;
+    text-align: center;
+    border-top: 2px solid #f2c400;
+    border-right: 2px solid #f2c400; 
+}
+
+.footer1, .footer2 {
+    box-sizing: border-box;
+    vertical-align: top;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.footer1 h2, .footer2 h2 {
+    color: #f2c400;
+    margin: 0.5px;
+    font-size: 55px;
+}
+
+.footer1 p, .footer2 p {
+    margin: 0;
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+}

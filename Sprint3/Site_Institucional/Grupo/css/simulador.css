@@ -1,0 +1,318 @@
+body {
+    background-color: whitesmoke;
+    padding: 0;
+    margin: 0;
+}
+
+.container_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    font-family: Arial, Helvetica, Verdana, Geneva, sans-serif;
+    color: #070c0f;
+    padding: 0;
+    height: 100%;
+}
+
+/*    Começo TÍTULO    */
+
+.titulo_calc {
+    margin: 8px auto 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo_calc h2 {
+    margin: auto;
+}
+
+/*    Fim TÍTULO    */
+
+
+
+/*
+    Começo ENTRADA DE VALORES para o Script
+*/
+
+.container_inOUt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 8px;
+
+    width: 100%;
+    max-width: 1500px;
+    height: 75vh;
+    padding: 4px;
+    background-color: whitesmoke;
+}
+
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10%;
+
+    width: 35%;
+    height: 100%;
+    margin: auto;
+
+    border-radius: 12px;
+    border: solid 2px #458d32;
+}
+
+.input_field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    width: 80%;
+    gap: 2%;
+}
+
+.input_field label {
+    font-size: 16px;
+}
+
+.input_field input {
+    height: 30px;
+    width: 75%;
+    text-align: center;
+
+    border: solid 1px #628952;
+    border-radius: 4px;
+
+}
+
+.div_button button {
+    font-size: 22px;
+    border-radius: 16px;
+    background-color: #1a4a1e;
+    border: solid 2.4px #1a4a1e;
+    color: whitesmoke;
+    transition: 0.27s ease-in-out;
+}
+
+.div_button button:hover {
+    background-color: #ffdf4ec9;
+    border: solid 2.4px #1a4a1e;
+    color: #1a4a1e;
+}
+
+/*
+    Fim ENTRADA DE VALORES
+*/
+
+
+/*
+    Começo RETORNO MENSAGEM da função no Script
+*/
+
+.output {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+
+    width: 65%;
+    height: 100%;
+    margin: auto;
+
+    border-radius: 12px;
+    color: #fefff2;
+    background-color: #1a4a1e;
+    border: 1.5px solid;
+
+    overflow-y: scroll;
+}
+
+
+
+/*   COMEÇO DIV COM RETORNO DO CÁLCULO   */
+.div_msg {
+    flex-shrink: 0;
+    min-height: 72%;
+    width: 100%;
+    margin: 10px auto 0;
+    padding: 0;
+}
+
+.div_msg h2 {
+    margin: 0 5%;
+    text-align: center;
+    color: #ffde4e;
+}
+
+.div_msg h4 {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.div_msg h5 {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.div_msg .retorno_aumento_fatura {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    color: #ffde4e;
+}
+
+
+.container_retorno {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    gap: 16px;
+    padding: 4px;
+    margin: 16px auto;
+    height: 85%;
+    width: 90%;
+    background-color: #628952;
+    border-radius: 12px;
+}
+
+.container_grade_metricas {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    height: 100%;
+}
+
+.container_grade_metricas .cabecalho_retorno {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.container_estimativas {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    text-align: center;
+
+    height: 100%;
+    gap: 3%;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    
+    gap: 8px;
+    height: 100%;
+    
+    font-size: 18px;
+}
+
+.box .valoresSolucaoPre{
+    margin: 0 auto;
+    color: #ffde4e;
+    background-color: rgba(220, 20, 60, 0.301);
+    border-radius: 4px;
+    border: none;
+}
+
+.box .valoresSolucaoPos{
+    margin: 0 auto;
+    color: #ffde4e;
+    background-color: #1a4a1e5e;
+    border-radius: 4px;
+    border: none;
+}
+
+
+/*
+    Fim RETORNO MENSAGEM
+*/
+
+
+
+
+
+
+
+
+/*   COMEÇO DIV COM IMG EXPLICATIVA DA SIMULAÇÃO   */
+
+.txt_explicacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 4% 0;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.txt_explicacao button.ocultaMostra {
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+
+    height: 5vh;
+    margin: auto 0 auto 0px;
+    font-size: 22px;
+
+    transition: 0.3s ease-in-out;
+}
+
+.txt_explicacao button.ocultaMostra:hover {
+    color: rgb(170, 169, 169);
+}
+
+
+
+.txt_explicacao p {
+    text-align: center;
+
+}
+
+.desc {
+    width: 100%;
+    text-align: center;
+}
+
+
+.desc {
+    margin-top: 16px;
+}
+
+.desc img {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    width: 85%;
+    border: solid 1px rgb(255, 255, 255);
+    border-radius: 4px;
+}
+
+
+
+/*   FIM DIV COM IMG EXPLICATIVA DA SIMULAÇÃO   */
+/* Mantém o painel e os campos do original sem cortar conteúdo. */
+.container_main { padding-bottom: 30px; }
+.container_inOUt { min-height: 480px; }
+.inputs { flex-shrink: 0; }
+.input_field { min-width: 0; }
+.input_field label, .input_field input { min-width: 0; }
+.output { justify-content: flex-start; }
+.container_estimativas .box { width: 50%; min-width: 0; }
+.txt_explicacao button { cursor: pointer; }
