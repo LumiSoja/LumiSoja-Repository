@@ -7,6 +7,7 @@ let fatores = [0.04, 0.28, 0.70, 1.08, 1.20, 1.08, 1];
 
 // Cada vetor de leituras acompanha os setores na ordem acima.
 // null representa um sensor desligado.
+
 let fazendas = [
     { id: 1, nome: 'Fazenda Boa Vista', cidade: 'Guarantã do Norte - MT', coordenada: '-9.7875, -54.9120', leituras: [34250, 38500, 13000, null] },
     { id: 2, nome: 'Estância Progresso', cidade: 'Londrina - PR', coordenada: '-23.3045, -51.1696', leituras: [28500, 30500, 32500, 26500] },
@@ -29,7 +30,7 @@ for (let i = 0; i < fazendas.length; i++) {
     }
 }
 
-let graficoHistorico = null;
+// let graficoHistorico = null;
 let graficoSetores = null;
 let graficoSituacoes = null;
 
@@ -99,8 +100,9 @@ function atualizarDashboard() {
     }
     titulo_selecao.innerHTML = nome;
     bolinha_selecao.style.backgroundColor = '#7b8581';
-    sensores_contagem.innerHTML = ativos.length;
-    sensores_desativados.innerHTML = quantidadeDesativados + ' desativado(s)';
+    sensores_contagem.innerHTML = '20' + ' setores monitorados';
+    sensores_desativados.innerHTML = quantidadeDesativados;
+    quantidadeDesativados == 0 ? abrir_sensores.style.backgroundColor = '#43964D' : abrir_sensores.style.backgroundColor = '#d32f2f';
     sem_leituras.hidden = ativos.length > 0;
 
     let mediaGeral = 0;
@@ -113,14 +115,15 @@ function atualizarDashboard() {
     }
 
     bolinha_selecao.style.backgroundColor = corSituacao(risco);
-    lux_atual.innerHTML = ativos.length > 0 ? numero(mediaGeral) + ' lux' : '—';
-    risco_atual.innerHTML = risco;
-    risco_atual.style.color = corSituacao(risco);
-    risco_detalhe.innerHTML = ideal + ' ideal, ' + atencao + ' atenção, ' + perigo + ' perigo';
-    risco_local.innerHTML = nome + (escolhaSetor == 'todos' ? '' : ' - Setor ' + escolhaSetor);
+    lux_descrepante.innerHTML = ativos.length > 0 ? mediaGeral + ' lux' : '—';
+    kpi_desc.style.backgroundColor = corSituacao(risco)
+    // risco_atual.innerHTML = risco;
+    // risco_atual.style.color = corSituacao(risco);
+    // risco_detalhe.innerHTML = ideal + ' ideal, ' + atencao + ' atenção, ' + perigo + ' perigo';
+    // risco_local.innerHTML = nome + (escolhaSetor == 'todos' ? '' : ' - Setor ' + escolhaSetor);
     situacao_selecao.innerHTML = 'Dados de exemplo para demonstração do sistema.';
-    lux_detalhe.innerHTML = 'Média de ' + ativos.length + ' sensor(es) ativo(s)';
-    resumo_distribuicao.innerHTML = 'Sensores com leitura: ' + ativos.length;
+    // lux_detalhe.innerHTML = 'Média de ' + ativos.length + ' sensor(es) ativo(s)';
+    resumo_distribuicao.innerHTML = 'Setores com leitura: ' + ativos.length;
 
     // Estimativa simples de exposição a partir da curva ilustrativa de 06h a 14h.
     let historico = [];
@@ -130,8 +133,8 @@ function atualizarDashboard() {
         historico.push(leituraHora);
         if (leituraHora > 15000 && i > 0) horas += 8 / (fatores.length - 1);
     }
-    exposicao.innerHTML = ativos.length > 0 ? horas.toFixed(1).replace('.', ',') + ' h' : '—';
-    meta_exposicao.innerHTML = 'Meta de 12h (curva demonstrativa)';
+    exposicao.innerHTML = ativos.length > 0 ? 'R$' + '100.000,00' : '—';
+    // meta_exposicao.innerHTML = 'Meta de 12h (curva demonstrativa)';
 
     let linhasTabela = '';
     for (let i = 0; i < fazendas.length; i++) {
@@ -161,16 +164,16 @@ function atualizarDashboard() {
         return;
     }
 
-    if (graficoHistorico != null) graficoHistorico.destroy();
+    // if (graficoHistorico != null) graficoHistorico.destroy();
     if (graficoSetores != null) graficoSetores.destroy();
     if (graficoSituacoes != null) graficoSituacoes.destroy();
 
-    graficoHistorico = new Chart(myChart, {
+    /* graficoHistorico = new Chart(myChart, {
         type: 'line',
         data: { labels: horarios, datasets: [{ label: 'Luminosidade (Lux)', data: historico, borderColor: '#E5B32D', backgroundColor: '#E5B32D', tension: 0.4 }] },
         options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
     });
-
+    */
     let coresSetores = [];
     for (let i = 0; i < medias.length; i++) {
         if (contagens[i] > 0) medias[i] = Math.round(medias[i] / contagens[i]);
@@ -179,7 +182,7 @@ function atualizarDashboard() {
     }
     graficoSetores = new Chart(myChart2, {
         type: 'bar',
-        data: { labels: ['Norte', 'Sul', 'Leste', 'Oeste'], datasets: [{ label: 'Média (Lux)', data: medias, backgroundColor: coresSetores }] },
+        data: { labels: ['Norte', 'Sul', 'Leste', 'Oeste'], datasets: [{ label: 'Sacas por Hectare', data: medias, backgroundColor: coresSetores }] },
         options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
     });
     graficoSituacoes = new Chart(myChart3, {
@@ -187,12 +190,13 @@ function atualizarDashboard() {
         data: { labels: ['Ideal', 'Atenção', 'Perigo'], datasets: [{ data: [ideal, atencao, perigo], backgroundColor: ['#43964D', '#F39C12', '#d32f2f'] }] },
         options: { responsive: true, maintainAspectRatio: false }
     });
-
+    /*
     let texto = '';
     for (let i = 0; i < historico.length; i++) {
         texto += horarios[i] + ': ' + numero(historico[i]) + ' lux<br>';
     }
     valores_historico.innerHTML = texto;
+    */
 }
 
 function selecionarFazenda(id) {

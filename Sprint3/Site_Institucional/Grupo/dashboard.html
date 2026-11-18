@@ -29,8 +29,7 @@
                 </select>
             </label>
         </div>
-        <p class="aviso">Dados fictícios para apresentação. Não há conexão com sensores ou banco de dados nesta versão.</p>
-
+    
         <div class="conteudo">
             <!-- A tabela fica à esquerda, e os cards e gráficos ficam à direita. -->
             <aside class="fazendas">
@@ -40,61 +39,45 @@
                     <tbody id="fazendas_body"></tbody>
                 </table>
                 <p class="aviso">Clique em uma fazenda para atualizar os dados. A situação considera a pior leitura atual no setor selecionado.</p>
-                <details>
-                    <summary>Entenda as cores</summary>
-                    <p><span class="bolinha ideal" aria-hidden="true"></span> Verde: dentro da faixa ideal.</p>
-                    <p><span class="bolinha atencao" aria-hidden="true"></span> Laranja: até 6.500 lux de distância de um limite, dentro da faixa.</p>
-                    <p><span class="bolinha perigo" aria-hidden="true"></span> Vermelho: abaixo de 15.000 lux; acima de 80.000 lux.</p>
-                    <p><span class="bolinha sem-dados" aria-hidden="true"></span> Cinza: sem sensor ativo com leitura.</p>
-                </details>
+
+                <div class="box">
+                    <h3>Explicação das Cores </h3>
+                <p class="explicacao"> <span class="bolinha ideal" aria-hidden="true"></span> Verde: dentro da faixa ideal. <br>
+                    <span class="bolinha atencao" aria-hidden="true"></span> Laranja: até 6.500 lux de distância de um limite, dentro da faixa.<br>
+                    <span class="bolinha perigo" aria-hidden="true"></span> Vermelho: abaixo de 15.000 lux; acima de 80.000 lux. <br>
+                    <span class="bolinha sem-dados" aria-hidden="true"></span> Cinza: sem leitura.
+                </p>
+            </div>
+
             </aside>
 
             <section class="area-dashboard" aria-labelledby="titulo_selecao">
-                <h3 id="titulo_selecao">Todas as fazendas</h3>
+                <h1 id="titulo_selecao">Todas as fazendas</h1>
                 <p id="situacao_selecao" role="status" aria-live="polite"></p>
                 <div class="cards">
-                    <div class="box box1">
-                        <p>LUMINOSIDADE ATUAL</p>
-                        <h2 id="lux_atual">—</h2>
-                        <h5 id="lux_detalhe">Média dos sensores ativos</h5>
-                        <h5>Ideal Mínimo: 15 mil Lux</h5>
-                        <h5>Ideal Máximo: 80 mil Lux</h5>
-                    </div>
-                    <div class="box box2">
-                        <p>EXPOSIÇÃO DIÁRIA</p>
-                        <h2 id="exposicao">—</h2>
-                        <h5 id="meta_exposicao">Meta diária de 12h</h5>
-                        <h5>Horas acima de 15 mil lux até as 14h</h5>
-                    </div>
                     <button class="box box3" id="abrir_sensores" type="button" onclick="abrirSensores()" aria-haspopup="dialog" aria-controls="sensores_dialog">
-                        <span class="rotulo">SENSORES ATIVOS (IoT)</span>
-                        <span class="valor" id="sensores_contagem">—</span>
-                        <span class="detalhe" id="sensores_desativados"></span>
-                        <span class="detalhe">Clique para ver sensores e localizações</span>
+                        <span class="rotulo">SETORES INATIVOS</span>
+                        <span class="valor" id="sensores_desativados">—</span>
+                        <span class="detalhe" id="sensores_contagem">— sensores ativos</span>
+                        <span class="detalhe">Clique para ver setores e localizações</span>
                     </button>
-                    <div class="box box4">
-                        <p>SITUAÇÃO POR ÁREA MONITORADA</p>
-                        <h2 id="risco_atual">—</h2>
-                        <h5 id="risco_detalhe"></h5>
-                        <h5 id="risco_local"></h5>
+                    <div class="box box2" style="background-color: #d32f2f;">
+                        <p> PERDA DE LUCRO ESTIMADA </p>
+                        <h2 id="exposicao">—</h2>
+                    </div>
+                    <div id="kpi_desc" class="box box1">
+                        <p> LUMINOSIDADE MAIS DESCREPANTE </p>
+                        <h2 id="lux_descrepante">—</h2>
+                        <h5> Oeste - Fazenda Boa Vista </h5>
                     </div>
                 </div>
 
                 <p class="aviso" id="sem_leituras" hidden>Sem sensores ativos com leitura neste recorte. Sensores desativados não entram nas médias.</p>
                 <p class="aviso perigo" id="erro_graficos" hidden>Não foi possível carregar o Chart.js local. Confira o arquivo js/vendor/chart.umd.js.</p>
                 <div class="graficos">
-                    <div class="grafico grafico1">
-                        <p id="titulo_historico">Histórico de Luminosidade Diária (Lux)</p>
-                        <div class="area-grafico"><canvas id="myChart" role="img" aria-label="Histórico de luminosidade em lux"></canvas></div>
-                        <details>
-                            <summary>Ver valores de hoje</summary>
-                            <div id="valores_historico"></div>
-                        </details>
-                    </div>
                     <div class="grafico grafico2">
-                        <p>Média de Luminosidade por Setor (Lux)</p>
+                        <p> Produtividade por Setor </p>
                         <div class="area-grafico"><canvas id="myChart2" role="img" aria-label="Média de luminosidade por setor"></canvas></div>
-                        <small>A cor da barra indica a situação da média do setor.</small>
                     </div>
                     <div class="grafico grafico3">
                         <p>Análise de Exposição Geral da Safra</p>
