@@ -55,20 +55,20 @@
                 <h1 id="titulo_selecao">Todas as fazendas</h1>
                 <p id="situacao_selecao" role="status" aria-live="polite"></p>
                 <div class="cards">
+                    <div class="box box2" style="background-color: #d32f2f;">
+                        <p> PERDA DE LUCRO ESTIMADA </p>
+                        <h2 id="exposicao">—</h2>
+                    </div>
                     <button class="box box3" id="abrir_sensores" type="button" onclick="abrirSensores()" aria-haspopup="dialog" aria-controls="sensores_dialog">
                         <span class="rotulo">SETORES INATIVOS</span>
                         <span class="valor" id="sensores_desativados">—</span>
                         <span class="detalhe" id="sensores_contagem">— sensores ativos</span>
                         <span class="detalhe">Clique para ver setores e localizações</span>
                     </button>
-                    <div class="box box2" style="background-color: #d32f2f;">
-                        <p> PERDA DE LUCRO ESTIMADA </p>
-                        <h2 id="exposicao">—</h2>
-                    </div>
                     <div id="kpi_desc" class="box box1">
-                        <p> LUMINOSIDADE MAIS DESCREPANTE </p>
+                        <p> PIOR LEITURA DE LUMINOSIDADE </p>
                         <h2 id="lux_descrepante">—</h2>
-                        <h5> Oeste - Fazenda Boa Vista </h5>
+                        <h5> (Setor) - (Fazenda) </h5>
                     </div>
                 </div>
 
@@ -83,7 +83,7 @@
                         <p>Análise de Exposição Geral da Safra</p>
                         <div class="area-grafico"><canvas id="myChart3" role="img" aria-label="Distribuição das leituras atuais por situação"></canvas></div>
                         <small id="resumo_distribuicao"></small>
-                        <small>Sensores desativados ficam fora dos cálculos.</small>
+                        <small>Setores sem leitura ficam fora dos cálculos.</small>
                     </div>
                 </div>
             </section>

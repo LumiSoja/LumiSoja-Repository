@@ -55,6 +55,8 @@ CREATE TABLE fazenda (
     nome_fazenda VARCHAR(45) NOT NULL,
     hectare DECIMAL(10,2) NOT NULL,
     fk_empresa INT NOT NULL,
+    preco_saca INT NOT NULL,
+    quantidade_saca INT NOT NULL,
 
     CONSTRAINT fk_empresa3_idx
         FOREIGN KEY (fk_empresa)

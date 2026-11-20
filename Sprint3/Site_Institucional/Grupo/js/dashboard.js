@@ -182,7 +182,7 @@ function atualizarDashboard() {
     }
     graficoSetores = new Chart(myChart2, {
         type: 'bar',
-        data: { labels: ['Norte', 'Sul', 'Leste', 'Oeste'], datasets: [{ label: 'Sacas por Hectare', data: medias, backgroundColor: coresSetores }] },
+        data: { labels: ['Norte', 'Sul', 'Leste', 'Oeste'], datasets: [{ label: 'Sacas por Hectare', data: [5, 15, 25, 35, 45, 55], backgroundColor: coresSetores }] },
         options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
     });
     graficoSituacoes = new Chart(myChart3, {

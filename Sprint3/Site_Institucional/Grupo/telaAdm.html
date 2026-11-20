@@ -67,6 +67,8 @@
                 <label for="cep_fazenda">CEP</label><input id="cep_fazenda" name="cep" maxlength="9" placeholder="00000-000">
                 <label for="cidade_fazenda">Cidade</label><input id="cidade_fazenda" name="cidade" required maxlength="45" placeholder="Ex.: Londrina">
                 <label for="estado_fazenda">Estado / UF</label><input id="estado_fazenda" name="estado" maxlength="45" placeholder="Ex.: PR">
+                <label for="preco_saca_fazenda">Preço Médio da Saca</label><input id="preco_saca_fazenda" name="preco_saca" maxlength="6">
+                <label for="quantidade_saca_fazenda">Produção de Saca por Hectare</label><input id="quantidade_saca_fazenda" name="quantidade_saca" maxlength="6">
                 <button type="button" class="adicionar" onclick="adicionarFazenda()">Cadastrar fazenda</button><p id="msg_fazenda" class="mensagem" role="status"></p>
             </form>
             <div class="tabela-scroll" tabindex="0" role="region" aria-label="Fazendas cadastradas"><table><thead><tr><th scope="col">Fazenda</th><th scope="col">Empresa</th><th scope="col">Hectares</th><th scope="col">Cidade / UF</th></tr></thead><tbody id="lista_fazendas"></tbody></table></div>
