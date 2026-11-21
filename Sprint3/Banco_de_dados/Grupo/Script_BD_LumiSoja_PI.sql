@@ -151,13 +151,13 @@ INSERT INTO contato (
 ('1136789012', 'contato@campoverde.com.br', NULL, 3);
 
 INSERT INTO fazenda (
-    nome_fazenda, hectare, fk_empresa
+    nome_fazenda, hectare, fk_empresa, preco_saca, quantidade_saca
 ) VALUES
-('Fazenda Boa Vista', 1500.50, 1),
-('Estância Progresso', 850.00, 1),
-('Fazenda Sol Nascente', 3200.75, 2),
-('Sítio AgroVerde', 410.10, 3),
-('Fazenda Ouro Negro', 5000.00, 2);
+('Fazenda Boa Vista', 1500.50, 1, 150, 45),
+('Estância Progresso', 850.00, 1, 160, 40),
+('Fazenda Sol Nascente', 3200.75, 2, 138, 50),
+('Sítio AgroVerde', 410.10, 3, 166, 60),
+('Fazenda Ouro Negro', 5000.00, 2, 145, 55);
 
 INSERT INTO endereco (
     logradouro, numero, bairro, cep,
@@ -290,3 +290,282 @@ JOIN leitura_sensor ls
     ON ls.fk_sensor = s.id;
     
     
+-- ============================================ --
+    -- ============= VIEWS ================ --
+
+-- ULTIMA LEITURA DE CADA SENSOR
+
+CREATE VIEW vw_ultima_leitura_sensor AS
+SELECT
+    leituras.sensor_id,
+    leituras.leitura_id,
+    leituras.lux,
+    leituras.data_hora
+FROM (
+    SELECT
+        ls.fk_sensor AS sensor_id,
+        ls.id AS leitura_id,
+        ls.lux,
+        ls.data_hora,
+        ROW_NUMBER() OVER (
+            PARTITION BY ls.fk_sensor
+            ORDER BY ls.data_hora DESC, ls.id DESC
+        ) AS posicao
+    FROM leitura_sensor AS ls
+) AS leituras
+WHERE leituras.posicao = 1;
+
+
+-- DADOS COMPLETOS DO SENSOR
+-- Gravidade:
+-- 3: perigo
+-- 2: atenção
+-- 1: ideal
+-- 0: sem leitura válida
+
+CREATE VIEW vw_dashboard_sensores AS
+SELECT
+    s.id AS sensor_id,
+    s.identificacao,
+    f.id AS fazenda_id,
+    f.nome_fazenda,
+    f.fk_empresa AS empresa_id,
+    s.setor,
+    s.coordenada,
+    s.ativo,
+    CASE
+        WHEN s.ativo = 1 THEN u.lux
+        ELSE NULL
+    END AS lux,
+    CASE
+        WHEN s.ativo = 1 THEN u.data_hora
+        ELSE NULL
+    END AS data_hora,
+    CASE
+        WHEN s.ativo = 0 THEN 'desativado'
+        WHEN u.lux IS NULL THEN 'sem_dados'
+        WHEN u.lux < 15000 OR u.lux > 80000
+            THEN 'perigo'
+        WHEN u.lux <= 21500 OR u.lux >= 73500
+            THEN 'atencao'
+        ELSE 'ideal'
+    END AS situacao,
+    CASE
+        WHEN s.ativo = 0 OR u.lux IS NULL THEN 0
+        WHEN u.lux < 15000 OR u.lux > 80000 THEN 3
+        WHEN u.lux <= 21500 OR u.lux >= 73500 THEN 2
+        ELSE 1
+    END AS gravidade
+FROM sensor AS s
+LEFT JOIN fazenda AS f
+    ON f.id = s.fk_fazenda
+LEFT JOIN vw_ultima_leitura_sensor AS u
+    ON u.sensor_id = s.id;
+
+
+-- RESUMO POR SETOR
+
+CREATE VIEW vw_dashboard_setores AS
+SELECT
+    p.fazenda_id,
+    p.nome_fazenda,
+    p.empresa_id,
+    p.setor,
+    COUNT(*) AS total_sensores,
+    SUM(CASE
+        WHEN p.ativo = 1 THEN 1
+        ELSE 0
+    END) AS sensores_ativos,
+    SUM(CASE
+        WHEN p.ativo = 0 THEN 1
+        ELSE 0
+    END) AS sensores_desativados,
+    SUM(CASE
+        WHEN p.ativo = 1 AND p.lux IS NOT NULL
+            THEN 1
+        ELSE 0
+    END) AS sensores_com_leitura,
+    ROUND(AVG(p.lux), 2) AS media_lux,
+    MAX(p.gravidade) AS maior_gravidade,
+    CASE
+        WHEN SUM(CASE
+            WHEN p.ativo = 1 THEN 1
+            ELSE 0
+        END) = 0 THEN 'inativo'
+        WHEN SUM(CASE
+            WHEN p.ativo = 1 AND p.lux IS NOT NULL
+                THEN 1
+            ELSE 0
+        END) = 0 THEN 'sem_dados'
+        WHEN MAX(p.gravidade) = 3 THEN 'perigo'
+        WHEN MAX(p.gravidade) = 2 THEN 'atencao'
+        ELSE 'ideal'
+    END AS situacao_setor
+FROM vw_dashboard_sensores AS p
+WHERE p.fazenda_id IS NOT NULL
+GROUP BY
+    p.fazenda_id,
+    p.nome_fazenda,
+    p.empresa_id,
+    p.setor;
+
+
+-- SITUAÇÃO GERAL DAS FAZENDAS
+
+CREATE VIEW vw_dashboard_fazendas AS
+SELECT
+    f.id AS fazenda_id,
+    f.nome_fazenda,
+    f.fk_empresa AS empresa_id,
+    COUNT(s.sensor_id) AS total_sensores,
+    COUNT(DISTINCT s.setor) AS setores_monitorados,
+    COUNT(CASE
+        WHEN s.ativo = 0 THEN 1
+    END) AS sensores_desativados,
+    COUNT(CASE
+        WHEN s.ativo = 1 AND s.lux IS NOT NULL
+            THEN 1
+    END) AS sensores_com_leitura,
+    MAX(s.gravidade) AS maior_gravidade,
+    CASE
+        WHEN MAX(s.gravidade) = 3 THEN 'perigo'
+        WHEN MAX(s.gravidade) = 2 THEN 'atencao'
+        WHEN MAX(s.gravidade) = 1 THEN 'ideal'
+        ELSE 'sem_dados'
+    END AS situacao_geral
+FROM fazenda AS f
+LEFT JOIN vw_dashboard_sensores AS s
+    ON s.fazenda_id = f.id
+GROUP BY
+    f.id,
+    f.nome_fazenda,
+    f.fk_empresa;
+
+
+-- DISTRIBUIÇÃO DAS SITUAÇÕES
+
+CREATE VIEW vw_dashboard_distribuicao AS
+SELECT
+    p.empresa_id,
+    p.fazenda_id,
+    p.nome_fazenda,
+    p.setor,
+    p.situacao,
+    COUNT(*) AS quantidade_sensores
+FROM vw_dashboard_sensores AS p
+WHERE p.ativo = 1
+    AND p.lux IS NOT NULL
+    AND p.fazenda_id IS NOT NULL
+GROUP BY
+    p.empresa_id,
+    p.fazenda_id,
+    p.nome_fazenda,
+    p.setor,
+    p.situacao;
+
+
+-- INDICADOR FINANCEIRO
+
+CREATE VIEW vw_dashboard_financeiro AS
+SELECT
+    f.id AS fazenda_id,
+    f.nome_fazenda,
+    f.fk_empresa AS empresa_id,
+    f.hectare,
+    f.quantidade_saca AS sacas_por_hectare_hipotese,
+    f.preco_saca,
+    ROUND(
+        f.hectare *
+        f.quantidade_saca *
+        f.preco_saca,
+        2
+    ) AS receita_bruta_potencial
+FROM fazenda AS f;
+
+
+-- SETORES INATIVOS
+
+CREATE VIEW vw_kpi_inativos AS
+SELECT
+    empresa_id,
+    fazenda_id,
+    nome_fazenda,
+    setor,
+    1 AS setores_monitorados,
+    CASE
+        WHEN situacao_setor = 'inativo' THEN 1
+        ELSE 0
+    END AS setores_inativos,
+    sensores_ativos,
+    sensores_desativados,
+    sensores_com_leitura
+FROM vw_dashboard_setores;
+
+
+-- LUMINOSIDADE MAIS DISCREPANTE
+-- Menor luminosidade atual por fazenda e setor
+
+CREATE VIEW vw_kpi_discrepancia AS
+SELECT
+    dados.sensor_id,
+    dados.identificacao,
+    dados.fazenda_id,
+    dados.nome_fazenda,
+    dados.empresa_id,
+    dados.setor,
+    dados.lux,
+    dados.data_hora,
+    dados.situacao
+FROM (
+    SELECT
+        s.*,
+        ROW_NUMBER() OVER (
+            PARTITION BY s.fazenda_id, s.setor
+            ORDER BY s.lux ASC, s.sensor_id ASC
+        ) AS posicao
+    FROM vw_dashboard_sensores AS s
+    WHERE s.ativo = 1
+        AND s.lux IS NOT NULL) AS dados
+WHERE dados.posicao = 1;
+
+
+-- PRODUTIVIDADE POR FAZENDA E SETOR
+
+CREATE VIEW vw_produtividade_fazenda_setor AS
+SELECT DISTINCT
+    f.id AS fazenda_id,
+    f.nome_fazenda,
+    f.fk_empresa AS empresa_id,
+    s.setor,
+    f.hectare,
+    f.quantidade_saca AS sacas_por_hectare,
+    (f.hectare * f.quantidade_saca)
+        AS sacas_estimadas
+FROM fazenda AS f
+JOIN sensor AS s
+    ON s.fk_fazenda = f.id;
+
+
+-- PRODUTIVIDADE MÉDIA POR SETOR
+
+CREATE VIEW vw_produtividade_por_setor AS
+SELECT
+    setor,
+    CASE
+        WHEN SUM(hectare) = 0 THEN 0
+        ELSE ROUND(
+            SUM(sacas_estimadas) / SUM(hectare), 2)
+    END AS media_sacas_hectare,
+    COUNT(*) AS fazendas_consideradas
+FROM vw_produtividade_fazenda_setor
+GROUP BY setor;
+
+
+-- DISTRIBUIÇÃO GERAL DAS SITUAÇÕES
+
+CREATE VIEW vw_dashboard_distribuicao_geral AS
+SELECT
+    situacao,
+    SUM(quantidade_sensores) AS total
+FROM vw_dashboard_distribuicao
+GROUP BY situacao;
