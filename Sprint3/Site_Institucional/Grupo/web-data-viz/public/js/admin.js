@@ -163,7 +163,7 @@ function renderizarUsuarios() {
             <p>${textoSeguro(email)}</p><small>${textoSeguro(telefone)}</small><small>${textoSeguro(empresa)}</small></div>
             <div class="acoes-usuario">
                 <button type="button" onclick="editarUsuario(${usuario.id})">Alterar acesso</button>
-                <button type="button" class="remover" onclick="excluirUsuario(${usuario.id})">Excluir</button>
+                <button type="button" class="remover" onclick="excluirUsuario(${usuario.id})">x</button>
             </div></div>`;
     }
 

@@ -11,8 +11,8 @@ cabecalho.innerHTML = `
             <ul class="barraNavegacao">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="calculadora.html">Simulador</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="telaAdm.html">Administração</a></li>
+                <li><a href="../dashboard/dashboard.html">Dashboard</a></li>
+                <li><a href="../dashboard/telaAdm.html">Administração</a></li>
                 <li><a href="cadastro_usuario.html">Cadastro</a></li>
                 <li><a href="login.html">Login</a></li>
             </ul>
