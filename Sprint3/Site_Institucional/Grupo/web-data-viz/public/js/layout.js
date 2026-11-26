@@ -4,7 +4,7 @@
 cabecalho.innerHTML = `
     <div class="containerCabecalho">
         <a class="logo" href="index.html">
-            <img src="img/logo.jpeg" alt="Logo LumiSoja">
+            <img src="../assets/img/logo.jpeg" alt="Logo LumiSoja">
             <span class="tituloLogo">LumiSoja</span>
         </a>
         <nav aria-label="Navegação principal">
@@ -23,7 +23,7 @@ cabecalho.innerHTML = `
 rodape.innerHTML = `
     <div class="containerEmpresaRodape">
         <a class="logoRodape" href="index.html">
-            <img src="img/logo.jpeg" alt="Logo LumiSoja">
+            <img src="../assets/img/logo.jpeg" alt="Logo LumiSoja">
             <span class="tituloRodape">LumiSoja © 2026</span>
         </a>
         <div class="informacoesRodape">

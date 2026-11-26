@@ -1,205 +1,436 @@
-// Tela de administração demonstrativa.
-// Os cadastros ficam apenas nos vetores desta página, até atualizar o navegador.
-// Não há banco de dados, login real ou permissões de usuário nesta versão.
+var perfis = [];
+var empresas = [];
+var usuarios = [];
+var fazendas = [];
 
-let empresas = [
-    { nome: 'AgroVale', razao: 'AgroVale Agropecuária Ltda', cnpj: '12345678000190' },
-    { nome: 'Soja Forte', razao: 'Soja Forte Agrícola Ltda', cnpj: '98765432000110' },
-    { nome: 'Campo Verde', razao: 'Campo Verde Produção Rural Ltda', cnpj: '45678912000135' }
-];
-let fazendas = [
-    { nome: 'Fazenda Boa Vista', empresa: 0, hectare: 1500.50, cidade: 'Guarantã do Norte / MT' },
-    { nome: 'Estância Progresso', empresa: 0, hectare: 850, cidade: 'Londrina / PR' },
-    { nome: 'Fazenda Sol Nascente', empresa: 1, hectare: 3200.75, cidade: 'Mineiros / GO' },
-    { nome: 'Sítio AgroVerde', empresa: 2, hectare: 410.10, cidade: 'Tenente Portela / RS' },
-    { nome: 'Fazenda Ouro Negro', empresa: 1, hectare: 5000, cidade: 'Balsas / MA' }
-];
-let usuarios = [
-    { nome: 'Thiago - exemplo', cpf: '23456789012', email: 'thiago@exemplo.com', empresa: 0, perfil: 'Administrador' },
-    { nome: 'Gustavo - exemplo', cpf: '34567890123', email: 'gustavo@exemplo.com', empresa: 1, perfil: 'Funcionário' }
-];
-
-nome_perfil.innerHTML = 'Administrador (exemplo)';
-cargo_perfil.innerHTML = 'Modo estático - sem login';
+var referencias = {
+    nomePerfil: document.getElementById("nome_perfil"),
+    cargoPerfil: document.getElementById("cargo_perfil"),
+    formUsuario: document.getElementById("form_usuario"),
+    formEmpresa: document.getElementById("form_empresa"),
+    formFazenda: document.getElementById("form_fazenda"),
+    acesso: document.getElementById("acesso"),
+    empresaUsuario: document.getElementById("empresa_usuario"),
+    empresaFazenda: document.getElementById("empresa_fazenda"),
+    editarAcesso: document.getElementById("editar_acesso"),
+    editarId: document.getElementById("editar_id"),
+    editarNome: document.getElementById("editar_nome"),
+    editarPerfil: document.getElementById("editar_perfil"),
+    editarEmpresa: document.getElementById("editar_empresa"),
+    msgUsuario: document.getElementById("msg_usuario"),
+    msgEmpresa: document.getElementById("msg_empresa"),
+    msgFazenda: document.getElementById("msg_fazenda"),
+    msgEditar: document.getElementById("msg_editar"),
+    boxes: document.getElementById("boxes"),
+    totalUsuarios: document.getElementById("total_usuarios"),
+    listaEmpresas: document.getElementById("lista_empresas"),
+    listaFazendas: document.getElementById("lista_fazendas")
+};
 
 function textoSeguro(texto) {
-    return String(texto).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+    return String(texto === undefined || texto === null ? "" : texto)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
 }
 
-function atualizarAdministracao() {
-    let listaOpcoes = '<option value="">Selecione a empresa</option>';
-    let tabelaEmpresas = '';
-    for (let i = 0; i < empresas.length; i++) {
-        listaOpcoes += `<option value="${i}">${textoSeguro(empresas[i].nome)}</option>`;
-        tabelaEmpresas += `<tr><td>${textoSeguro(empresas[i].nome)}</td><td>${textoSeguro(empresas[i].razao)}</td><td>${textoSeguro(empresas[i].cnpj)}</td></tr>`;
+function soNumeros(texto) {
+    return String(texto === undefined || texto === null ? "" : texto).replace(/\D/g, "");
+}
+
+function valorOuVazio(texto) {
+    var valor = String(texto === undefined || texto === null ? "" : texto).trim();
+    return valor;
+}
+
+function numeroOuNulo(texto) {
+    var valor = valorOuVazio(texto);
+    if (valor === "") {
+        return null;
     }
-    empresa_usuario.innerHTML = listaOpcoes;
-    empresa_fazenda.innerHTML = listaOpcoes;
-    editar_empresa.innerHTML = listaOpcoes;
-    lista_empresas.innerHTML = tabelaEmpresas;
 
-    let tipos = '<option value="Comum">Comum</option><option value="Funcionário">Funcionário</option><option value="Administrador">Administrador</option><option value="DEV comum">DEV comum</option><option value="DEV administrador">DEV administrador</option>';
-    acesso.innerHTML = tipos;
-    editar_perfil.innerHTML = tipos;
+    var numero = Number(valor);
+    return Number.isNaN(numero) ? null : numero;
+}
 
-    let tabelaFazendas = '';
-    for (let i = 0; i < fazendas.length; i++) {
-        let cidadeEstado = fazendas[i].cidade;
+function formatarMoedaOuZero(valor) {
+    var numero = Number(valor);
+    if (Number.isNaN(numero)) {
+        numero = 0;
+    }
 
-        if (fazendas[i].estado != undefined && fazendas[i].estado != '') {
-            cidadeEstado += ' / ' + fazendas[i].estado;
+    return numero.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+async function requisitarJson(url, options) {
+    var resposta = await fetch(url, Object.assign({
+        headers: {
+            "Content-Type": "application/json"
         }
+    }, options || {}));
 
-        tabelaFazendas += `<tr><td>${textoSeguro(fazendas[i].nome)}</td><td>${textoSeguro(empresas[fazendas[i].empresa].nome)}</td>
-            <td>${fazendas[i].hectare.toLocaleString('pt-BR')}</td><td>${textoSeguro(cidadeEstado)}</td></tr>`;
+    var texto = await resposta.text();
+    var dados = null;
+
+    if (texto) {
+        try {
+            dados = JSON.parse(texto);
+        } catch (erro) {
+            dados = { mensagem: texto };
+        }
     }
-    lista_fazendas.innerHTML = tabelaFazendas;
 
-    let cards = '';
-    for (let i = 0; i < usuarios.length; i++) {
-        let pessoa = usuarios[i];
-        let empresa = 'Sem vínculo com empresa';
-        if (String(pessoa.empresa) != '') empresa = empresas[pessoa.empresa].nome;
-        cards += `<div class="box"><img src="img/usuario.svg" alt="">
-            <div class="info-box"><span class="nome-usuario">${textoSeguro(pessoa.nome)}</span>
-            <span class="cargo-usuario">${textoSeguro(pessoa.perfil)}</span>
-            <p>${textoSeguro(pessoa.email)}</p><small>${textoSeguro(empresa)}</small></div>
+    if (!resposta.ok) {
+        throw new Error((dados && dados.mensagem) || "Falha na requisicao.");
+    }
+
+    return dados;
+}
+
+function limparMensagens() {
+    referencias.msgUsuario.textContent = "";
+    referencias.msgEmpresa.textContent = "";
+    referencias.msgFazenda.textContent = "";
+    referencias.msgEditar.textContent = "";
+}
+
+function preencherSelect(select, itens, placeholder, renderItem) {
+    var opcoes = `<option value="">${textoSeguro(placeholder)}</option>`;
+
+    for (var i = 0; i < itens.length; i++) {
+        opcoes += renderItem(itens[i]);
+    }
+
+    select.innerHTML = opcoes;
+}
+
+function getPerfilPorId(id) {
+    for (var i = 0; i < perfis.length; i++) {
+        if (Number(perfis[i].id) === Number(id)) {
+            return perfis[i];
+        }
+    }
+
+    return null;
+}
+
+function getEmpresaPorId(id) {
+    for (var i = 0; i < empresas.length; i++) {
+        if (Number(empresas[i].id) === Number(id)) {
+            return empresas[i];
+        }
+    }
+
+    return null;
+}
+
+function atualizarSelects() {
+    preencherSelect(referencias.empresaUsuario, empresas, "Selecione a empresa", function (empresa) {
+        return `<option value="${empresa.id}">${textoSeguro(empresa.nome)}</option>`;
+    });
+
+    preencherSelect(referencias.empresaFazenda, empresas, "Selecione a empresa", function (empresa) {
+        return `<option value="${empresa.id}">${textoSeguro(empresa.nome)}</option>`;
+    });
+
+    preencherSelect(referencias.editarEmpresa, empresas, "Sem empresa", function (empresa) {
+        return `<option value="${empresa.id}">${textoSeguro(empresa.nome)}</option>`;
+    });
+
+    preencherSelect(referencias.acesso, perfis, "Selecione o perfil", function (perfil) {
+        return `<option value="${perfil.id}">${textoSeguro(perfil.nome)}</option>`;
+    });
+
+    preencherSelect(referencias.editarPerfil, perfis, "Selecione o perfil", function (perfil) {
+        return `<option value="${perfil.id}">${textoSeguro(perfil.nome)}</option>`;
+    });
+}
+
+function renderizarUsuarios() {
+    var cards = "";
+
+    for (var i = 0; i < usuarios.length; i++) {
+        var usuario = usuarios[i];
+        var empresa = usuario.empresaNome || (usuario.empresaId ? getEmpresaPorId(usuario.empresaId)?.nome : "Sem vínculo com empresa");
+        var email = usuario.email || "E-mail não informado";
+        var telefone = usuario.telefone || "Telefone não informado";
+
+        cards += `<div class="box"><img src="../assets/img/usuario.svg" alt="">
+            <div class="info-box"><span class="nome-usuario">${textoSeguro(usuario.nome)}</span>
+            <span class="cargo-usuario">${textoSeguro(usuario.perfilNome || "Sem perfil")}</span>
+            <p>${textoSeguro(email)}</p><small>${textoSeguro(telefone)}</small><small>${textoSeguro(empresa)}</small></div>
             <div class="acoes-usuario">
-                <button type="button" onclick="editarUsuario(${i})">Alterar acesso</button>
-                <button type="button" class="remover" onclick="removerUsuario(${i})" title="Remover da demonstração">×</button>
+                <button type="button" onclick="editarUsuario(${usuario.id})">Alterar acesso</button>
             </div></div>`;
     }
-    boxes.innerHTML = cards;
-    total_usuarios.innerHTML = usuarios.length + ' usuário(s) na demonstração';
+
+    referencias.boxes.innerHTML = cards;
+    referencias.totalUsuarios.textContent = usuarios.length + " usuário(s) cadastrados";
 }
 
-function adicionarUsuario() {
-    let nome = ipt_usuario.value.trim();
-    let cpf = cpf_usuario.value.replaceAll('.', '').replaceAll('-', '');
-    let email = email_usuario.value.trim();
-    let telefone = telefone_usuario.value.trim();
-    let senha = senha_usuario.value;
-    let confirmacao = confirmacao_usuario.value;
-    let empresa = empresa_usuario.value;
-    let perfil = acesso.value;
+function renderizarEmpresas() {
+    var linhas = "";
 
-    if (nome == '' || cpf.length != 11 || !email.includes('@') || telefone == '') {
-        msg_usuario.innerHTML = 'Preencha corretamente nome, CPF, e-mail e telefone.';
-    } else if (senha.length < 8 || senha != confirmacao) {
-        msg_usuario.innerHTML = 'A senha precisa ter 8 caracteres e a confirmação deve ser igual.';
-    } else if ((perfil == 'Funcionário' || perfil == 'Administrador') && empresa == '') {
-        msg_usuario.innerHTML = 'Selecione a empresa deste usuário.';
-    } else {
-        // A senha não é guardada no vetor.
-        usuarios.push({ nome: nome, cpf: cpf, email: email, perfil: perfil, empresa: empresa });
-        atualizarAdministracao();
-        msg_usuario.innerHTML = 'Usuário adicionado à demonstração. Não foi salvo no banco.';
-        ipt_usuario.value = '';
-        cpf_usuario.value = '';
-        email_usuario.value = '';
-        telefone_usuario.value = '';
-        senha_usuario.value = '';
-        confirmacao_usuario.value = '';
+    for (var i = 0; i < empresas.length; i++) {
+        var empresa = empresas[i];
+        linhas += `<tr><td>${textoSeguro(empresa.nome)}</td><td>${textoSeguro(empresa.razaoSocial)}</td><td>${textoSeguro(empresa.cnpj)}</td></tr>`;
+    }
+
+    referencias.listaEmpresas.innerHTML = linhas;
+}
+
+function renderizarFazendas() {
+    var linhas = "";
+
+    for (var i = 0; i < fazendas.length; i++) {
+        var fazenda = fazendas[i];
+        var cidadeEstado = fazenda.cidade || "";
+
+        if (fazenda.estado) {
+            cidadeEstado += cidadeEstado ? " / " + fazenda.estado : fazenda.estado;
+        }
+
+        linhas += `<tr><td>${textoSeguro(fazenda.nome)}</td><td>${textoSeguro(fazenda.empresaNome || "Sem empresa")}</td><td>${textoSeguro(formatarMoedaOuZero(fazenda.hectare))}</td><td>${textoSeguro(cidadeEstado)}</td></tr>`;
+    }
+
+    referencias.listaFazendas.innerHTML = linhas;
+}
+
+function renderizarTela() {
+    referencias.nomePerfil.textContent = "Administração";
+    referencias.cargoPerfil.textContent = "Cadastro e gestão via banco de dados";
+    atualizarSelects();
+    renderizarUsuarios();
+    renderizarEmpresas();
+    renderizarFazendas();
+}
+
+async function carregarDados() {
+    try {
+        var resposta = await Promise.all([
+            requisitarJson("/admin/perfis"),
+            requisitarJson("/admin/usuarios"),
+            requisitarJson("/admin/empresas"),
+            requisitarJson("/admin/fazendas")
+        ]);
+
+        perfis = resposta[0] || [];
+        usuarios = resposta[1] || [];
+        empresas = resposta[2] || [];
+        fazendas = resposta[3] || [];
+
+        renderizarTela();
+    } catch (erro) {
+        console.error(erro);
+        referencias.nomePerfil.textContent = "Administração";
+        referencias.cargoPerfil.textContent = "Falha ao carregar dados";
+        referencias.msgUsuario.textContent = erro.message;
     }
 }
 
-function adicionarEmpresa() {
-    let nome = nome_empresa.value.trim();
-    let razao = razao_empresa.value.trim();
-    let cnpj = cnpj_empresa.value.replaceAll('.', '').replaceAll('/', '').replaceAll('-', '');
-    let email = email_empresa.value.trim();
-    let telefone = telefone_empresa.value.replaceAll('(', '').replaceAll(')', '').replaceAll(' ', '').replaceAll('-', '');
-    let logradouro = logradouro_empresa.value.trim();
-    let numero = numero_empresa.value.trim();
-    let bairro = bairro_empresa.value.trim();
-    let cep = cep_empresa.value.replaceAll('-', '');
-    let cidade = cidade_empresa.value.trim();
-    let estado = estado_empresa.value.trim();
-    let repetido = false;
-    for (let i = 0; i < empresas.length; i++) {
-        if (empresas[i].cnpj == cnpj) repetido = true;
+async function adicionarUsuario() {
+    limparMensagens();
+
+    var nome = valorOuVazio(document.getElementById("ipt_usuario").value);
+    var cpf = soNumeros(document.getElementById("cpf_usuario").value);
+    var email = valorOuVazio(document.getElementById("email_usuario").value);
+    var telefone = soNumeros(document.getElementById("telefone_usuario").value);
+    var senha = document.getElementById("senha_usuario").value;
+    var confirmacao = document.getElementById("confirmacao_usuario").value;
+    var perfilId = numeroOuNulo(referencias.acesso.value);
+    var empresaId = numeroOuNulo(referencias.empresaUsuario.value);
+    var perfilSelecionado = getPerfilPorId(perfilId);
+
+    if (!nome || cpf.length !== 11 || !email || telefone.length < 10) {
+        referencias.msgUsuario.textContent = "Preencha corretamente nome, CPF, e-mail e telefone.";
+        return;
     }
 
-    if (nome == '' || razao == '' || cnpj.length != 14) {
-        msg_empresa.innerHTML = 'Informe nome, razão social e CNPJ com 14 números.';
-    } else if (repetido) {
-        msg_empresa.innerHTML = 'Este CNPJ já está na demonstração.';
-    } else {
-        empresas.push({ nome: nome, razao: razao, cnpj: cnpj, email: email, telefone: telefone, logradouro: logradouro, numero: numero, bairro: bairro, cep: cep, cidade: cidade, estado: estado });
-        atualizarAdministracao();
-        msg_empresa.innerHTML = 'Empresa adicionada à demonstração.';
-        nome_empresa.value = '';
-        razao_empresa.value = '';
-        cnpj_empresa.value = '';
-        email_empresa.value = '';
-        telefone_empresa.value = '';
-        logradouro_empresa.value = '';
-        numero_empresa.value = '';
-        bairro_empresa.value = '';
-        cep_empresa.value = '';
-        cidade_empresa.value = '';
-        estado_empresa.value = '';
+    if (senha.length < 8 || senha !== confirmacao) {
+        referencias.msgUsuario.textContent = "A senha precisa ter 8 caracteres e a confirmação deve ser igual.";
+        return;
     }
-}
 
-function adicionarFazenda() {
-    let nome = nome_fazenda.value.trim();
-    let empresa = empresa_fazenda.value;
-    let hectare = Number(hectares_fazenda.value);
-    let cidade = cidade_fazenda.value.trim();
-    let logradouro = logradouro_fazenda.value.trim();
-    let numero = numero_fazenda.value.trim();
-    let bairro = bairro_fazenda.value.trim();
-    let cep = cep_fazenda.value.replaceAll('-', '');
-    let estado = estado_fazenda.value.trim();
+    if (!perfilSelecionado) {
+        referencias.msgUsuario.textContent = "Selecione o tipo de usuário.";
+        return;
+    }
 
-    if (nome == '' || empresa == '' || isNaN(hectare) || hectare <= 0 || cidade == '') {
-        msg_fazenda.innerHTML = 'Preencha os dados da fazenda e escolha uma empresa.';
-    } else {
-        fazendas.push({ nome: nome, empresa: Number(empresa), hectare: hectare, cidade: cidade, logradouro: logradouro, numero: numero, bairro: bairro, cep: cep, estado: estado });
-        atualizarAdministracao();
-        msg_fazenda.innerHTML = 'Fazenda adicionada à demonstração (não vai automaticamente para a dashboard).';
-        nome_fazenda.value = '';
-        hectares_fazenda.value = '';
-        cidade_fazenda.value = '';
-        logradouro_fazenda.value = '';
-        numero_fazenda.value = '';
-        bairro_fazenda.value = '';
-        cep_fazenda.value = '';
-        estado_fazenda.value = '';
+    if ((perfilSelecionado.nome === "Administrador" || perfilSelecionado.nome === "Funcionário") && empresaId === null) {
+        referencias.msgUsuario.textContent = "Selecione a empresa deste usuário.";
+        return;
+    }
+
+    try {
+        await requisitarJson("/admin/usuarios", {
+            method: "POST",
+            body: JSON.stringify({
+                nome: nome,
+                cpf: cpf,
+                email: email,
+                telefone: telefone,
+                senha: senha,
+                perfilId: perfilId,
+                empresaId: empresaId
+            })
+        });
+
+        referencias.msgUsuario.textContent = "Usuário cadastrado com sucesso.";
+        document.getElementById("form_usuario").reset();
+        await carregarDados();
+    } catch (erro) {
+        referencias.msgUsuario.textContent = erro.message;
     }
 }
 
-function removerUsuario(posicao) {
-    if (confirm('Remover este usuário apenas da demonstração?')) {
-        usuarios.splice(posicao, 1);
-        atualizarAdministracao();
-        msg_admin.innerHTML = 'Usuário removido da lista temporária.';
+async function adicionarEmpresa() {
+    limparMensagens();
+
+    var nome = valorOuVazio(document.getElementById("nome_empresa").value);
+    var razaoSocial = valorOuVazio(document.getElementById("razao_empresa").value);
+    var cnpj = soNumeros(document.getElementById("cnpj_empresa").value);
+    var email = valorOuVazio(document.getElementById("email_empresa").value);
+    var telefone = soNumeros(document.getElementById("telefone_empresa").value);
+    var logradouro = valorOuVazio(document.getElementById("logradouro_empresa").value);
+    var numero = valorOuVazio(document.getElementById("numero_empresa").value);
+    var bairro = valorOuVazio(document.getElementById("bairro_empresa").value);
+    var cep = soNumeros(document.getElementById("cep_empresa").value);
+    var cidade = valorOuVazio(document.getElementById("cidade_empresa").value);
+    var estado = valorOuVazio(document.getElementById("estado_empresa").value);
+
+    if (!nome || !razaoSocial || cnpj.length !== 14) {
+        referencias.msgEmpresa.textContent = "Informe nome, razão social e CNPJ com 14 números.";
+        return;
+    }
+
+    try {
+        await requisitarJson("/admin/empresas", {
+            method: "POST",
+            body: JSON.stringify({
+                nome: nome,
+                razaoSocial: razaoSocial,
+                cnpj: cnpj,
+                email: email,
+                telefone: telefone,
+                logradouro: logradouro,
+                numero: numero,
+                bairro: bairro,
+                cep: cep,
+                cidade: cidade,
+                estado: estado
+            })
+        });
+
+        referencias.msgEmpresa.textContent = "Empresa cadastrada com sucesso.";
+        document.getElementById("form_empresa").reset();
+        await carregarDados();
+    } catch (erro) {
+        referencias.msgEmpresa.textContent = erro.message;
     }
 }
 
-function editarUsuario(posicao) {
-    editar_id.value = posicao;
-    editar_nome.innerHTML = textoSeguro(usuarios[posicao].nome);
-    editar_perfil.value = usuarios[posicao].perfil;
-    editar_empresa.value = usuarios[posicao].empresa;
-    msg_editar.innerHTML = '';
-    editar_acesso.showModal();
-}
+async function adicionarFazenda() {
+    limparMensagens();
 
-function salletAcesso() {
-    let posicao = Number(editar_id.value);
-    let perfil = editar_perfil.value;
-    let empresa = editar_empresa.value;
-    if ((perfil == 'Administrador' || perfil == 'Funcionário') && empresa == '') {
-        msg_editar.innerHTML = 'Selecione a empresa deste usuário.';
-    } else {
-        usuarios[posicao].perfil = perfil;
-        usuarios[posicao].empresa = empresa;
-        editar_acesso.close();
-        atualizarAdministracao();
-        msg_admin.innerHTML = 'Perfil alterado apenas na demonstração.';
+    var nome = valorOuVazio(document.getElementById("nome_fazenda").value);
+    var empresaId = numeroOuNulo(referencias.empresaFazenda.value);
+    var hectare = Number(valorOuVazio(document.getElementById("hectares_fazenda").value));
+    var logradouro = valorOuVazio(document.getElementById("logradouro_fazenda").value);
+    var numero = valorOuVazio(document.getElementById("numero_fazenda").value);
+    var bairro = valorOuVazio(document.getElementById("bairro_fazenda").value);
+    var cep = soNumeros(document.getElementById("cep_fazenda").value);
+    var cidade = valorOuVazio(document.getElementById("cidade_fazenda").value);
+    var estado = valorOuVazio(document.getElementById("estado_fazenda").value);
+    var precoSaca = document.getElementById("preco_saca_fazenda").value === "" ? 0 : Number(document.getElementById("preco_saca_fazenda").value);
+    var quantidadeSaca = document.getElementById("quantidade_saca_fazenda").value === "" ? 0 : Number(document.getElementById("quantidade_saca_fazenda").value);
+
+    if (!nome || empresaId === null || Number.isNaN(hectare) || hectare <= 0 || !cidade) {
+        referencias.msgFazenda.textContent = "Preencha os dados da fazenda e escolha uma empresa.";
+        return;
+    }
+
+    try {
+        await requisitarJson("/admin/fazendas", {
+            method: "POST",
+            body: JSON.stringify({
+                nome: nome,
+                empresaId: empresaId,
+                hectare: hectare,
+                logradouro: logradouro,
+                numero: numero,
+                bairro: bairro,
+                cep: cep,
+                cidade: cidade,
+                estado: estado,
+                precoSaca: precoSaca,
+                quantidadeSaca: quantidadeSaca
+            })
+        });
+
+        referencias.msgFazenda.textContent = "Fazenda cadastrada com sucesso.";
+        document.getElementById("form_fazenda").reset();
+        await carregarDados();
+    } catch (erro) {
+        referencias.msgFazenda.textContent = erro.message;
     }
 }
 
-atualizarAdministracao();
+function editarUsuario(idUsuario) {
+    var usuario = null;
+
+    for (var i = 0; i < usuarios.length; i++) {
+        if (Number(usuarios[i].id) === Number(idUsuario)) {
+            usuario = usuarios[i];
+            break;
+        }
+    }
+
+    if (!usuario) {
+        return;
+    }
+
+    referencias.editarId.value = usuario.id;
+    referencias.editarNome.textContent = usuario.nome;
+    referencias.editarPerfil.value = usuario.perfilId;
+    referencias.editarEmpresa.value = usuario.empresaId || "";
+    referencias.msgEditar.textContent = "";
+    referencias.editarAcesso.showModal();
+}
+
+async function salvarAcesso() {
+    limparMensagens();
+
+    var idUsuario = numeroOuNulo(referencias.editarId.value);
+    var perfilId = numeroOuNulo(referencias.editarPerfil.value);
+    var empresaId = numeroOuNulo(referencias.editarEmpresa.value);
+    var perfilSelecionado = getPerfilPorId(perfilId);
+
+    if (idUsuario === null || perfilId === null || !perfilSelecionado) {
+        referencias.msgEditar.textContent = "Selecione um perfil valido.";
+        return;
+    }
+
+    if ((perfilSelecionado.nome === "Administrador" || perfilSelecionado.nome === "Funcionário") && empresaId === null) {
+        referencias.msgEditar.textContent = "Selecione a empresa deste usuário.";
+        return;
+    }
+
+    try {
+        await requisitarJson(`/admin/usuarios/${idUsuario}/acesso`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                perfilId: perfilId,
+                empresaId: empresaId
+            })
+        });
+
+        referencias.editarAcesso.close();
+        await carregarDados();
+    } catch (erro) {
+        referencias.msgEditar.textContent = erro.message;
+    }
+}
+
+carregarDados();
