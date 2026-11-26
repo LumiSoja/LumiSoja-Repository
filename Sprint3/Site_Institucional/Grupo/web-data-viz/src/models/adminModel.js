@@ -26,6 +26,18 @@ function sqlNumero(valor) {
     return String(numero);
 }
 
+function sqlListaNumeros(valores) {
+    if (!Array.isArray(valores) || valores.length === 0) {
+        return "NULL";
+    }
+
+    return valores
+        .map(function (valor) {
+            return sqlNumero(valor);
+        })
+        .join(", ");
+}
+
 function listarPerfis() {
     var instrucaoSql = `
         SELECT id, nome, descricao
@@ -57,6 +69,16 @@ function listarUsuarios() {
             LEFT JOIN contato c
                 ON c.fk_usuario = u.id
         ORDER BY u.nome;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarUsuarioPorId(idUsuario) {
+    var instrucaoSql = `
+        SELECT id, nome, cpf, senha, fk_perfil_acesso AS perfilId, fk_empresa AS empresaId
+        FROM usuario
+        WHERE id = ${sqlNumero(idUsuario)};
     `;
 
     return database.executar(instrucaoSql);
@@ -100,6 +122,49 @@ function cadastrarContatoUsuario(email, telefone, usuarioId) {
     return database.executar(instrucaoSql);
 }
 
+function atualizarUsuario(idUsuario, nome, cpf, senha, perfilId, empresaId) {
+    var instrucaoSql = `
+        UPDATE usuario
+        SET nome = ${sqlTexto(nome)},
+            cpf = ${sqlTexto(cpf)},
+            senha = ${sqlTexto(senha)},
+            fk_perfil_acesso = ${sqlNumero(perfilId)},
+            fk_empresa = ${sqlNumero(empresaId)}
+        WHERE id = ${sqlNumero(idUsuario)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function atualizarContatoUsuario(email, telefone, idUsuario) {
+    var instrucaoSql = `
+        UPDATE contato
+        SET email = ${sqlTexto(email)},
+            telefone = ${sqlTexto(telefone)}
+        WHERE fk_usuario = ${sqlNumero(idUsuario)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function deletarContatosUsuario(idUsuario) {
+    var instrucaoSql = `
+        DELETE FROM contato
+        WHERE fk_usuario = ${sqlNumero(idUsuario)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function deletarUsuario(idUsuario) {
+    var instrucaoSql = `
+        DELETE FROM usuario
+        WHERE id = ${sqlNumero(idUsuario)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 function atualizarAcesso(idUsuario, perfilId, empresaId) {
     var instrucaoSql = `
         UPDATE usuario
@@ -132,6 +197,16 @@ function listarEmpresas() {
             LEFT JOIN endereco endr
                 ON endr.fk_empresa = e.id
         ORDER BY e.nome;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarEmpresaPorId(idEmpresa) {
+    var instrucaoSql = `
+        SELECT id, nome, razao_social AS razaoSocial, cnpj
+        FROM empresa
+        WHERE id = ${sqlNumero(idEmpresa)};
     `;
 
     return database.executar(instrucaoSql);
@@ -174,6 +249,71 @@ function cadastrarEnderecoEmpresa(logradouro, numero, bairro, cep, cidade, estad
     return database.executar(instrucaoSql);
 }
 
+function atualizarEmpresa(idEmpresa, nome, razaoSocial, cnpj) {
+    var instrucaoSql = `
+        UPDATE empresa
+        SET nome = ${sqlTexto(nome)},
+            razao_social = ${sqlTexto(razaoSocial)},
+            cnpj = ${sqlTexto(cnpj)}
+        WHERE id = ${sqlNumero(idEmpresa)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function atualizarContatoEmpresa(email, telefone, idEmpresa) {
+    var instrucaoSql = `
+        UPDATE contato
+        SET email = ${sqlTexto(email)},
+            telefone = ${sqlTexto(telefone)}
+        WHERE fk_empresa = ${sqlNumero(idEmpresa)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function atualizarEnderecoEmpresa(logradouro, numero, bairro, cep, cidade, estado, idEmpresa) {
+    var instrucaoSql = `
+        UPDATE endereco
+        SET logradouro = ${sqlTexto(logradouro)},
+            numero = ${sqlTexto(numero)},
+            bairro = ${sqlTexto(bairro)},
+            cep = ${sqlTexto(cep)},
+            cidade = ${sqlTexto(cidade)},
+            estado = ${sqlTexto(estado)}
+        WHERE fk_empresa = ${sqlNumero(idEmpresa)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function deletarEnderecosEmpresa(idEmpresa) {
+    var instrucaoSql = `
+        DELETE FROM endereco
+        WHERE fk_empresa = ${sqlNumero(idEmpresa)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function deletarContatosEmpresa(idEmpresa) {
+    var instrucaoSql = `
+        DELETE FROM contato
+        WHERE fk_empresa = ${sqlNumero(idEmpresa)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function deletarUsuariosPorEmpresa(idEmpresa) {
+    var instrucaoSql = `
+        DELETE FROM usuario
+        WHERE fk_empresa = ${sqlNumero(idEmpresa)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 function listarFazendas() {
     var instrucaoSql = `
         SELECT
@@ -201,6 +341,16 @@ function listarFazendas() {
     return database.executar(instrucaoSql);
 }
 
+function buscarFazendaPorId(idFazenda) {
+    var instrucaoSql = `
+        SELECT id, nome_fazenda AS nome, hectare, fk_empresa AS empresaId, preco_saca AS precoSaca, quantidade_saca AS quantidadeSaca
+        FROM fazenda
+        WHERE id = ${sqlNumero(idFazenda)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 function cadastrarFazenda(nome, hectare, empresaId, precoSaca, quantidadeSaca) {
     var instrucaoSql = `
         INSERT INTO fazenda (nome_fazenda, hectare, fk_empresa, preco_saca, quantidade_saca)
@@ -219,20 +369,188 @@ function cadastrarEnderecoFazenda(logradouro, numero, bairro, cep, cidade, estad
     return database.executar(instrucaoSql);
 }
 
+function atualizarFazenda(idFazenda, nome, hectare, empresaId, precoSaca, quantidadeSaca) {
+    var instrucaoSql = `
+        UPDATE fazenda
+        SET nome_fazenda = ${sqlTexto(nome)},
+            hectare = ${sqlNumero(hectare)},
+            fk_empresa = ${sqlNumero(empresaId)},
+            preco_saca = ${sqlNumero(precoSaca)},
+            quantidade_saca = ${sqlNumero(quantidadeSaca)}
+        WHERE id = ${sqlNumero(idFazenda)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function atualizarEnderecoFazenda(logradouro, numero, bairro, cep, cidade, estado, idFazenda) {
+    var instrucaoSql = `
+        UPDATE endereco
+        SET logradouro = ${sqlTexto(logradouro)},
+            numero = ${sqlTexto(numero)},
+            bairro = ${sqlTexto(bairro)},
+            cep = ${sqlTexto(cep)},
+            cidade = ${sqlTexto(cidade)},
+            estado = ${sqlTexto(estado)}
+        WHERE fk_fazenda = ${sqlNumero(idFazenda)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function deletarLeiturasPorSensores(idsSensores) {
+    var instrucaoSql = `
+        DELETE FROM leitura_sensor
+        WHERE fk_sensor IN (${sqlListaNumeros(idsSensores)});
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function deletarSensoresPorFazenda(idFazenda) {
+    var instrucaoSql = `
+        DELETE FROM sensor
+        WHERE fk_fazenda = ${sqlNumero(idFazenda)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function deletarEnderecosPorFazenda(idFazenda) {
+    var instrucaoSql = `
+        DELETE FROM endereco
+        WHERE fk_fazenda = ${sqlNumero(idFazenda)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function deletarFazenda(idFazenda) {
+    var instrucaoSql = `
+        DELETE FROM fazenda
+        WHERE id = ${sqlNumero(idFazenda)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarFazendasPorEmpresa(idEmpresa) {
+    var instrucaoSql = `
+        SELECT id
+        FROM fazenda
+        WHERE fk_empresa = ${sqlNumero(idEmpresa)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarSensoresPorFazenda(idFazenda) {
+    var instrucaoSql = `
+        SELECT id
+        FROM sensor
+        WHERE fk_fazenda = ${sqlNumero(idFazenda)};
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function deletarUsuariosEContatosPorEmpresa(idEmpresa) {
+    return deletarContatosEmpresa(idEmpresa)
+        .then(function () {
+            return deletarUsuariosPorEmpresa(idEmpresa);
+        });
+}
+
+function deletarFazendaCompleta(idFazenda) {
+    return buscarSensoresPorFazenda(idFazenda)
+        .then(function (sensores) {
+            var idsSensores = sensores.map(function (sensor) {
+                return sensor.id;
+            });
+
+            return deletarLeiturasPorSensores(idsSensores)
+                .then(function () {
+                    return deletarSensoresPorFazenda(idFazenda);
+                })
+                .then(function () {
+                    return deletarEnderecosPorFazenda(idFazenda);
+                })
+                .then(function () {
+                    return deletarFazenda(idFazenda);
+                });
+        });
+}
+
+function deletarEmpresaCompleta(idEmpresa) {
+    return buscarFazendasPorEmpresa(idEmpresa)
+        .then(function (fazendas) {
+            var cadeia = Promise.resolve();
+
+            fazendas.forEach(function (fazenda) {
+                cadeia = cadeia.then(function () {
+                    return deletarFazendaCompleta(fazenda.id);
+                });
+            });
+
+            return cadeia
+                .then(function () {
+                    return deletarUsuariosEContatosPorEmpresa(idEmpresa);
+                })
+                .then(function () {
+                    return deletarEnderecosEmpresa(idEmpresa);
+                })
+                .then(function () {
+                    return deletarContatosEmpresa(idEmpresa);
+                })
+                .then(function () {
+                    var instrucaoSql = `
+                        DELETE FROM empresa
+                        WHERE id = ${sqlNumero(idEmpresa)};
+                    `;
+
+                    return database.executar(instrucaoSql);
+                });
+        });
+}
+
 module.exports = {
     listarPerfis,
     listarUsuarios,
+    buscarUsuarioPorId,
     buscarUsuarioPorCpf,
     buscarContatoPorEmail,
     cadastrarUsuario,
     cadastrarContatoUsuario,
+    atualizarUsuario,
+    atualizarContatoUsuario,
+    deletarContatosUsuario,
+    deletarUsuario,
     atualizarAcesso,
     listarEmpresas,
+    buscarEmpresaPorId,
     buscarEmpresaPorCnpj,
     cadastrarEmpresa,
     cadastrarContatoEmpresa,
     cadastrarEnderecoEmpresa,
+    atualizarEmpresa,
+    atualizarContatoEmpresa,
+    atualizarEnderecoEmpresa,
+    deletarEnderecosEmpresa,
+    deletarContatosEmpresa,
+    deletarUsuariosPorEmpresa,
+    deletarUsuariosEContatosPorEmpresa,
+    deletarEmpresaCompleta,
     listarFazendas,
+    buscarFazendaPorId,
     cadastrarFazenda,
-    cadastrarEnderecoFazenda
+    cadastrarEnderecoFazenda,
+    atualizarFazenda,
+    atualizarEnderecoFazenda,
+    deletarLeiturasPorSensores,
+    deletarSensoresPorFazenda,
+    deletarEnderecosPorFazenda,
+    deletarFazenda,
+    buscarFazendasPorEmpresa,
+    buscarSensoresPorFazenda,
+    deletarFazendaCompleta
 };

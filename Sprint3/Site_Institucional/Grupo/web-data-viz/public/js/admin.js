@@ -163,6 +163,7 @@ function renderizarUsuarios() {
             <p>${textoSeguro(email)}</p><small>${textoSeguro(telefone)}</small><small>${textoSeguro(empresa)}</small></div>
             <div class="acoes-usuario">
                 <button type="button" onclick="editarUsuario(${usuario.id})">Alterar acesso</button>
+                <button type="button" class="remover" onclick="excluirUsuario(${usuario.id})">Excluir</button>
             </div></div>`;
     }
 
@@ -175,7 +176,14 @@ function renderizarEmpresas() {
 
     for (var i = 0; i < empresas.length; i++) {
         var empresa = empresas[i];
-        linhas += `<tr><td>${textoSeguro(empresa.nome)}</td><td>${textoSeguro(empresa.razaoSocial)}</td><td>${textoSeguro(empresa.cnpj)}</td></tr>`;
+        linhas += `<tr><td>${textoSeguro(empresa.nome)}</td><td>${textoSeguro(empresa.razaoSocial)}</td><td>${textoSeguro(empresa.cnpj)}</td><td><button type="button" class="remover" onclick="excluirEmpresa(${empresa.id})">Excluir</button></td></tr>`;
+    }
+
+    if (referencias.listaEmpresas.parentElement && referencias.listaEmpresas.parentElement.querySelector("thead tr")) {
+        var cabecalhoEmpresas = referencias.listaEmpresas.parentElement.querySelector("thead tr");
+        if (cabecalhoEmpresas.children.length === 3) {
+            cabecalhoEmpresas.innerHTML += "<th scope=\"col\">Ações</th>";
+        }
     }
 
     referencias.listaEmpresas.innerHTML = linhas;
@@ -192,7 +200,14 @@ function renderizarFazendas() {
             cidadeEstado += cidadeEstado ? " / " + fazenda.estado : fazenda.estado;
         }
 
-        linhas += `<tr><td>${textoSeguro(fazenda.nome)}</td><td>${textoSeguro(fazenda.empresaNome || "Sem empresa")}</td><td>${textoSeguro(formatarMoedaOuZero(fazenda.hectare))}</td><td>${textoSeguro(cidadeEstado)}</td></tr>`;
+        linhas += `<tr><td>${textoSeguro(fazenda.nome)}</td><td>${textoSeguro(fazenda.empresaNome || "Sem empresa")}</td><td>${textoSeguro(formatarMoedaOuZero(fazenda.hectare))}</td><td>${textoSeguro(cidadeEstado)}</td><td><button type="button" class="remover" onclick="excluirFazenda(${fazenda.id})">Excluir</button></td></tr>`;
+    }
+
+    if (referencias.listaFazendas.parentElement && referencias.listaFazendas.parentElement.querySelector("thead tr")) {
+        var cabecalhoFazendas = referencias.listaFazendas.parentElement.querySelector("thead tr");
+        if (cabecalhoFazendas.children.length === 4) {
+            cabecalhoFazendas.innerHTML += "<th scope=\"col\">Ações</th>";
+        }
     }
 
     referencias.listaFazendas.innerHTML = linhas;
@@ -430,6 +445,54 @@ async function salvarAcesso() {
         await carregarDados();
     } catch (erro) {
         referencias.msgEditar.textContent = erro.message;
+    }
+}
+
+async function excluirUsuario(idUsuario) {
+    if (!confirm("Tem certeza que deseja excluir este usuário?")) {
+        return;
+    }
+
+    try {
+        await requisitarJson(`/admin/usuarios/${idUsuario}`, {
+            method: "DELETE"
+        });
+
+        await carregarDados();
+    } catch (erro) {
+        referencias.msgUsuario.textContent = erro.message;
+    }
+}
+
+async function excluirEmpresa(idEmpresa) {
+    if (!confirm("Tem certeza que deseja excluir esta empresa?")) {
+        return;
+    }
+
+    try {
+        await requisitarJson(`/admin/empresas/${idEmpresa}`, {
+            method: "DELETE"
+        });
+
+        await carregarDados();
+    } catch (erro) {
+        referencias.msgEmpresa.textContent = erro.message;
+    }
+}
+
+async function excluirFazenda(idFazenda) {
+    if (!confirm("Tem certeza que deseja excluir esta fazenda?")) {
+        return;
+    }
+
+    try {
+        await requisitarJson(`/admin/fazendas/${idFazenda}`, {
+            method: "DELETE"
+        });
+
+        await carregarDados();
+    } catch (erro) {
+        referencias.msgFazenda.textContent = erro.message;
     }
 }
 
